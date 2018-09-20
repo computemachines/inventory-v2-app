@@ -1,0 +1,28 @@
+{
+  "name": "inventory-v2",
+  "version": "2.0.0",
+  "devDependencies": {
+    "@babel/core": "^7.1.0",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.2",
+    "copy-webpack-plugin": "^4.5.2",
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2",
+    "webpack": "^4.19.1",
+    "webpack-cli": "^3.1.0",
+    "webpack-dev-server": "^3.1.8",
+    "webpack-node-externals": "^1.7.2"
+  },
+  "scripts": {
+    "build:client": "webpack --config webpack.client.config.js",
+    "build:server": "webpack --config webpack.server.config.js",
+    "start:dev": "webpack-dev-server --config webpack.client.config.js",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.16.3",
+    "memory-fs": "^0.4.1",
+    "require-from-string": "^2.0.2"
+  }
+}
