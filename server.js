@@ -1,6 +1,7 @@
 const express = require("express")
 const React = require("react")
 const { renderToString } = require("react-dom/server")
+const {StaticRouter} = require("react-router-dom")
 
 const App = require("./dist/server.bundle").default
 
@@ -22,8 +23,13 @@ const htmlTemplate = (html) =>
 const express_app = express()
 
 express_app.use(express.static("dist"))
-express_app.get("/", (req, res) => {
-  res.send(htmlTemplate(renderToString(App)))
+express_app.get("/*", (req, res) => {
+  const context = {}
+  const app = React.createElement(StaticRouter,
+                                  {location: req.url,
+                                   context: context},
+                                  App)
+  res.send(htmlTemplate(renderToString(app)))
 })
 
 express_app.listen(8080)
