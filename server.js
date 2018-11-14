@@ -5,7 +5,7 @@ const {StaticRouter} = require("react-router-dom")
 
 const App = require("./dist/server.bundle").default
 
-
+// Remember to update [src/client/index.html] whenever you change this template
 const htmlTemplate = (html) =>
 `<!DOCTYPE html>
 <html>
@@ -32,4 +32,4 @@ express_app.get("/*", (req, res) => {
   res.send(htmlTemplate(renderToString(app)))
 })
 
-express_app.listen(8080)
+express_app.listen(80)

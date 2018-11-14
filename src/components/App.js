@@ -3,7 +3,7 @@ import {Route} from "react-router-dom"
 
 const App = () => (
   <div>
-    <Route path="/a" render={() => <p>a</p>}/>
+    <Route path="/a" render={() => <p onClick={()=>(alert("clicked"))}>a</p>}/>
     <Route path="/b" render={() => <p>b</p>}/>
   </div>
 )
