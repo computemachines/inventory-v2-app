@@ -22,8 +22,9 @@
     "build:client": "webpack --config webpack.client.config.js",
     "build:server": "webpack --config webpack.server.config.js",
     "start:dev": "webpack-dev-server --config webpack.client.config.js",
-    "start": "node server.js",
-    "ssr:dev": "npm run build:client && npm run build:server && npm run start -p 8080"
+    "start:ssr": "node server.js",
+    "start:ssr:dev": "node server.js -p 8080",
+    "ssr:dev": "npm run build:client && npm run build:server && npm run start:ssr:dev"
   },
   "dependencies": {
     "docopt": "^0.6.2",

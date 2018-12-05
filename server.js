@@ -27,6 +27,7 @@ const htmlTemplate = (html) =>
     <title>test app</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <link rel="stylesheet" href="/assets/main.css" />
 </head>
 <body>
     <div id="react-root">${html}</div>
@@ -37,13 +38,17 @@ const htmlTemplate = (html) =>
 const express_app = express()
 
 express_app.use(express.static("dist"))
+if (port !== 80) {
+  express_app.use('/assets', express.static('dist')) 
+}
 express_app.get("/*", (req, res) => {
   const context = {}
   const app = React.createElement(StaticRouter,
                                   {location: req.url,
                                    context: context},
                                   App)
-  res.send(htmlTemplate(renderToString(app)))
+  const html = htmlTemplate(renderToString(app))
+  res.send(html)
 })
 
 express_app.listen(port)
