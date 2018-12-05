@@ -2,6 +2,20 @@ const express = require("express")
 const React = require("react")
 const { renderToString } = require("react-dom/server")
 const {StaticRouter} = require("react-router-dom")
+const {docopt} = require("docopt")
+
+
+doc = `
+Usage:
+  server.js [-p <port>]
+`
+const args = docopt(doc, {version: "ssr0.1.0"})
+console.log(args)
+
+port = 80
+if (args['-p']) {
+  port = parseInt(args['<port>'])
+}
 
 const App = require("./dist/server.bundle").default
 
@@ -32,4 +46,4 @@ express_app.get("/*", (req, res) => {
   res.send(htmlTemplate(renderToString(app)))
 })
 
-express_app.listen(80)
+express_app.listen(port)

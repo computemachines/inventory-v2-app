@@ -17,16 +17,19 @@ module.exports = {
       '/api': 'http://localhost:8081'
     },
   },
-    module: {
+  module: {
     rules: [{
       test: /\.js$/,
       exclude: /node_modules/,
       use: {
-	loader: 'babel-loader',
-	options: {
-	  presets: ['@babel/preset-react']
-	}
-      },
+        loader: 'babel-loader',
+        options: {
+          presets: ['@babel/preset-react']
+        }
+      }
+    },{
+      test: /\.css$/,
+      use: ['style-loader', 'css-loader']
     }]
   },
   plugins: [

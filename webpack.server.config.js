@@ -1,5 +1,7 @@
 const nodeExternals = require('webpack-node-externals')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const path = require('path')
+
 
 module.exports = {
   target: 'node',
@@ -25,11 +27,17 @@ module.exports = {
       test: /\.js$/,
       exclude: /node_modules/,
       use: {
-	loader: 'babel-loader',
-	options: {
-	  presets: ['@babel/preset-react']
-	}
-      },
+        loader: 'babel-loader',
+        options: {
+          presets: ['@babel/preset-react']
+        }
+      }
+    },{
+      test: /\.css$/, // replace with extract-text. make separate css output
+      use: [{
+        loader: MiniCssExtractPlugin.loader
+      }, 'css-loader']
     }]
   },
+  plugins: [new MiniCssExtractPlugin()]
 }
