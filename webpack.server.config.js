@@ -39,5 +39,7 @@ module.exports = {
       }, 'css-loader']
     }]
   },
-  plugins: [new MiniCssExtractPlugin()]
+  plugins: [new MiniCssExtractPlugin({
+    filename: 'assets/main.css'
+  })]
 }
