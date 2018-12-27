@@ -1,3 +1,24 @@
 body {
-    background-color: blue;
+
+}
+
+.logo {
+    display: block;
+    max-width: 6rem;
+    margin: 0 auto;
+}
+
+nav a {
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    font-family: sans-serif;
+    font-weight: bold;
+    background-color: #28464b;
+
+    display: block;
+    border-radius: 0.7em;
+
+    margin: 0.3em 1em;
+    padding: 1em;
 }

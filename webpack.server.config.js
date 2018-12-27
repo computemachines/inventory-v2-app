@@ -37,6 +37,9 @@ module.exports = {
       use: [{
         loader: MiniCssExtractPlugin.loader
       }, 'css-loader']
+    },{
+      test: /\.svg$/,
+      loader: 'svg-inline-loader'
     }]
   },
   plugins: [new MiniCssExtractPlugin({

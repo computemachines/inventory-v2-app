@@ -4,6 +4,10 @@ import {Route, NavLink} from "react-router-dom"
 import queryString from "query-string"
 import $ from "jquery"
 
+import Logo from '../img/logo.svg';
+import InlineSVG from 'svg-inline-react';
+
+
 import '../styles/App.css'
 
 const NewThingForm = () => (
@@ -86,9 +90,12 @@ function SearchResults(results) {
 
 const App = () => (
   <div>
-    <NavLink to="/new/thing">New</NavLink>
-    <NavLink to="/move/thing">Move</NavLink>
-    <NavLink to="/search">Search</NavLink>
+    <InlineSVG src={Logo} className="logo"/>
+    <nav>
+      <NavLink to="/new/thing">New</NavLink>
+      <NavLink to="/move/thing">Move</NavLink>
+      <NavLink to="/search">Search</NavLink>
+    </nav>
     <Route path="/new/thing" component={NewThingForm}/>
     <Route path="/move/thing" component={MoveThingForm}/>
     <Route path="/search" component={SearchThingForm}/>
