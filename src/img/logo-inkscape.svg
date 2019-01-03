@@ -8,6 +8,7 @@
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="17.84968mm"
@@ -21,7 +22,8 @@
      id="defs2">
     <linearGradient
        id="linearGradient4550"
-       osb:paint="solid">
+       osb:paint="solid"
+       gradientTransform="matrix(0.26458333,0,0,0.26458333,86.337954,121.84724)">
       <stop
          style="stop-color:#2c99b6;stop-opacity:1;"
          offset="0"
@@ -59,6 +61,12 @@
          offset="0"
          id="stop4524" />
     </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4544"
+       id="linearGradient940"
+       gradientTransform="matrix(0.26458333,0,0,0.26458333,86.337954,121.84724)"
+       gradientUnits="userSpaceOnUse" />
   </defs>
   <sodipodi:namedview
      id="base"
@@ -68,7 +76,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="7.1405066"
-     inkscape:cx="33.731679"
+     inkscape:cx="33.031449"
      inkscape:cy="38.372627"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
@@ -99,7 +107,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -139,5 +147,12 @@
        d="m 95.262794,132 v 10"
        id="path4641"
        inkscape:connector-curvature="0" />
+    <rect
+       style="fill:url(#linearGradient940);fill-opacity:1.0;stroke:#000000;stroke-width:0.26458332;stroke-opacity:1"
+       id="rect938"
+       width="2.7419856"
+       height="3.5942245"
+       x="80.149956"
+       y="126.55308" />
   </g>
 </svg>

@@ -8,17 +8,23 @@ body {
     margin: 0 auto;
 }
 
-nav a {
+.navlink {
     text-align: center;
     text-decoration: none;
     color: white;
     font-family: sans-serif;
     font-weight: bold;
     background-color: #28464b;
+    border: solid 3px #28464b;
 
     display: block;
     border-radius: 0.7em;
 
     margin: 0.3em 1em;
     padding: 1em;
+}
+
+.navlink--selected {
+    color: #28464b;
+    background-color: white;
 }

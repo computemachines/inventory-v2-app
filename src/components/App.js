@@ -92,9 +92,9 @@ const App = () => (
   <div>
     <InlineSVG src={Logo} className="logo"/>
     <nav>
-      <NavLink to="/new/thing">New</NavLink>
-      <NavLink to="/move/thing">Move</NavLink>
-      <NavLink to="/search">Search</NavLink>
+      <NavLink to="/new/thing" className="navlink" activeClassName="navlink--selected">New</NavLink>
+      <NavLink to="/move/thing" className="navlink" activeClassName="navlink--selected">Move</NavLink>
+      <NavLink to="/search" className="navlink" activeClassName="navlink--selected">Search</NavLink>
     </nav>
     <Route path="/new/thing" component={NewThingForm}/>
     <Route path="/move/thing" component={MoveThingForm}/>
