@@ -1,6 +1,4 @@
-body {
 
-}
 
 .logo {
     display: block;
@@ -27,4 +25,76 @@ body {
 .navlink--selected {
     color: #28464b;
     background-color: white;
+}
+
+.inv-form {
+    margin: 1em;
+}
+
+.inv-form__item {
+    display: flex;
+    flex-direction: row-reverse;
+    
+    height: 3em;
+    padding: 0.3em;
+}
+
+.inv-form__input, .inv-form__item input[type=text] {
+    border-radius: 0 0.7em 0.7em 0;
+    border: 2px solid #28464b;
+    flex-grow: 1;
+}
+
+.inv-form__input--search {
+    display: block;
+    margin-left: -1em;
+    height: 3em;
+    border: 2px solid #28464b;
+    border-radius: 0.7em;
+    border-left: 40px solid #28464b;
+}
+
+.inv-form__item__label, .inv-form__item label {
+    height: 100%;
+    display: flex;
+    align-items: center;
+
+    box-sizing: border-box;
+
+    background-color: #28464b;
+    color: white;
+    
+    border: 2px solid #28464b;
+    border-right: none;
+    border-radius: 0.7em 0 0 0.7em;
+
+    padding: 0.3em;
+}
+
+.inv-form__item__label svg {
+    width: 1.3em;
+    height: 1.3em;
+}
+
+.inv-form__item__label path {
+    stroke: white;
+}
+
+.inv-form__item input[type=text]:focus + label,
+.inv-form__item input[type=text]:focus + .inv-form__item__label {
+    color: #28464b;
+    background-color: white;
+}
+
+.inv-form__item input[type=text]:focus + .inv-form__item__label path {
+    stroke: #28464b;
+}
+
+.inv-form__submit {
+    
+}
+
+.svg-icon {
+    width: 1em;
+    height: 1em;
 }
