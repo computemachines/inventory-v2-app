@@ -59,7 +59,7 @@ class SearchForm extends React.Component {
             </label>
           </div>
 
-          <button>
+          <button className='inv-form__submit'>
             Search
           </button>
         </form>
