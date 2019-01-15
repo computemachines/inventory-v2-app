@@ -50,12 +50,13 @@ class SearchForm extends React.Component {
           <h3 style={{textAlign: 'center', border:'3px solid red'}}>API Not Implemented Yet</h3>
           <h2 className='inv-form__title'>Thing Search</h2>
           <div className='inv-form__item'>
-            <input type="text" name="query"
+            <input id="search-input" type="text" name="query"
                    className='inv-form__input'
                    value={this.state.query}
                    onChange={this.handleChange}/>
-            <InlineSVG src={SearchIcon}
-                       className='inv-form__item__label' />
+            <label className='inv-form__item__label' htmlFor="search-input">
+              <InlineSVG src={SearchIcon}/>
+            </label>
           </div>
 
           <button>

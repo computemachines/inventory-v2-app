@@ -71,13 +71,12 @@
     padding: 0.3em;
 }
 
-.inv-form__item__label svg {
+.inv-form__item__label .svg-icon {
     width: 1.3em;
     height: 1.3em;
-}
-
-.inv-form__item__label path {
     stroke: white;
+    stroke-width: 1.5px;
+    padding: 0 0.2em;
 }
 
 .inv-form__item input[type=text]:focus + label,
@@ -86,15 +85,10 @@
     background-color: white;
 }
 
-.inv-form__item input[type=text]:focus + .inv-form__item__label path {
+.inv-form__item input[type=text]:focus + .inv-form__item__label .svg-icon {
     stroke: #28464b;
 }
 
 .inv-form__submit {
     
-}
-
-.svg-icon {
-    width: 1em;
-    height: 1em;
 }
