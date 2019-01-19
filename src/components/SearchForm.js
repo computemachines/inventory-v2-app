@@ -8,12 +8,18 @@ import SearchResults from './SearchResults'
 
 import SearchIcon from '../img/search.svg'
 
+/* state.search = {
+  query: "",
+  searchResults: [],
+  isSubmitted: false,
+  isLoaded: false
+}*/
+
 class SearchForm extends React.Component {
   constructor(props) {
     super(props)
 
-    this.state = {query: queryString.parse(this.props.location.search).query, searchResults: [], isSubmitted: false, isLoaded: false}
-    this.controlled = false
+    this.state = {query: queryString.parse(this.props.location.search).query} //searchResults: [], isSubmitted: false, isLoaded: false}
 
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)
@@ -30,7 +36,6 @@ class SearchForm extends React.Component {
 
   handleSubmit(event) {
     console.log("handleSubmit")
-    this.setState({isSubmitted: true})
     this.props.history.push("/search?" + queryString.stringify({query: this.state.query}))
     $.getJSON("/api/search?"+queryString.stringify({query: this.state.query}),
               null, (data, status) => {this.setState({searchResults: data, isLoaded: true})})
