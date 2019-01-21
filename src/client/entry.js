@@ -14,7 +14,7 @@ const preloadedState = window.__PRELOADED_STATE__
 delete window.__PRELOADED_STATE__
 
 // Create Redux store with initial state
-const store = createStore(reducer, preloadedState)
+const store = createStore(reducer, preloadedState, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
 
 // ReactDom.hydrate(App, document.getElementById('react-root'))
 ReactDOM.hydrate(

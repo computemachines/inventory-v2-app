@@ -1,50 +1,59 @@
 import React from "react"
+import { connect } from 'react-redux'
 
 import InlineSVG from 'svg-inline-react';
-import queryString from "query-string"
+import QueryString from "query-string"
 import $ from "jquery"
 
 import SearchResults from './SearchResults'
 
 import SearchIcon from '../img/search.svg'
 
-/* state.search = {
-  query: "",
-  searchResults: [],
-  isSubmitted: false,
-  isLoaded: false
-}*/
+import { setQuery, setSearchResults } from '../actions'
+import initialState from '../initialState'
+
 
 class SearchForm extends React.Component {
   constructor(props) {
     super(props)
 
-    this.state = {query: queryString.parse(this.props.location.search).query} //searchResults: [], isSubmitted: false, isLoaded: false}
 
+
+    this.state = {inputState: ''}
+    
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)
   }
 
   componentDidMount() {
-    if (typeof(this.state.query) != "undefined") {
-      $.getJSON("/api/search?"+queryString.stringify({query: this.state.query}),
+    const query = QueryString.parse(this.props.location.search).query
+    if(this.props.query == initialState.query) {
+      this.setState({inputState: query})      
+      this.props.setQuery(query)
+    }
+    if(this.props.loaded === initialState.loaded) {
+      console.log("initial load")
+      $.getJSON("/api/search?"+QueryString.stringify({query}),
                 null, (data, status) => {
-                  this.setState({searchResults: data, isLoaded: true})
+                  this.props.setSearchResults(data)
                 })
     }
   }
 
   handleSubmit(event) {
-    console.log("handleSubmit")
-    this.props.history.push("/search?" + queryString.stringify({query: this.state.query}))
-    $.getJSON("/api/search?"+queryString.stringify({query: this.state.query}),
-              null, (data, status) => {this.setState({searchResults: data, isLoaded: true})})
+    const queryString = QueryString.stringify({query: this.state.inputState})
+    this.props.history.push("/search?" + queryString)
+    $.getJSON("/api/search?"+queryString, null,
+              (data, status) => {
+                this.props.setSearchResults(data)
+              })
     event.preventDefault()
   }
+  
   handleChange(event) {
-    console.log("handleChange")
-    this.setState({query: event.target.value})
+    this.setState({inputState: event.target.value})
   }
+  
   render() {
     return (
       <React.Fragment>
@@ -52,12 +61,11 @@ class SearchForm extends React.Component {
               className='inv-form'
               autoComplete="off"
               onSubmit={this.handleSubmit}>
-          <h3 style={{textAlign: 'center', border:'3px solid red'}}>API Not Implemented Yet</h3>
           <h2 className='inv-form__title'>Thing Search</h2>
           <div className='inv-form__item'>
             <input id="search-input" type="text" name="query"
                    className='inv-form__input'
-                   value={this.state.query}
+                   value={this.state.inputState}
                    onChange={this.handleChange}/>
             <label className='inv-form__item__label' htmlFor="search-input">
               <InlineSVG src={SearchIcon}/>
@@ -68,10 +76,18 @@ class SearchForm extends React.Component {
             Search
           </button>
         </form>
-        <SearchResults results={this.state.searchResults} />
+        <SearchResults results={this.props.searchResults} />
       </React.Fragment>
     )
   }
 }
 
-export default SearchForm
+const mapStateToProps = state => state
+const mapDispatchToProps = {
+  setQuery: setQuery,
+  setSearchResults: setSearchResults
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(
+  SearchForm
+)

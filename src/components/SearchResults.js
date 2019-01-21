@@ -1,10 +1,12 @@
 import React from "react"
 
-function SearchResults(results) {
+import SearchItem from './SearchItem'
+
+function SearchResults(props) {
   return (
-    <ol className="search-results">
-      {""+results.results}
-    </ol>
+    <div className="search-results">
+      {props.results.map(result => <SearchItem key={result.label} {...result}/>)}
+    </div>
   )
 }
 
