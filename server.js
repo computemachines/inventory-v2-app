@@ -60,7 +60,7 @@ express_app.use(express.static(path.join(__dirname, "dist")))
 //   express_app.use('/assets', express.static('dist')) 
 // }
 
-const api_hostname = (port === 80) ? 'http://nginx/' : 'http://localhost:8081'
+const api_hostname = (port === 80) ? 'http://nginx-entry' : 'http://localhost:8081'
 
 const {Provider} = require("react-redux")
 
@@ -76,7 +76,10 @@ express_app.get("/search", (req, res, next) => {
   console.log("searchQuery: "+searchQuery)
   req.locals.store.dispatch(setQuery(searchQuery))
   const queryString = QueryString.stringify({query: searchQuery})
+  console.log("GET "+api_hostname+"/api/search?"+queryString)
   request.get(api_hostname+"/api/search?"+queryString, (error, resp, data) => {
+    console.log("response: "+resp)
+    console.log("error: "+error)
     req.locals.store.dispatch(setSearchResults(data))
     next()
   })

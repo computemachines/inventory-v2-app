@@ -1,12 +1,15 @@
 import React from "react"
 
 import SearchItem from './SearchItem'
+import ErrorBoundary from './ErrorBoundary'
 
 function SearchResults(props) {
   return (
-    <div className="search-results">
-      {props.results.map(result => <SearchItem key={result.label} {...result}/>)}
-    </div>
+    <ErrorBoundary>
+      <div className="search-results">
+
+      </div>
+    </ErrorBoundary>
   )
 }
 
