@@ -73,11 +73,13 @@ express_app.get("/*", (req, res, next) => {
 
 express_app.get("/search", (req, res, next) => {
   const searchQuery = req.query["query"] || initialState.query
-  console.log("searchQuery: "+searchQuery)
   req.locals.store.dispatch(setQuery(searchQuery))
-  const queryString = QueryString.stringify({query: searchQuery})
-  console.log("GET "+api_hostname+"/api/search?"+queryString)
-  request.get(api_hostname+"/api/search?"+queryString, (error, resp, data) => {
+
+  request({
+    url: api_hostname+"/api/search",
+    qs: {query: searchQuery},
+    json: true
+  }, (error, resp, data) => {
     console.log("response: "+resp)
     console.log("error: "+error)
     req.locals.store.dispatch(setSearchResults(data))

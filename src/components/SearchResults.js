@@ -1,16 +1,24 @@
 import React from "react"
+import PropTypes from 'prop-types'
 
 import SearchItem from './SearchItem'
 import ErrorBoundary from './ErrorBoundary'
 
 function SearchResults(props) {
+  console.log(props)
   return (
     <ErrorBoundary>
-      <div className="search-results">
-
-      </div>
+      <ul className="search-results">
+        {props.results.map(result => (
+          <SearchItem key={result['_id']['$oid']} {...result}/>
+        ))}
+      </ul>
     </ErrorBoundary>
   )
+}
+
+SearchResults.propTypes = {
+  results: PropTypes.array.isRequired
 }
 
 export default SearchResults
