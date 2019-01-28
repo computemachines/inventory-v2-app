@@ -9,9 +9,10 @@ import '../styles/App.css'
 import NewThingForm from './NewThingForm'
 import MoveThingForm from './MoveThingForm'
 import SearchForm from './SearchForm'
+import FlashMessage from './FlashMessage'
 
 const App = () => (
-  <div>
+  <div className="wrapper">
     <InlineSVG src={Logo} className="logo"/>
     <nav>
       <NavLink to="/new/thing" className="navlink" activeClassName="navlink--selected">New</NavLink>
@@ -21,6 +22,7 @@ const App = () => (
     <Route path="/new/thing" component={NewThingForm}/>
     <Route path="/move/thing" component={MoveThingForm}/>
     <Route path="/search" component={SearchForm}/>
+    <Route path="/new/thing" component={FlashMessage}/>
   </div>
 )
 

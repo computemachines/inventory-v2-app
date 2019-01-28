@@ -30,6 +30,22 @@ body {
     background-color: white;
 }
 
+.flash {
+    position: fixed;
+    box-sizing: border-box;
+    width: 80%;
+    min-height: 3rem;
+    bottom: 0;
+    left: 50%;
+    margin-left: -40%;
+
+    border-radius: 0.6rem 0.6rem 0 0;
+    background-color: red;
+
+    text-align: center;
+    padding: 1rem;
+}
+
 .inv-form {
     margin: 1em;
     margin-top: 1.5em;
