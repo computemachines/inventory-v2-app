@@ -28,8 +28,19 @@ module.exports = {
         }
       }
     },{
+      
       test: /\.css$/,
-      use: ['style-loader', 'css-loader']
+      use: [
+        'style-loader',
+        
+        {loader: 'css-loader',
+         options: {importLoaders: 0}},
+        
+        {loader: 'postcss-loader',
+         options: {ident: 'postcss',
+                   plugins: [require('autoprefixer')()]},
+        }]
+      
     },{
       test: /\.svg$/,
       loader: 'svg-inline-loader'
