@@ -33,11 +33,41 @@ module.exports = {
         }
       }
     },{
+
       test: /\.css$/, // replace with extract-text. make separate css output
-      use: [{
-        loader: MiniCssExtractPlugin.loader
-      }, 'css-loader']
+      use: [
+        {loader: MiniCssExtractPlugin.loader},
+        
+        {loader: 'css-loader',
+         options: {importLoaders: 1}},
+        
+        {loader: 'postcss-loader',
+         options: {ident: 'postcss',
+                   plugins: [require('autoprefixer')()]},
+        }]
+      
     },{
+
+      test: /\.scss$/,
+      use: [
+        {loader: MiniCssExtractPlugin.loader},
+
+        {loader: 'css-loader',
+         options: {importLoaders: 3}},
+
+        {loader: 'postcss-loader',
+         options: {ident: 'postcss',
+                   plugins: [require('autoprefixer')]}},
+
+        {loader: 'resolve-url-loader'},
+
+        {loader: 'sass-loader',
+         options: {sourceMap: true,
+                   sourceMapContents: false}}
+      ]
+      
+    },{
+      
       test: /\.svg$/,
       loader: 'svg-inline-loader'
     }]

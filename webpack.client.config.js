@@ -34,12 +34,32 @@ module.exports = {
         'style-loader',
         
         {loader: 'css-loader',
-         options: {importLoaders: 0}},
+         options: {importLoaders: 1}},
         
         {loader: 'postcss-loader',
          options: {ident: 'postcss',
                    plugins: [require('autoprefixer')()]},
         }]
+      
+    },{
+
+      test: /\.scss$/,
+      use: [
+        'style-loader',
+
+        {loader: 'css-loader',
+         options: {importLoaders: 3}},
+
+        {loader: 'postcss-loader',
+         options: {ident: 'postcss',
+                   plugins: [require('autoprefixer')]}},
+
+        {loader: 'resolve-url-loader'},
+
+        {loader: 'sass-loader',
+         options: {sourceMap: true,
+                   sourceMapContents: false}}
+      ]
       
     },{
       test: /\.svg$/,
