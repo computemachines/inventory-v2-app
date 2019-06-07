@@ -46,7 +46,7 @@ This is the nodejs server that actually renders and serves the app. Must at leas
 Main entrypoint for client. Hydrates the react app containing div with the main `App` component.
 
 * `src/client/index.html`  
-Basic single page app html for webpack-dev-server. Used only for debugging.
+Basic single page app html for webpack-dev-server. Used only for development.
 
 * `src/components/App.js`  
 The main react component.
