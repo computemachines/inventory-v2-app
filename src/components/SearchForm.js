@@ -1,7 +1,6 @@
 import React from "react"
 import { connect } from 'react-redux'
 
-import InlineSVG from 'svg-inline-react';
 import QueryString from "query-string"
 import $ from "jquery"
 
@@ -18,7 +17,6 @@ class SearchForm extends React.Component {
     super(props)
 
 
-
     this.state = {inputState: ''}
     
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -27,11 +25,11 @@ class SearchForm extends React.Component {
 
   componentDidMount() {
     const query = QueryString.parse(this.props.location.search).query
-    if(this.props.query == initialState.query) {
-      this.setState({inputState: query})      
+    if(this.props.query === initialState.query) {
+      this.setState({inputState: query})
       this.props.setQuery(query)
     }
-    if(this.props.loaded === initialState.loaded) {
+    if(this.props.loaded === initialState.loaded && typeof query !== 'undefined') {
       console.log("initial load")
       $.getJSON("/api/search?"+QueryString.stringify({query}),
                 null, (data, status) => {
@@ -57,24 +55,15 @@ class SearchForm extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <form action="/search" method="GET"
+        <form action="/api/search" method="GET"
               className='inv-form'
               autoComplete="off"
               onSubmit={this.handleSubmit}>
-          <h2 className='inv-form__title'>Thing Search</h2>
-          <div className='inv-form__item'>
-            <input id="search-input" type="text" name="query"
-                   className='inv-form__input'
-                   value={this.state.inputState}
-                   onChange={this.handleChange}/>
-            <label className='inv-form__item__label' htmlFor="search-input">
-              <InlineSVG src={SearchIcon}/>
-            </label>
-          </div>
-
-          <button className='inv-form__submit'>
-            Search
-          </button>
+          <input id="search-input" type="text" name="query"
+                 className='inv-form__input'
+                 value={this.state.inputState}
+                 onChange={this.handleChange}/>
+          <input type="submit" value="Search"/>
         </form>
         <SearchResults results={this.props.searchResults} />
       </React.Fragment>

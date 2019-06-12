@@ -2,148 +2,22 @@ body {
     font-family: sans-serif;
 }
 
-.logo {
-    display: block;
-    max-width: 6rem;
-    margin: 0 auto;
+nav {
+    margin-bottom: 1em;
 }
 
 .navlink {
-    text-align: center;
     text-decoration: none;
-    color: white;
-    font-family: sans-serif;
-    font-weight: bold;
-    font-size: 1rem;
-    background-color: #28464b;
-    border: solid 3px #28464b;
+}
 
-    display: block;
-    border-radius: 0.7em;
-
-    margin: 0.3em 1em;
-    padding: 1em;
+.navlink + .navlink::before {
+    content: ' | ';
 }
 
 .navlink--selected {
-    color: #28464b;
-    background-color: white;
+    text-decoration: underline;
 }
 
-.flash {
-    position: fixed;
-    box-sizing: border-box;
-    width: 80%;
-    min-height: 3rem;
-    bottom: 0;
-    left: 50%;
-    margin-left: -40%;
-
-    border-radius: 0.6rem 0.6rem 0 0;
-    background-color: red;
-
-    text-align: center;
-    padding: 1rem;
-}
-
-.inv-form {
-    margin: 1em;
-    margin-top: 1.5em;
-}
-
-.inv-form__title {
-    margin-bottom: 0.4em;
-    color: #1C3133;
-}
-
-.inv-form__item {
-    display: flex;
-    flex-direction: row-reverse;
-    
-    height: 3rem;
-    padding: 0.3em;
-}
-
-.inv-form__input, .inv-form__item input[type=text] {
-    border-radius: 0 0.7em 0.7em 0;
-    border: 2px solid #28464b;
-    flex-grow: 1;
-}
-
-.inv-form__input--search {
-    display: block;
-    margin-left: -1em;
-    height: 3em;
-    border: 2px solid #28464b;
-    border-radius: 0.7em;
-    border-left: 40px solid #28464b;
-}
-
-.inv-form__item__label, .inv-form__item label {
-    height: 100%;
-    display: flex;
-    align-items: center;
-
-    box-sizing: border-box;
-
-    background-color: #28464b;
-    color: white;
-    
-    border: 2px solid #28464b;
-    border-right: none;
-    border-radius: 0.7em 0 0 0.7em;
-
-    padding: 0 0.3em;
-}
-
-.inv-form__item__label .svg-icon {
-    width: 1.3em;
-    height: 1.3em;
-    stroke: white;
-    stroke-width: 1.5px;
-    padding: 0 0.2em;
-    margin-top: 4px;
-}
-
-.inv-form__item input[type=text]:focus + label,
-.inv-form__item input[type=text]:focus + .inv-form__item__label {
-    color: #28464b;
-    background-color: white;
-}
-
-.inv-form__item input[type=text]:focus + .inv-form__item__label .svg-icon {
-    stroke: #28464b;
-}
-
-.inv-form__submit {
-    margin-top: 0.6em;
-    padding: 1em;
-    width: 100%;
-    box-sizing: border-box;
-
-    background-color: #28464b;
-    border: solid 3px #28464b;
-    color: white;
-
-    
-    font-family: sans-serif;
-    font-weight: bold;
-    font-size: 1rem;
-
-    text-align: center;
-    text-decoration: none;
-
-    border-radius: 0.7em;
-
-    cursor: pointer;
-}
-
-.inv-form__submit:active {
-    color: #28464b;
-    background-color: white;
-}
-
-.codefont {
-    font-family: monospace;
-    font-size: 1.1em;
+.form-item label {
+    margin-right: 1em;
 }
