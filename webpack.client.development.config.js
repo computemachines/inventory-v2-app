@@ -1,25 +1,24 @@
-const nodeExternals = require("webpack-node-externals");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const path = require("path");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 module.exports = {
-  target: "node",
-  externals: [nodeExternals()],
-  entry: path.resolve(__dirname, "src/server/entry.jsx"),
-  mode: "development",
+  entry: "./src/client/entry.jsx",
   output: {
-    path: path.resolve(__dirname, "dist"),
-    // path: _dirname + '/dist/assets',
-    // publicPath: '/assets/',
-    filename: "server.bundle.js",
-    library: "app",
-    libraryTarget: "commonjs2"
+    filename: "client.bundle.js",
+    path: __dirname + "/dist/assets"
+  },
+  mode: "development",
+  devtool: "inline-source-map",
+  devServer: {
+    contentBase: "./dist/assets/",
+    publicPath: "/assets/",
+    historyApiFallback: true,
+    port: 8080,
+    proxy: {
+      "/api": "http://localhost:8081"
+    }
   },
   resolve: {
-    extensions: ['.js', '.jsx'],
-    // alias: {
-    //   components: path.resolve(__dirname, '..', 'src/components')
-    // }
+    extensions: ['.js', '.jsx']
   },
   module: {
     rules: [
@@ -34,9 +33,9 @@ module.exports = {
         }
       },
       {
-        test: /\.css$/, // replace with extract-text. make separate css output
+        test: /\.css$/,
         use: [
-          { loader: MiniCssExtractPlugin.loader },
+          "style-loader",
 
           { loader: "css-loader", options: { importLoaders: 1 } },
 
@@ -49,7 +48,7 @@ module.exports = {
       {
         test: /\.scss$/,
         use: [
-          { loader: MiniCssExtractPlugin.loader },
+          "style-loader",
 
           { loader: "css-loader", options: { importLoaders: 3 } },
 
@@ -73,8 +72,11 @@ module.exports = {
     ]
   },
   plugins: [
-    new MiniCssExtractPlugin({
-      filename: "assets/main.css"
-    })
+    new CopyWebpackPlugin([
+      {
+        from: "src/client/index.html",
+        to: "index.html"
+      }
+    ])
   ]
 };

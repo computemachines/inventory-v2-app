@@ -1,5 +1,5 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { hydrate } from "react-dom";
 import { BrowserRouter, Route } from "react-router-dom";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
@@ -21,7 +21,7 @@ const store = createStore(
 );
 
 // ReactDom.hydrate(App, document.getElementById('react-root'))
-ReactDOM.hydrate(
+hydrate(
   <Provider store={store}>
     <BrowserRouter>
       <App />

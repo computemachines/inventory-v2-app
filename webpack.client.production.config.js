@@ -1,12 +1,15 @@
 const CopyWebpackPlugin = require("copy-webpack-plugin");
+const TerserPlugin = require('terser-webpack-plugin');
+
+
 
 module.exports = {
-  entry: "./src/client/entry.js",
+  entry: "./src/client/entry.jsx",
   output: {
     filename: "client.bundle.js",
     path: __dirname + "/dist/assets"
   },
-  mode: "development",
+  mode: "production",
   devtool: "inline-source-map",
   devServer: {
     contentBase: "./dist/assets/",
@@ -17,10 +20,13 @@ module.exports = {
       "/api": "http://localhost:8081"
     }
   },
+  resolve: {
+    extensions: ['.js', '.jsx']
+  },
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.jsx$/,
         exclude: /node_modules/,
         use: {
           loader: "babel-loader",
@@ -75,5 +81,9 @@ module.exports = {
         to: "index.html"
       }
     ])
-  ]
+    // new webpack.optimize.UglifyJsPlugin()
+  ],
+  optimization: {
+    minimizer: [new TerserPlugin()],
+  },
 };

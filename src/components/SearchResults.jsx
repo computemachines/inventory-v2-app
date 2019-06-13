@@ -10,7 +10,7 @@ function SearchResults(props) {
     <ErrorBoundary>
       <ul className="search-results">
         {props.results.map(result => (
-          <SearchItem key={result['key']} {...result}/>
+          <SearchItem key={result.key} {...result} />
         ))}
       </ul>
     </ErrorBoundary>
