@@ -11,7 +11,7 @@ FROM node
 RUN mkdir /srv/ssr-webpack/
 COPY package.json package-lock.json /srv/ssr-webpack/
 
-RUN . /root/.nvm/nvm.sh && cd /srv/ssr-webpack/; npm i -g yarn && yarn install
+RUN cd /srv/ssr-webpack/; npm i -g yarn && yarn install
 
 COPY . /srv/ssr-webpack
 
