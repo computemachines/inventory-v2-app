@@ -1,6 +1,8 @@
+/* eslint no-underscore-dangle: "off" */
+
 import React from "react";
 import { hydrate } from "react-dom";
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
 

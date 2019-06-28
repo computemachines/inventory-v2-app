@@ -1,23 +1,18 @@
 import React from "react";
+import PropTypes from "prop-types";
 
-class Bin extends React.Component {
-  constructor(props) {
-    super(props);
+const Bin = ({ match, props }) => {
+  console.log(match);
+  return (
+    <pre>
+      <code>{JSON.stringify(props)}</code>
+    </pre>
+  );
+};
 
-    this.setState();
-  }
-
-  componentDidMount() {}
-
-  render() {
-    console.log(this.props);
-    return (
-      <p>
-Hello
-        {this.props.match.params.id}
-      </p>
-);
-  }
-}
+Bin.propTypes = {
+  props: PropTypes.shape().isRequired,
+  match: PropTypes.shape().isRequired
+};
 
 export default Bin;

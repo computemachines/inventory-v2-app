@@ -1,13 +1,15 @@
 const merge = require("webpack-merge");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
+const AutoPrefixer = require("autoprefixer");
+
 const parentCommon = require("./webpack.common.js");
 
-const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 module.exports = merge(parentCommon, {
   entry: "./src/client/entry.jsx",
   output: {
     filename: "client.bundle.js",
-    path: __dirname + "/dist/assets"
+    path: `${__dirname  }/dist/assets`
   },
   devtool: "inline-source-map",
   module: {
@@ -20,7 +22,7 @@ module.exports = merge(parentCommon, {
           { loader: "postcss-loader",
             options: {
               ident: "postcss",
-              plugins: [require("autoprefixer")()]
+              plugins: [AutoPrefixer()]
             }}
         ]
       },

@@ -1,9 +1,10 @@
 const merge = require("webpack-merge");
-const common = require("./webpack.common.js");
-
 const nodeExternals = require("webpack-node-externals");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const path = require("path");
+const AutoPrefixer = require("autoprefixer");
+
+const common = require("./webpack.common.js");
 
 module.exports = merge(common, {
   target: "node",
@@ -25,7 +26,7 @@ module.exports = merge(common, {
           { loader: "postcss-loader",
             options: {
               ident: "postcss",
-              plugins: [require("autoprefixer")()]
+              plugins: [AutoPrefixer()]
             }}
         ]}
     ]

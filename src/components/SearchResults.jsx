@@ -1,24 +1,20 @@
-import React from "react"
-import PropTypes from 'prop-types'
+import React from "react";
+import PropTypes from "prop-types";
 
-import SearchItem from './SearchItem'
-import ErrorBoundary from './ErrorBoundary'
+import Unit from "./Unit";
 
-function SearchResults(props) {
-  console.log(props)
+function SearchResults({ results }) {
   return (
-    <ErrorBoundary>
-      <ul className="search-results">
-        {props.results.map(result => (
-          <SearchItem key={result.key} {...result} />
-        ))}
-      </ul>
-    </ErrorBoundary>
-  )
+    <ul className="search-results">
+      {results.map(result => (
+        <Unit key={result.id} json={result} />
+      ))}
+    </ul>
+  );
 }
 
 SearchResults.propTypes = {
-  results: PropTypes.array.isRequired
-}
+  results: PropTypes.arrayOf(PropTypes.shape).isRequired
+};
 
-export default SearchResults
+export default SearchResults;

@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, NavLink } from "react-router-dom";
+import { Route, NavLink, Switch } from "react-router-dom";
 
 import "../styles/App.css";
 
@@ -12,6 +12,8 @@ import SearchForm from "./SearchForm";
 import Bin from "./Bin";
 import Uniq from "./Uniq";
 import Sku from "./Sku";
+
+const FourOhFour = () => <h1>404</h1>;
 
 const App = () => (
   <div className="wrapper">
@@ -62,15 +64,18 @@ const App = () => (
         Search
       </NavLink>
     </nav>
-    <Route path="/new/sku" component={NewSkuForm} />
-    <Route path="/new/uniq" component={NewUniqForm} />
-    <Route path="/new/bin" component={NewBinForm} />
-    <Route path="/move-units" component={MoveUnitsForm} />
-    <Route path="/receive" component={ReceiveSkuForm} />
-    <Route path="/search" component={SearchForm} />
-    <Route path="/bin/:id" component={Bin} />
-    <Route path="/uniq" component={Uniq} />
-    <Route path="/sku" component={Sku} />
+    <Switch>
+      <Route path="/new/sku" component={NewSkuForm} />
+      <Route path="/new/uniq" component={NewUniqForm} />
+      <Route path="/new/bin" component={NewBinForm} />
+      <Route path="/move-units" component={MoveUnitsForm} />
+      <Route path="/receive" component={ReceiveSkuForm} />
+      <Route path="/search" component={SearchForm} />
+      <Route path="/bin/:id" component={Bin} />
+      <Route path="/uniq" component={Uniq} />
+      <Route path="/sku" component={Sku} />
+      <Route component={FourOhFour} />
+    </Switch>
   </div>
 );
 
