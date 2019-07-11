@@ -1,36 +1,30 @@
-body {
-    font-family: sans-serif;
+.app-wrapper {
+    display: flex;
 }
 
-nav {
+.sidebar {
+    width: 15%;
+}
+
+.branding {
+    height: 12em;
+    background-color: black;
     margin-bottom: 1em;
 }
 
-.navlink {
-    text-decoration: none;
-}
+.navbar {
+    flex: 0 0 auto;
+    height: calc(100vh - 10em);
 
-.navlink + .navlink::before {
-    content: ' | ';
-}
-
-.navlink--selected {
-    text-decoration: underline;
-}
-
-.form-item label {
-    margin-right: 1em;
-}
-
-.inv-card {
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
 }
 
-.inv-card > * {
-    flex: 1 100%;
+.navlink {
+    margin: 0.1em;
+    padding: 0.5em;
+
+    text-align: right;
 }
 
-.inv-card--label {
-    margin: 0.3em 0.3em 0.3em 1em;
-}
