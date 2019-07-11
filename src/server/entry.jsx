@@ -20,4 +20,4 @@ AppRoot.propTypes = {
 
 export { default as reducers } from "../reducers";
 export { setQuery, setSearchResults } from "../actions";
-export { default as initialState } from "../initialState";
+export { default as initialState } from "../defaultState";
