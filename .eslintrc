@@ -17,4 +17,7 @@
     "browser": true,
     "node": true
   },
+  "rules": {
+    "react/destructuring-assignment": 0
+  }
 }

@@ -1,30 +1,85 @@
 .app-wrapper {
-    display: flex;
+    background-color: #cdd2d6ff;
+    font-family: sans-serif;
 }
 
 .sidebar {
+    height: 100vh;
     width: 15%;
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    overflow-x: auto;
+    
+    background-color: #04151fff;
 }
 
 .branding {
-    height: 12em;
-    background-color: black;
-    margin-bottom: 1em;
+    padding: 3em 1em;
+    color: #ecebe4ff;
+}
+
+.logo {
+    display: inline-block;
+    height: 3em;
+    width: 3em;
+    border-radius: 50%;
+    background-color: #c0771fff;
+}
+
+.branding h2 {
+    display: inline-block;
 }
 
 .navbar {
-    flex: 0 0 auto;
-    height: calc(100vh - 10em);
+    /* height: calc(100vh - 12em); */
 
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
 }
 
-.navlink {
-    margin: 0.1em;
-    padding: 0.5em;
-
-    text-align: right;
+.navbar ul {
+    margin: 0;
+    padding: 0;
 }
 
+.navlink {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.5em;
+    background-color: #082441ff;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    box-shadow: 0px 0px 0px transparent;
+    border: 0px solid transparent;
+    cursor: pointer;
+}
+
+.navlink--selected {
+    background-color: #0c3764ff;
+}
+
+.dropdown-container {
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.5s ease;
+    /* display: none; */
+}
+
+.dropdown-btn + .dropdown-container:focus-within,
+.dropdown-container.show{
+    opacity: 1;
+    visibility: visible;
+    /* display: block; */
+}
+
+
+.main-content {
+    margin-left: 15%;
+    
+    background-color: #ecebe4ff;
+}

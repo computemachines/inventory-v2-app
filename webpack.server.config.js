@@ -8,7 +8,11 @@ const common = require("./webpack.common.js");
 
 module.exports = merge(common, {
   target: "node",
-  externals: [nodeExternals()],
+  externals: [
+    nodeExternals({
+      whitelist: ["normalize.css"]
+    })
+  ],
   entry: path.resolve(__dirname, "src/server/entry.jsx"),
   mode: "development",
   output: {
@@ -19,16 +23,20 @@ module.exports = merge(common, {
   },
   module: {
     rules: [
-      { test: /\.css$/,
+      {
+        test: /\.css$/,
         use: [
           { loader: MiniCssExtractPlugin.loader },
           { loader: "css-loader", options: { importLoaders: 1 } },
-          { loader: "postcss-loader",
+          {
+            loader: "postcss-loader",
             options: {
               ident: "postcss",
               plugins: [AutoPrefixer()]
-            }}
-        ]}
+            }
+          }
+        ]
+      }
     ]
   },
   plugins: [
