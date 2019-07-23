@@ -1,3 +1,11 @@
+html {
+    border-box: border-box;
+}
+
+* {
+    box-sizing: border-box;
+}
+
 .app-wrapper {
     background-color: #cdd2d6ff;
     font-family: sans-serif;
@@ -30,51 +38,6 @@
 
 .branding h2 {
     display: inline-block;
-}
-
-.navbar {
-    /* height: calc(100vh - 12em); */
-
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-}
-
-.navbar ul {
-    margin: 0;
-    padding: 0;
-}
-
-.navlink {
-    display: block;
-    width: 100%;
-    box-sizing: border-box;
-    padding: 0.5em;
-    background-color: #082441ff;
-    color: white;
-    text-decoration: none;
-    text-align: center;
-    box-shadow: 0px 0px 0px transparent;
-    border: 0px solid transparent;
-    cursor: pointer;
-}
-
-.navlink--selected {
-    background-color: #0c3764ff;
-}
-
-.dropdown-container {
-    visibility: hidden;
-    opacity: 0;
-    transition: all 0.5s ease;
-    /* display: none; */
-}
-
-.dropdown-btn + .dropdown-container:focus-within,
-.dropdown-container.show{
-    opacity: 1;
-    visibility: visible;
-    /* display: block; */
 }
 
 

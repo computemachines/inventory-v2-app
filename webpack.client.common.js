@@ -4,12 +4,11 @@ const AutoPrefixer = require("autoprefixer");
 
 const parentCommon = require("./webpack.common.js");
 
-
 module.exports = merge(parentCommon, {
   entry: "./src/client/entry.jsx",
   output: {
     filename: "client.bundle.js",
-    path: `${__dirname  }/dist/assets`
+    path: `${__dirname}/dist/assets`
   },
   devtool: "inline-source-map",
   module: {
@@ -19,13 +18,19 @@ module.exports = merge(parentCommon, {
         use: [
           "style-loader",
           { loader: "css-loader", options: { importLoaders: 1 } },
-          { loader: "postcss-loader",
+          {
+            loader: "postcss-loader",
             options: {
               ident: "postcss",
               plugins: [AutoPrefixer()]
-            }}
+            }
+          }
         ]
       },
+      {
+        test: /\.less$/,
+        use: ["style-loader", "css-loader", "less-loader"]
+      }
     ]
   },
   plugins: [

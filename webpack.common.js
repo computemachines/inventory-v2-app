@@ -1,4 +1,3 @@
-
 module.exports = {
   context: __dirname,
   resolve: {
@@ -7,10 +6,10 @@ module.exports = {
   module: {
     rules: [
       {
-        enforce: 'pre',
+        enforce: "pre",
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        loader: 'eslint-loader'
+        loader: "eslint-loader"
       },
       {
         test: /\.jsx?$/,
@@ -18,13 +17,17 @@ module.exports = {
         use: {
           loader: "babel-loader",
           options: {
-            presets: ["@babel/preset-react",
-                      ["@babel/preset-env", {
-                        // preset-env options
-                        loose: true,
-                        modules: false
-                      }]
-                     ]
+            presets: [
+              "@babel/preset-react",
+              [
+                "@babel/preset-env",
+                {
+                  // preset-env options
+                  loose: true,
+                  modules: false
+                }
+              ]
+            ]
           }
         }
       },

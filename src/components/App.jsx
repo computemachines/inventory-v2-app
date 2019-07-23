@@ -1,10 +1,10 @@
 import React from "react";
-import { Route, NavLink, Switch } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 
 import "../styles/App.css";
 import "normalize.css";
 
-import NavbarDropdownNew from "./NavbarDropdownNew";
+import Navbar from "./Navbar";
 import NewSkuForm from "./NewSkuForm";
 import NewUniqForm from "./NewUniqForm";
 import NewBinForm from "./NewBinForm";
@@ -24,49 +24,7 @@ const App = () => (
         <div className="logo" />
         <h2>Branding</h2>
       </div>
-      <nav className="navbar">
-        <ul>
-          <li>
-            <NavLink
-              to="/"
-              className="navlink"
-              activeClassName="navlink--selected"
-            >
-              Home
-            </NavLink>
-          </li>
-          <li>
-            <NavbarDropdownNew />
-          </li>
-          <li>
-            <NavLink
-              to="/move-units"
-              className="navlink"
-              activeClassName="navlink--selected"
-            >
-              Move
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/receive"
-              className="navlink"
-              activeClassName="navlink--selected"
-            >
-              Recieve SKU
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/search"
-              className="navlink"
-              activeClassName="navlink--selected"
-            >
-              Search
-            </NavLink>
-          </li>
-        </ul>
-      </nav>
+      <Navbar />
     </div>
     <div className="main-content">
       <Switch>

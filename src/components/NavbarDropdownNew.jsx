@@ -9,10 +9,10 @@ class NavbarDropdownNew extends React.Component {
   }
 
   componentDidMount() {
-    // const { location } = this.props;
-    // if (location.path.startsWith("/new")) {
-    //   this.setState({ hidden: false });
-    // }
+    const { location } = this.props;
+    if (location.pathname.startsWith("/new")) {
+      this.setState({ hidden: false });
+    }
   }
 
   render() {
@@ -20,7 +20,9 @@ class NavbarDropdownNew extends React.Component {
     return (
       <React.Fragment>
         <button
-          className="navlink dropdown-btn"
+          className={`navlink dropdown-btn ${
+            hidden ? "dropdown-hide" : "dropdown-show"
+          }`}
           type="button"
           onClick={() => {
             this.setState(state => ({
@@ -30,7 +32,11 @@ class NavbarDropdownNew extends React.Component {
         >
           New
         </button>
-        <ul className={`dropdown-container ${hidden ? "" : "show"}`}>
+        <ul
+          className={`dropdown-container ${
+            hidden ? "dropdown-hide" : "dropdown-show"
+          }`}
+        >
           <li>
             <NavLink
               to="/new/sku"
