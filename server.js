@@ -1,6 +1,6 @@
 doc = `
 Usage:
-  server.js [-p <port>]
+  server.js [-p <port>] [--noclient]
 `;
 const { docopt } = require("docopt");
 const args = docopt(doc, { version: "ssr0.1.0" });
@@ -23,8 +23,10 @@ const {
 } = require("./dist/server.bundle");
 
 let port = 80;
+let noclient = false;
 if (args["-p"]) {
   port = parseInt(args["<port>"], 10);
+  noclient = args["--noclient"];
 }
 
 // Remember to update [src/client/index.html] whenever you change this template
@@ -47,7 +49,7 @@ const htmlTemplate = (html, preloadedState) =>
             "\\u003c"
           )}
     </script>
-    <script src="/assets/client.bundle.js"></script>
+    ${!noclient ? '<script src="/assets/client.bundle.js"></script>' : ''}
 </body>
 </html>`;
 
