@@ -19,6 +19,8 @@ delete window.__PRELOADED_STATE__;
 const store = createStore(
   reducer,
   preloadedState,
+
+  // TODO: IMPORTANT: somehow remove this in production.
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
