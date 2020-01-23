@@ -35,7 +35,11 @@ const App = () => (
           <Route path="/move-units" component={MoveUnitsForm} />
           <Route path="/receive" component={ReceiveSkuForm} />
           <Route path="/search" component={SearchForm} />
-          <Route path="/bin/:id" component={Bin} />
+          <Route exact path="/bin/:id" component={Bin} />
+          <Route path="/bin/:id/edit">
+            <Bin editable />
+          </Route>
+          {/* TODO: */}
           <Route path="/uniq" component={Uniq} />
           <Route path="/sku" component={Sku} />
           <Route component={FourOhFour} />

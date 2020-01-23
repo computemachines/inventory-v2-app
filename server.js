@@ -92,6 +92,11 @@ express_app.get("/search", (req, res, next) => {
   );
 });
 
+express_app.get("/bin/:id", (req, res, next) => {
+  console.log(req);
+  next();
+})
+
 express_app.get("/*", (req, res) => {
   const location = req.url;
   const context = {};

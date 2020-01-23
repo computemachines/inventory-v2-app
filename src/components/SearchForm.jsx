@@ -38,7 +38,12 @@ class SearchForm extends React.Component {
    *     THEN
    *      on render() query should be "",
    *      on render() searchResults should be []
-
+   * 4. Server side:
+   *     IF
+   *      user requests /search?q=query
+   *     THEN
+   *      on render() query should be "query"
+   *      on render() searchResults should be loaded syncronously
    */
   componentDidMount() {
     const { location, query, setQuery, searchResults } = this.props;
