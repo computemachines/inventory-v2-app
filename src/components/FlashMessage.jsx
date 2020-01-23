@@ -27,9 +27,7 @@ class FlashMessage extends React.Component {
     if (queryString.last_inserted) {
       return (
         <div ref={this._ref} className="flash">
-          Successfully added 
-          {' '}
-          {queryString.last_inserted}
+          Successfully added {queryString.last_inserted}
         </div>
       );
     }

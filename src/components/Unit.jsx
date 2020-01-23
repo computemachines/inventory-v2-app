@@ -10,11 +10,14 @@ import Uniq from "./Uniq";
 const Unit = ({ json }) => {
   if (json.id.startsWith("BIN")) {
     return <Bin json={json} />;
-  } if (json.id.startsWith("SKU")) {
+  }
+  if (json.id.startsWith("SKU")) {
     return <Sku json={json} />;
-  } if (json.id.startsWith("BAT")) {
+  }
+  if (json.id.startsWith("BAT")) {
     return <Batch json={json} />;
-  } if (json.id.startsWith("UNIQ")) {
+  }
+  if (json.id.startsWith("UNIQ")) {
     return <Uniq json={json} />;
   }
   return <p>BAD</p>;

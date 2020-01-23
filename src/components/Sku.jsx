@@ -1,7 +1,5 @@
-import React from "react"
+import React from "react";
 
-const Sku = () => (
-  <p>Uniq Component</p>
-)
+const Sku = () => <p>Uniq Component</p>;
 
-export default Sku
+export default Sku;

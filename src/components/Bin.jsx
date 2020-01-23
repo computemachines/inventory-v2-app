@@ -3,11 +3,11 @@ import PropTypes from "prop-types";
 
 class Bin extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.render = this.render.bind(this);
-    this.bin_id = 10
-    this.editable = props.editable
+    this.bin_id = 10;
+    this.editable = props.editable;
 
     const xhr = new XMLHttpRequest();
     xhr.open("GET", `/api/bin/${this.bin_id}`, true);
@@ -18,7 +18,7 @@ class Bin extends React.Component {
       if (xhr.status !== 200) {
         console.log(xhr);
       }
-    }
+    };
   }
 
   render() {
@@ -30,7 +30,7 @@ class Bin extends React.Component {
         </div>
         {this.editable ? <div>Editable</div> : null}
       </React.Fragment>
-    )
+    );
   }
 }
 
@@ -42,6 +42,6 @@ Bin.propTypes = {
 
 Bin.defaultProps = {
   editable: false
-}
+};
 
 export default Bin;
