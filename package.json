@@ -2,6 +2,7 @@
   "name": "inventory-v2",
   "version": "2.0.0",
   "scripts": {
+    "format": "prettier \"src/**/*.{js,jsx,html}\" --write",
     "build:client:dev": "webpack --config webpack.client.development.config.js",
     "build:client": "webpack --config webpack.client.production.config.js",
     "build:server": "webpack --config webpack.server.config.js",
@@ -58,5 +59,8 @@
   "browserslist": [
     "> 1%",
     "last 2 versions"
-  ]
+  ],
+  "devDependencies": {
+    "prettier": "^1.19.1"
+  }
 }
