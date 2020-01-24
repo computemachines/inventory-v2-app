@@ -1,7 +1,13 @@
 {
-  "ecmaVersion": "6",
-  "libs": ["react", "browser"],
-  "loadEagerly": [],
+  "ecmaVersion": "8",
+  "libs": [
+    "react",
+    "browser"
+  ],
+  "loadEagerly": [
+    "src/**/*.js",
+    "src/**/*.jsx"
+  ],
   "dontLoad": [
     "node_modules/**"
   ],
@@ -9,6 +15,12 @@
     "doc_comment": true,
     "webpack": {
       "configPath": "./webpack.client.development.config.js"
+    },
+    "es_modules": {},
+    "modules": {
+      "dontLoad": "",
+      "load": "",
+      "modules": ""
     }
   }
 }

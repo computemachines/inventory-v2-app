@@ -11,7 +11,7 @@ class FlashMessage extends React.Component {
   }
 
   componentDidMount() {
-    const node = this._ref.current;
+    // const node = this._ref.current;
     // $(node)
     //   .show()
     //   .delay(3000)
