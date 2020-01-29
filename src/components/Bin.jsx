@@ -1,24 +1,31 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { connect } from "react-redux";
+
+import setBinData from "actions";
 
 class Bin extends React.Component {
   constructor(props) {
     super(props);
 
     this.render = this.render.bind(this);
-    this.bin_id = 10;
-    this.editable = props.editable;
+    this.state = {
+      bin_data: {}
+    };
+  }
 
+  componentDidMount() {
     const xhr = new XMLHttpRequest();
-    xhr.open("GET", `/api/bin/${this.bin_id}`, true);
+    xhr.open("GET", `/api/bin/${this.props.match.params.id}`, true);
     xhr.onreadystatechange = () => {
-      if (xhr.readyState === 4 && xhr.readyState === 200) {
-        this.data = JSON.parse(xhr.responseText);
+      if (xhr.readyState === 4 && xhr.status === 200) {
+        this.props.dispatchBinData(JSON.parse(xhr.responseText));
       }
       if (xhr.status !== 200) {
         console.log(xhr);
       }
     };
+    xhr.send();
   }
 
   render() {
@@ -29,19 +36,28 @@ class Bin extends React.Component {
           <span className="item-description__label--code">{this.bin_id}</span>
         </div>
         {this.editable ? <div>Editable</div> : null}
+        <div>{"" + this.state.bin_id}</div>
       </React.Fragment>
     );
   }
 }
 
 Bin.propTypes = {
-  // props: PropTypes.shape().isRequired,
-  // match: PropTypes.shape().isRequired,
-  editable: PropTypes.shape()
+  match: PropTypes.shape().isRequired,
+  editable: PropTypes.bool,
+  binData: PropTypes.shape(),
+  dispatchBinData: PropTypes.func()
 };
 
 Bin.defaultProps = {
   editable: false
 };
 
-export default Bin;
+const mapStateToProps = state => ({ binData: state.binData });
+const mapDispatchToProps = dispatch => ({
+  dispatchBinData(bin_data) {
+    dispatch(setBinData(bin_data));
+  }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Bin);

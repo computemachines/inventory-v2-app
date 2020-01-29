@@ -1,4 +1,5 @@
 export default {
-  query: "",
-  searchResults: null
+  searchQuery: null,
+  searchResults: null,
+  binData: null
 };

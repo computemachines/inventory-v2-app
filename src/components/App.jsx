@@ -15,7 +15,11 @@ import Bin from "./Bin";
 import Uniq from "./Uniq";
 import Sku from "./Sku";
 
-const FourOhFour = () => <h1>404</h1>;
+const FourOhFour = () => {
+  var [A, B] = React.useState("404");
+  setTimeout(() => B("Four-Oh-Four"), 10000);
+  return <h1>{A}</h1>;
+};
 
 const App = () => (
   <div className="app-wrapper">
@@ -39,7 +43,6 @@ const App = () => (
           <Route path="/bin/:id/edit">
             <Bin editable />
           </Route>
-          {/* TODO: */}
           <Route path="/uniq" component={Uniq} />
           <Route path="/sku" component={Sku} />
           <Route component={FourOhFour} />

@@ -5,7 +5,7 @@ import "../styles/Navbar.less";
 
 import NavbarDropdownNew from "./NavbarDropdownNew";
 
-export default () => (
+const Navbar = () => (
   <nav className="navbar">
     <ul>
       <li>
@@ -51,3 +51,5 @@ export default () => (
     </ul>
   </nav>
 );
+
+export default Navbar;
