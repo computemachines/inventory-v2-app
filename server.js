@@ -61,8 +61,7 @@ express_app.use(express.static(path.join(__dirname, "dist")));
 //   express_app.use('/assets', express.static('dist'))
 // }
 
-const api_hostname =
-  port === 80 ? "http://nginx-entry" : "http://localhost:8081";
+const api_hostname = "http://localhost:8081";
 
 const { Provider } = require("react-redux");
 
