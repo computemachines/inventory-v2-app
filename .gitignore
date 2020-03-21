@@ -4,3 +4,6 @@ dist/
 .cache/
 coverage/
 .env
+.vscode
+*.code-workspace
+stats.json

@@ -11,5 +11,8 @@ module.exports = merge(common, {
     proxy: {
       "/api": "http://localhost:8081"
     }
+  },
+  output: {
+    // devtoolModuleFilenameTemplate: "file:///[absolute-resource-path]"
   }
 });

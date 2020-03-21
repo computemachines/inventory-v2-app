@@ -7,7 +7,7 @@ import SearchResults from "./SearchResults";
 
 // import { setQuery, setSearchResults } from "../actions";
 import * as actions from "../actions";
-import defaultState from "../defaultState";
+import { search as defaultState } from "../defaultState";
 
 class SearchForm extends React.Component {
   constructor(props) {
@@ -136,13 +136,13 @@ SearchForm.propTypes = {
 };
 
 const mapStateToProps = storeState => ({
-  query: storeState.query,
-  searchResults: storeState.searchResults
+  query: storeState.search.query,
+  searchResults: storeState.search.searchResults
 });
 
 const mapDispatchToProps = dispatch => ({
   setQuery(query) {
-    dispatch(actions.setQuery(query));
+    dispatch(actions.setSearchQuery(query));
   },
   setSearchResults(searchResults) {
     dispatch(actions.setSearchResults(searchResults));

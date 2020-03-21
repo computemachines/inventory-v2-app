@@ -1,0 +1,67 @@
+.expanding-list {
+  display: flex;
+}
+
+.expanding-list__item {
+  flex-grow: 1;
+}
+
+.key-value-input {
+  display: flex;
+}
+
+.key-value-input > input:nth-child(2) {
+  flex-grow: 1;
+}
+
+.expanding-list__button {
+  width: 2em;
+  height: 2em;
+  background: none;
+  border: none;
+  border-radius: 1em;
+  padding: 0.5em;
+  margin: 0.5em;
+}
+
+.expanding-list__button--remove {
+  background-color: red;
+  position: relative;
+}
+
+.expanding-list__button--remove::after {
+  content: "";
+  width: 1em;
+  height: 0.2em;
+  background-color: white;
+  position: absolute;
+  top: 1em - 0.2em/2;
+  left: 0.5em;
+  border-radius: 0.1em;
+}
+
+.expanding-list__button--add {
+  background-color: green;
+  position: relative;
+}
+
+.expanding-list__button--add::after {
+  content: "";
+  width: 1em;
+  height: 0.2em;
+  background-color: white;
+  position: absolute;
+  top: 1em - 0.2em/2;
+  left: 0.5em;
+  border-radius: 0.1em;
+}
+.expanding-list__button--add::before {
+  content: "";
+  height: 1em;
+  width: 0.2em;
+  background-color: white;
+  position: absolute;
+  left: 1em - 0.2em/2;
+  top: 0.5em;
+  border-radius: 0.1em;
+}

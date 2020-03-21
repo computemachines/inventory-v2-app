@@ -2,7 +2,6 @@
 
 import React from "react";
 import { hydrate } from "react-dom";
-import { BrowserRouter } from "react-router-dom";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
 
@@ -31,9 +30,7 @@ hydrate(
       // // // TODO: fem says that provider should be inside router to make ssr //
       // easier
     }
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <App />
   </Provider>,
   document.getElementById("react-root")
 );

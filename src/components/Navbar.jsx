@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { A } from "hookrouter";
 
 import "../styles/Navbar.less";
 
@@ -9,44 +9,40 @@ const Navbar = () => (
   <nav className="navbar">
     <ul>
       <li>
-        <NavLink
-          to="/"
+        <A
+          href="/"
           className="navlink"
           activeClassName="navlink--selected"
           exact
         >
           Home
-        </NavLink>
+        </A>
       </li>
       <li>
         <NavbarDropdownNew />
       </li>
       <li>
-        <NavLink
-          to="/move-units"
-          className="navlink"
-          activeClassName="navlink--selected"
-        >
+        <A href="/move" className="navlink" activeClassName="navlink--selected">
           Move
-        </NavLink>
+        </A>
       </li>
       <li>
-        <NavLink
-          to="/receive"
+        <A
+          href="/recieve-sku"
           className="navlink"
           activeClassName="navlink--selected"
         >
           Recieve SKU
-        </NavLink>
+        </A>
       </li>
       <li>
-        <NavLink
-          to="/search"
+        <A
+          href="/search"
           className="navlink"
           activeClassName="navlink--selected"
         >
           Search
-        </NavLink>
+        </A>
       </li>
     </ul>
   </nav>

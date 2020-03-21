@@ -49,7 +49,7 @@ const htmlTemplate = (html, preloadedState) =>
             "\\u003c"
           )}
     </script>
-    ${!noclient ? '<script src="/assets/client.bundle.js"></script>' : ''}
+    ${!noclient ? '<script src="/assets/client.bundle.js"></script>' : ""}
 </body>
 </html>`;
 
@@ -95,7 +95,7 @@ express_app.get("/search", (req, res, next) => {
 express_app.get("/bin/:id", (req, res, next) => {
   console.log(req);
   next();
-})
+});
 
 express_app.get("/*", (req, res) => {
   const location = req.url;

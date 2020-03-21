@@ -1,77 +1,44 @@
 import React from "react";
-import { NavLink, withRouter } from "react-router-dom";
-import PropTypes from "prop-types";
+import { A } from "hookrouter";
 
-class NavbarDropdownNew extends React.Component {
-  constructor({ location }) {
-    super({ location });
-    this.state = { hidden: true };
-  }
+// import PropTypes from "prop-types";
 
-  componentDidMount() {
-    const { location } = this.props;
-    if (location.pathname.startsWith("/new")) {
-      this.setState({ hidden: false });
-    }
-  }
-
-  render() {
-    const { hidden } = this.state;
-    return (
-      <React.Fragment>
-        <button
-          className={`navlink dropdown-btn ${
-            hidden ? "dropdown-hide" : "dropdown-show"
-          }`}
-          type="button"
-          onClick={() => {
-            this.setState(state => ({
-              hidden: !state.hidden
-            }));
-          }}
-        >
-          New
-        </button>
-        <ul
-          className={`dropdown-container ${
-            hidden ? "dropdown-hide" : "dropdown-show"
-          }`}
-        >
-          <li>
-            <NavLink
-              to="/new/sku"
-              className="navlink"
-              activeClassName="navlink--selected"
-            >
-              New SKU
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/new/uniq"
-              className="navlink"
-              activeClassName="navlink--selected"
-            >
-              New UNIQ
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/new/bin"
-              className="navlink"
-              activeClassName="navlink--selected"
-            >
-              New Bin
-            </NavLink>
-          </li>
-        </ul>
-      </React.Fragment>
-    );
-  }
+export default function NavbarDropdownNew() {
+  return (
+    <React.Fragment>
+      <ul className="dropdown-container dropdown-show">
+        <li>
+          <A
+            href="/new/sku"
+            className="navlink"
+            activeClassName="navlink--selected"
+          >
+            New SKU
+          </A>
+        </li>
+        <li>
+          <A
+            href="/new/uniq"
+            className="navlink"
+            activeClassName="navlink--selected"
+          >
+            New UNIQ
+          </A>
+        </li>
+        <li>
+          <A
+            href="/new/bin"
+            className="navlink"
+            activeClassName="navlink--selected"
+          >
+            New Bin
+          </A>
+        </li>
+      </ul>
+    </React.Fragment>
+  );
 }
 
-NavbarDropdownNew.propTypes = {
-  location: PropTypes.shape().isRequired
-};
-
-export default withRouter(NavbarDropdownNew);
+// NavbarDropdownNew.propTypes = {
+//   location: PropTypes.shape().isRequired
+// };

@@ -1,13 +1,14 @@
 import React from "react";
+import { PropertyEditorForm } from "./PropertyEditorForm";
 
 const NewBinForm = () => (
-  <form method="POST" action="/api/bins">
+  <PropertyEditorForm method="POST" action="/api/bins">
     <label htmlFor="bin_id">
-      <input type="text" id="bin_id" name="bin_id" required />
       Bin Label
+      <input type="text" id="bin_id" name="bin_id" required />
     </label>
-    <input type="submit" value="Submit" />
-  </form>
+    <input type="submit" value="Submit" /> test
+  </PropertyEditorForm>
 );
 
 export default NewBinForm;

@@ -2,7 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
-import setBinData from "actions";
+import ErrorBoundary from "./ErrorBoundary";
+import { setBinData } from "../actions";
+import "../styles/Bin.less";
 
 class Bin extends React.Component {
   constructor(props) {
@@ -29,24 +31,68 @@ class Bin extends React.Component {
   }
 
   render() {
+    console.log("this should not print until breakpoint passed");
     return (
-      <React.Fragment>
-        <div className="item-degscription__label">
+      <ErrorBoundary>
+        <div className="item-description__label">
           BIN
           <span className="item-description__label--code">{this.bin_id}</span>
         </div>
         {this.editable ? <div>Editable</div> : null}
+        <ul className="bin-contents">
+          {this.props.binData !== undefined ||
+            this.props.binData.contents.map(contents => (
+              <BinContentListItem key={contents.label} {...contents} />
+            ))}
+        </ul>
         <div>{"" + this.state.bin_id}</div>
-      </React.Fragment>
+      </ErrorBoundary>
     );
   }
 }
 
+function BinContentListItem({ unit_type, label, quantity }) {
+  let labelClassName = "bin-contents bin-contents__label";
+  switch (unit_type) {
+    case "UNIQ":
+      labelClassName += "--uniq";
+      break;
+    case "BATCH":
+      labelClassName += "--batch";
+      break;
+    case "SKU":
+      labelClassName += "--sku";
+      break;
+    default:
+      break;
+  }
+  return (
+    <li className="bin-contents">
+      <div className={labelClassName}>{label}</div>
+      <div className="bin-contents bin-contents__quantity">{quantity}</div>
+    </li>
+  );
+}
+
+// const BinContent
+
+// const BinContents = (props) => <div className="bin-contents">
+//   <div className="bin-contents__list"></div>
+// </div>
+
 Bin.propTypes = {
   match: PropTypes.shape().isRequired,
   editable: PropTypes.bool,
-  binData: PropTypes.shape(),
-  dispatchBinData: PropTypes.func()
+  binData: PropTypes.shape({
+    contents: PropTypes.arrayOf(
+      PropTypes.shape({
+        unit_type: PropTypes.string,
+        label: PropTypes.string,
+        quantity: PropTypes.integer
+      })
+    )
+  }),
+  dispatchBinData: PropTypes.func
 };
 
 Bin.defaultProps = {

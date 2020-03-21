@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Switch } from "react-router-dom";
+import { useRoutes } from "hookrouter";
 
 import "../styles/App.css";
 import "normalize.css";
@@ -14,6 +14,7 @@ import SearchForm from "./SearchForm";
 import Bin from "./Bin";
 import Uniq from "./Uniq";
 import Sku from "./Sku";
+// import ErrorBoundary from "./ErrorBoundary";
 
 const FourOhFour = () => {
   var [A, B] = React.useState("404");
@@ -21,35 +22,35 @@ const FourOhFour = () => {
   return <h1>{A}</h1>;
 };
 
-const App = () => (
-  <div className="app-wrapper">
-    <div className="sidebar">
-      <div className="branding">
-        <div className="logo" />
-        <h2>Branding</h2>
+const routes = {
+  "/new/sku": () => <NewSkuForm />,
+  "/new/uniq": () => <NewUniqForm />,
+  "/new/bin": () => <NewBinForm />,
+  "/move-units": () => <MoveUnitsForm />,
+  "/receive": () => <ReceiveSkuForm />,
+  "/search": () => <SearchForm />,
+  "/bin/:id": () => <Bin />,
+  "/bin/:id/edit": () => <Bin editable />,
+  "/uniq": () => <Uniq />,
+  "/sku": () => <Sku />
+};
+
+const App = () => {
+  const routeResult = useRoutes(routes);
+  return (
+    <div className="app-wrapper">
+      <div className="sidebar">
+        <div className="branding">
+          <div className="logo" />
+          <h2>Branding</h2>
+        </div>
+        <Navbar />
       </div>
-      <Navbar />
-    </div>
-    <div className="main-container">
-      <div className="main-content">
-        <Switch>
-          <Route path="/new/sku" component={NewSkuForm} />
-          <Route path="/new/uniq" component={NewUniqForm} />
-          <Route path="/new/bin" component={NewBinForm} />
-          <Route path="/move-units" component={MoveUnitsForm} />
-          <Route path="/receive" component={ReceiveSkuForm} />
-          <Route path="/search" component={SearchForm} />
-          <Route exact path="/bin/:id" component={Bin} />
-          <Route path="/bin/:id/edit">
-            <Bin editable />
-          </Route>
-          <Route path="/uniq" component={Uniq} />
-          <Route path="/sku" component={Sku} />
-          <Route component={FourOhFour} />
-        </Switch>
+      <div className="main-container">
+        <div className="main-content">{routeResult || <FourOhFour />}</div>
       </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default App;

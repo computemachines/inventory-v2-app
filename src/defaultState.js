@@ -1,5 +1,7 @@
-export default {
+export const search = {
   searchQuery: null,
-  searchResults: null,
-  binData: null
+  searchResults: null
+};
+export const units = {
+  unitData: null
 };
