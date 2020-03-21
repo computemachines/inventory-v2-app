@@ -1,14 +1,11 @@
 import React from "react";
-import { StaticRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import PropTypes from "prop-types";
 import App from "../components/App";
 
-export const AppRoot = ({ store, location, context }) => (
+export const AppRoot = ({ store /*, location, context*/ }) => (
   <Provider store={store}>
-    <StaticRouter location={location} context={context}>
-      <App />
-    </StaticRouter>
+    <App />
   </Provider>
 );
 
