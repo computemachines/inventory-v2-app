@@ -32,8 +32,8 @@ UniqCard.propTypes = {
     asset_value: PropTypes.shape(),
     assembly: PropTypes.shape(),
     props: PropTypes.shape(),
-    inherited_props: PropTypes.shape()
-  }).isRequired
+    inherited_props: PropTypes.shape(),
+  }).isRequired,
 };
 
 export default UniqCard;

@@ -12,7 +12,7 @@ class Bin extends React.Component {
 
     this.render = this.render.bind(this);
     this.state = {
-      bin_data: {}
+      bin_data: {},
     };
   }
 
@@ -41,7 +41,7 @@ class Bin extends React.Component {
         {this.editable ? <div>Editable</div> : null}
         <ul className="bin-contents">
           {this.props.binData !== undefined ||
-            this.props.binData.contents.map(contents => (
+            this.props.binData.contents.map((contents) => (
               <BinContentListItem key={contents.label} {...contents} />
             ))}
         </ul>
@@ -88,22 +88,22 @@ Bin.propTypes = {
       PropTypes.shape({
         unit_type: PropTypes.string,
         label: PropTypes.string,
-        quantity: PropTypes.integer
+        quantity: PropTypes.integer,
       })
-    )
+    ),
   }),
-  dispatchBinData: PropTypes.func
+  dispatchBinData: PropTypes.func,
 };
 
 Bin.defaultProps = {
-  editable: false
+  editable: false,
 };
 
-const mapStateToProps = state => ({ binData: state.binData });
-const mapDispatchToProps = dispatch => ({
+const mapStateToProps = (state) => ({ binData: state.binData });
+const mapDispatchToProps = (dispatch) => ({
   dispatchBinData(bin_data) {
     dispatch(setBinData(bin_data));
-  }
+  },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Bin);

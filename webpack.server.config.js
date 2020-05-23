@@ -10,8 +10,8 @@ module.exports = merge(common, {
   target: "node",
   externals: [
     nodeExternals({
-      whitelist: ["normalize.css"]
-    })
+      whitelist: ["normalize.css"],
+    }),
   ],
   entry: path.resolve(__dirname, "src/server/entry.jsx"),
   mode: "development",
@@ -19,7 +19,7 @@ module.exports = merge(common, {
     path: path.resolve(__dirname, "dist"),
     filename: "server.bundle.js",
     library: "app",
-    libraryTarget: "commonjs2"
+    libraryTarget: "commonjs2",
   },
   module: {
     rules: [
@@ -32,10 +32,10 @@ module.exports = merge(common, {
             loader: "postcss-loader",
             options: {
               ident: "postcss",
-              plugins: [AutoPrefixer()]
-            }
-          }
-        ]
+              plugins: [AutoPrefixer()],
+            },
+          },
+        ],
       },
       {
         test: /\.less$/,
@@ -46,17 +46,17 @@ module.exports = merge(common, {
             loader: "postcss-loader",
             options: {
               ident: "postcss",
-              plugins: [AutoPrefixer()]
-            }
+              plugins: [AutoPrefixer()],
+            },
           },
-          { loader: "less-loader" }
-        ]
-      }
-    ]
+          { loader: "less-loader" },
+        ],
+      },
+    ],
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: "assets/main.css"
-    })
-  ]
+      filename: "assets/main.css",
+    }),
+  ],
 });

@@ -5,7 +5,6 @@ import QueryString from "query-string";
 
 import SearchResults from "./SearchResults";
 
-// import { setQuery, setSearchResults } from "../actions";
 import * as actions from "../actions";
 import { search as defaultState } from "../defaultState";
 
@@ -62,7 +61,7 @@ class SearchForm extends React.Component {
       this.retrieveSearchResults(urlQuery);
     }
 
-    window.onpopstate = e => {
+    window.onpopstate = (e) => {
       const { query: newurlQuery } = QueryString.parse(
         e.target.location.search
       );
@@ -116,7 +115,7 @@ class SearchForm extends React.Component {
             name="query"
             className="inv-form__input"
             value={query}
-            onChange={event => setQuery(event.target.value)}
+            onChange={(event) => setQuery(event.target.value)}
           />
           <input type="submit" value="Search" />
         </form>
@@ -132,21 +131,21 @@ SearchForm.propTypes = {
   query: PropTypes.string.isRequired,
   searchResults: PropTypes.arrayOf().isRequired,
   setQuery: PropTypes.func.isRequired,
-  setSearchResults: PropTypes.func.isRequired
+  setSearchResults: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = storeState => ({
+const mapStateToProps = (storeState) => ({
   query: storeState.search.query,
-  searchResults: storeState.search.searchResults
+  searchResults: storeState.search.searchResults,
 });
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   setQuery(query) {
     dispatch(actions.setSearchQuery(query));
   },
   setSearchResults(searchResults) {
     dispatch(actions.setSearchResults(searchResults));
-  }
+  },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchForm);

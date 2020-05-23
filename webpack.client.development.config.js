@@ -9,10 +9,10 @@ module.exports = merge(common, {
     historyApiFallback: true,
     port: 8080,
     proxy: {
-      "/api": "http://localhost:8081"
-    }
+      "/api": "http://localhost:8081",
+    },
   },
   output: {
     // devtoolModuleFilenameTemplate: "file:///[absolute-resource-path]"
-  }
+  },
 });

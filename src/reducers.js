@@ -1,7 +1,7 @@
 import {
   SET_SEARCH_QUERY,
   SET_SEARCH_RESULTS,
-  SET_BIN_DATA
+  SET_BIN_DATA,
 } from "./constants";
 import * as initialState from "./defaultState";
 
@@ -11,11 +11,11 @@ const search = (state = initialState.search, action) => {
   switch (action.type) {
     case SET_SEARCH_QUERY:
       return Object.assign({}, state, {
-        payload: action.query
+        payload: action.query,
       });
     case SET_SEARCH_RESULTS:
       return Object.assign({}, state, {
-        payload: action.searchResults
+        payload: action.searchResults,
       });
     default:
       return state;
@@ -26,7 +26,7 @@ const units = (state = initialState.units, action) => {
   switch (action.type) {
     case SET_BIN_DATA:
       return Object.assign({}, state, {
-        payload: action.binData
+        payload: action.binData,
       });
 
     default:

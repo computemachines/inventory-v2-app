@@ -6,7 +6,7 @@ import Unit from "./Unit";
 function SearchResults({ results }) {
   return (
     <ul className="search-results">
-      {results.map(result => (
+      {results.map((result) => (
         <Unit key={result.id} json={result} />
       ))}
     </ul>
@@ -14,10 +14,10 @@ function SearchResults({ results }) {
 }
 
 SearchResults.propTypes = {
-  results: PropTypes.arrayOf(PropTypes.shape).isRequired
+  results: PropTypes.arrayOf(PropTypes.shape).isRequired,
 };
 SearchResults.defaultProps = {
-  results: []
+  results: [],
 };
 
 export default SearchResults;

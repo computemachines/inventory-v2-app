@@ -21,7 +21,7 @@ export class PropertyEditorForm extends React.Component {
   }
 }
 
-const ExpandingList = props => (
+const ExpandingList = (props) => (
   <div className="expanding-list">
     <div className="expanding-list__item">{props.children}</div>
     <button

@@ -1,7 +1,7 @@
 module.exports = {
   context: __dirname,
   resolve: {
-    extensions: [".js", ".jsx"]
+    extensions: [".js", ".jsx"],
   },
   module: {
     rules: [
@@ -9,7 +9,7 @@ module.exports = {
         enforce: "pre",
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        loader: "eslint-loader"
+        loader: "eslint-loader",
       },
       {
         test: /\.jsx?$/,
@@ -24,17 +24,17 @@ module.exports = {
                 {
                   // preset-env options
                   loose: true,
-                  modules: false
-                }
-              ]
-            ]
-          }
-        }
+                  modules: false,
+                },
+              ],
+            ],
+          },
+        },
       },
       {
         test: /\.svg$/,
-        loader: "svg-inline-loader"
-      }
-    ]
-  }
+        loader: "svg-inline-loader",
+      },
+    ],
+  },
 };

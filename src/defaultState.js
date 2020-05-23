@@ -1,7 +1,7 @@
 export const search = {
   searchQuery: null,
-  searchResults: null
+  searchResults: null,
 };
 export const units = {
-  unitData: null
+  unitData: null,
 };

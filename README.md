@@ -84,8 +84,6 @@ The the configuration that is shared between client development and production.
 * `webpack.server.config.js`  
 Webpack configuration for generating stripped down server.bundle.js for loading by nodejs server.
 
-* `stats.json`
-
 * `yarn.lock`
 
 ### Redux files

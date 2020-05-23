@@ -12,7 +12,7 @@ export const AppRoot = ({ store /*, location, context*/ }) => (
 AppRoot.propTypes = {
   store: PropTypes.shape.isRequired,
   location: PropTypes.shape.isRequired,
-  context: PropTypes.shape.isRequired
+  context: PropTypes.shape.isRequired,
 };
 
 export { default as reducers } from "../reducers";

@@ -32,7 +32,7 @@ const routes = {
   "/bin/:id": () => <Bin />,
   "/bin/:id/edit": () => <Bin editable />,
   "/uniq": () => <Uniq />,
-  "/sku": () => <Sku />
+  "/sku": () => <Sku />,
 };
 
 const App = () => {

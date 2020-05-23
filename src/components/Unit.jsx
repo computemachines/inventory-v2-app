@@ -24,7 +24,7 @@ const Unit = ({ json }) => {
 };
 
 Unit.propTypes = {
-  json: PropTypes.shape().isRequired
+  json: PropTypes.shape().isRequired,
 };
 
 export default Unit;

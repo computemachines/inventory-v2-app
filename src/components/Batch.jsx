@@ -8,7 +8,7 @@ const Batch = ({ props }) => (
 );
 
 Batch.propTypes = {
-  props: PropTypes.shape().isRequired
+  props: PropTypes.shape().isRequired,
 };
 
 export default Batch;
