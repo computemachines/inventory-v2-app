@@ -21,7 +21,7 @@
     "@babel/preset-react": "^7.9.4",
     "autoprefixer": "^9.8.0",
     "babel-loader": "^8.1.0",
-    "copy-webpack-plugin": "^6.0.1",
+    "copy-webpack-plugin": "^5.0.1",
     "css-loader": "^3.5.3",
     "docopt": "^0.6.2",
     "eslint-config-airbnb": "^18.1.0",
