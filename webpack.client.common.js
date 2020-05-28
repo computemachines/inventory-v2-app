@@ -8,7 +8,7 @@ module.exports = merge(parentCommon, {
   entry: "./src/client/entry.jsx",
   output: {
     filename: "client.bundle.js",
-    path: `${__dirname}/dist/assets`
+    path: `${__dirname}/dist/assets`,
   },
   devtool: "inline-source-map",
   module: {
@@ -22,23 +22,27 @@ module.exports = merge(parentCommon, {
             loader: "postcss-loader",
             options: {
               ident: "postcss",
-              plugins: [AutoPrefixer()]
-            }
-          }
-        ]
+              plugins: [AutoPrefixer()],
+            },
+          },
+        ],
       },
       {
         test: /\.less$/,
-        use: ["style-loader", "css-loader", "less-loader"]
-      }
-    ]
+        use: ["style-loader", "css-loader", "less-loader"],
+      },
+      {
+        test: /\.(sass|scss)$/,
+        use: ["style-loader", "css-loader", "sass-loader", "echo-loader"],
+      },
+    ],
   },
   plugins: [
     new CopyWebpackPlugin([
       {
         from: "src/client/index.html",
-        to: "index.html"
-      }
-    ])
-  ]
+        to: "index.html",
+      },
+    ]),
+  ],
 });

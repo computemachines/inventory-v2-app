@@ -1,7 +1,8 @@
 import React from "react";
 import { useRoutes } from "hookrouter";
 
-import "../styles/App.css";
+import "../styles/App.scss";
+
 import "normalize.css";
 
 import Navbar from "./Navbar";
@@ -39,10 +40,18 @@ const App = () => {
   const routeResult = useRoutes(routes);
   return (
     <div className="app-wrapper">
-      <div className="sidebar">
+      <div className="fixed-bar">
         <div className="branding">
           <div className="logo" />
           <h2>Branding</h2>
+          <button
+            className="hamburger hamburger--collapse is-active"
+            type="button"
+          >
+            <span className="hamburger-box">
+              <span className="hamburger-inner"></span>
+            </span>
+          </button>
         </div>
         <Navbar />
       </div>

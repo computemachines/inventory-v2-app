@@ -14,22 +14,24 @@ module.exports = {
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        use: {
-          loader: "babel-loader",
-          options: {
-            presets: [
-              "@babel/preset-react",
-              [
-                "@babel/preset-env",
-                {
-                  // preset-env options
-                  loose: true,
-                  modules: false,
-                },
+        use: [
+          {
+            loader: "babel-loader",
+            options: {
+              presets: [
+                "@babel/preset-react",
+                [
+                  "@babel/preset-env",
+                  {
+                    // preset-env options
+                    loose: true,
+                    modules: false,
+                  },
+                ],
               ],
-            ],
+            },
           },
-        },
+        ],
       },
       {
         test: /\.svg$/,
