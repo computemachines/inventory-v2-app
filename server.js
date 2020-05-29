@@ -19,7 +19,7 @@ const {
   reducers,
   setQuery,
   setSearchResults,
-  initialState
+  initialState,
 } = require("./dist/server.bundle");
 
 let port = 80;
@@ -56,10 +56,6 @@ const htmlTemplate = (html, preloadedState) =>
 const express_app = express();
 
 express_app.use(express.static(path.join(__dirname, "dist")));
-// Don't remember why I had to do this so I am commenting it out
-// if (port !== 80) {
-//   express_app.use('/assets', express.static('dist'))
-// }
 
 const api_hostname = "http://localhost:8081";
 
@@ -80,7 +76,7 @@ express_app.get("/search", (req, res, next) => {
     {
       url: api_hostname + "/api/search",
       qs: { query: searchQuery },
-      json: true
+      json: true,
     },
     (error, resp, data) => {
       console.log("response: " + resp);
@@ -102,7 +98,7 @@ express_app.get("/*", (req, res) => {
   const app_root = React.createElement(AppRoot, {
     store: req.locals.store,
     location,
-    context
+    context,
   });
   const html_app = renderToString(app_root);
   const preloaded_state = req.locals.store.getState();
