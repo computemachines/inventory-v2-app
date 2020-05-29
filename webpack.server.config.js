@@ -1,5 +1,5 @@
 const merge = require("webpack-merge");
-const nodeExternals = require("webpack-node-externals");
+const nodeExternals = require("webpack-node-externals"); // used to externalize node_modules/ from the server bundle
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const path = require("path");
 const AutoPrefixer = require("autoprefixer");
@@ -10,7 +10,7 @@ module.exports = merge(common, {
   target: "node",
   externals: [
     nodeExternals({
-      whitelist: ["normalize.css"],
+      whitelist: ["normalize.css"], // node_module/../normalize.css is imported in App.jsx. This should be bundled, i.e. not external.
     }),
   ],
   entry: path.resolve(__dirname, "src/server/entry.jsx"),
@@ -41,7 +41,7 @@ module.exports = merge(common, {
         test: /\.less$/,
         use: [
           { loader: MiniCssExtractPlugin.loader },
-          { loader: "css-loader", options: { importLoaders: 1 } },
+          { loader: "css-loader", options: { importLoaders: 2 } },
           {
             loader: "postcss-loader",
             options: {
@@ -50,6 +50,18 @@ module.exports = merge(common, {
             },
           },
           { loader: "less-loader" },
+        ],
+      },
+      {
+        test: /\.(sass|scss)$/,
+        use: [
+          { loader: MiniCssExtractPlugin.loader },
+          { loader: "css-loader", options: { importLoaders: 2 } },
+          {
+            loader: "postcss-loader",
+            options: { ident: "postcss", plugins: [AutoPrefixer()] },
+          },
+          { loader: "sass-loader" },
         ],
       },
     ],

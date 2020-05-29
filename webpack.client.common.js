@@ -29,11 +29,33 @@ module.exports = merge(parentCommon, {
       },
       {
         test: /\.less$/,
-        use: ["style-loader", "css-loader", "less-loader"],
+        use: [
+          "style-loader",
+          { loader: "css-loader", options: { importLoaders: 2 } },
+          {
+            loader: "postcss-loader",
+            options: {
+              ident: "postcss",
+              plugins: [AutoPrefixer()],
+            },
+          },
+          "less-loader",
+        ],
       },
       {
         test: /\.(sass|scss)$/,
-        use: ["style-loader", "css-loader", "sass-loader", "echo-loader"],
+        use: [
+          "style-loader",
+          { loader: "css-loader", options: { importLoaders: 2 } },
+          {
+            loader: "postcss-loader",
+            options: {
+              ident: "postcss",
+              plugins: [AutoPrefixer()],
+            },
+          },
+          "sass-loader",
+        ],
       },
     ],
   },
