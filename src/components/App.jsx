@@ -26,18 +26,18 @@ const FourOhFour = () => {
 class Hamburger extends React.Component {
   constructor(props, context) {
     super(props, context);
-    this.state = { hide: false };
+    this.state = { show: false };
 
     this.handleClick = this.handleClick.bind(this);
   }
   handleClick() {
-    this.setState((state) => ({ hide: !state.hide }));
+    this.setState((state) => ({ show: !state.show }));
   }
   render() {
     return (
       <button
-        className={`hamburger hamburger--collapse ${
-          this.state.hide ? "is-active" : ""
+        className={`hamburger hamburger--collapse test ${
+          this.state.show ? "is-active" : ""
         }`}
         type="button"
         onClick={this.handleClick}
@@ -70,7 +70,7 @@ const App = () => {
       <div className="fixed-bar">
         <div className="branding">
           <div className="logo" />
-          <h2>Branding</h2>
+          <h2>Inventory App</h2>
           <Hamburger />
         </div>
         <Navbar />
