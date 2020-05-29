@@ -23,6 +23,33 @@ const FourOhFour = () => {
   return <h1>{A}</h1>;
 };
 
+class Hamburger extends React.Component {
+  constructor(props, context) {
+    super(props, context);
+    this.state = { hide: false };
+
+    this.handleClick = this.handleClick.bind(this);
+  }
+  handleClick() {
+    this.setState((state) => ({ hide: !state.hide }));
+  }
+  render() {
+    return (
+      <button
+        className={`hamburger hamburger--collapse ${
+          this.state.hide ? "is-active" : ""
+        }`}
+        type="button"
+        onClick={this.handleClick}
+      >
+        <span className="hamburger-box">
+          <span className="hamburger-inner"></span>
+        </span>
+      </button>
+    );
+  }
+}
+
 const routes = {
   "/new/sku": () => <NewSkuForm />,
   "/new/uniq": () => <NewUniqForm />,
@@ -44,14 +71,7 @@ const App = () => {
         <div className="branding">
           <div className="logo" />
           <h2>Branding</h2>
-          <button
-            className="hamburger hamburger--collapse is-active"
-            type="button"
-          >
-            <span className="hamburger-box">
-              <span className="hamburger-inner"></span>
-            </span>
-          </button>
+          <Hamburger />
         </div>
         <Navbar />
       </div>
