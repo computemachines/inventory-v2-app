@@ -19,7 +19,7 @@ jobs:
     steps:
       - run:
           name: Deploy over ssh
-          command: ssh $SSH_USER@$SSH_HOST "cd inventory-v2/ssr-webpack/; git fetch; git reset --hard $CIRCLE_SHA1; export PATH=$PATH:/home/ubuntu/.nvm/versions/node/v13.11.0/bin/; npm run build:client && npm run build:server && sudo systemctl restart node-inventory-app"
+          command: ssh $SSH_USER@$SSH_HOST "cd inventory-v2/ssr-webpack/; git fetch; git reset --hard $CIRCLE_SHA1; export PATH=$PATH:/home/ubuntu/.nvm/versions/node/v13.11.0/bin/; npm ci && npm run build:client && npm run build:server && sudo systemctl restart node-inventory-app"
 workflows:
   main:
     jobs:
