@@ -31,7 +31,7 @@ export default class HamburgerBar extends React.Component {
           <h2>Inventory App</h2>
           <HamburgerButton onClick={this.handleClick} show={this.state.show} />
         </div>
-        <Navbar />
+        <Navbar show={this.state.show} />
       </div>
     );
   }

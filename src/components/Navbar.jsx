@@ -5,8 +5,8 @@ import "../styles/Navbar.less";
 
 import NavbarDropdownNew from "./NavbarDropdownNew";
 
-const Navbar = () => (
-  <nav className="navbar">
+const Navbar = ({ show }) => (
+  <nav className="navbar" style={{ display: show ? "inherit" : "none" }}>
     <ul>
       <li>
         <A
