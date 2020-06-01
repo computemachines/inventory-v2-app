@@ -5,7 +5,6 @@ import "../styles/App.scss";
 
 import "normalize.css";
 
-import Navbar from "./Navbar";
 import NewSkuForm from "./NewSkuForm";
 import NewUniqForm from "./NewUniqForm";
 import NewBinForm from "./NewBinForm";
@@ -15,6 +14,7 @@ import SearchForm from "./SearchForm";
 import Bin from "./Bin";
 import Uniq from "./Uniq";
 import Sku from "./Sku";
+import HamburgerBar from "./HamburgerBar";
 // import ErrorBoundary from "./ErrorBoundary";
 
 const FourOhFour = () => {
@@ -22,33 +22,6 @@ const FourOhFour = () => {
   setTimeout(() => B("Four-Oh-Four"), 10000);
   return <h1>{A}</h1>;
 };
-
-class Hamburger extends React.Component {
-  constructor(props, context) {
-    super(props, context);
-    this.state = { show: false };
-
-    this.handleClick = this.handleClick.bind(this);
-  }
-  handleClick() {
-    this.setState((state) => ({ show: !state.show }));
-  }
-  render() {
-    return (
-      <button
-        className={`hamburger hamburger--collapse test ${
-          this.state.show ? "is-active" : ""
-        }`}
-        type="button"
-        onClick={this.handleClick}
-      >
-        <span className="hamburger-box">
-          <span className="hamburger-inner"></span>
-        </span>
-      </button>
-    );
-  }
-}
 
 const routes = {
   "/new/sku": () => <NewSkuForm />,
@@ -67,14 +40,7 @@ const App = () => {
   const routeResult = useRoutes(routes);
   return (
     <div className="app-wrapper">
-      <div className="fixed-bar">
-        <div className="branding">
-          <div className="logo" />
-          <h2>Inventory App</h2>
-          <Hamburger />
-        </div>
-        <Navbar />
-      </div>
+      <HamburgerBar />
       <div className="main-container">
         <div className="main-content">{routeResult || <FourOhFour />}</div>
       </div>
