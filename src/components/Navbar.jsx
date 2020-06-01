@@ -6,14 +6,14 @@ import "../styles/Navbar.less";
 import NavbarDropdownNew from "./NavbarDropdownNew";
 
 const Navbar = ({ show }) => (
-  <nav className="navbar" style={{ display: show ? "inherit" : "none" }}>
+  <nav className={`navbar ${show ? "navbar-collapse" : ""}`}>
     <ul>
       <li>
         <A
           href="/"
           className="navlink"
           activeClassName="navlink--selected"
-          exact
+          exact="true"
         >
           Home
         </A>
