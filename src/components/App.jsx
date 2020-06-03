@@ -39,7 +39,7 @@ const App = () => {
             <Bin path="/bin/:id/edit" editable />
             <Uniq path="/uniq" />
             <Sku path="/sku" />
-            <FourOhFour path="/" />
+            <FourOhFour default />
           </Router>
         </div>
       </div>

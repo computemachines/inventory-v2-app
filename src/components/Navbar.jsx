@@ -3,52 +3,33 @@ import { Link } from "@reach/router";
 
 import "../styles/Navbar.scss";
 
-import NavbarDropdownNew from "./NavbarDropdownNew";
+import NavbarDropdown from "./NavbarDropdown";
 
 const Navbar = ({ show }) => (
   <nav className={`navbar ${show ? "navbar-collapse" : ""}`}>
-    <ul>
-      <li>
-        <Link
-          to="/"
-          className="navlink"
-          activeClassName="navlink--selected"
-          exact="true"
-        >
-          Home
-        </Link>
-      </li>
-      <li>
-        <NavbarDropdownNew />
-      </li>
-      <li>
-        <Link
-          to="/move"
-          className="navlink"
-          activeClassName="navlink--selected"
-        >
-          Move
-        </Link>
-      </li>
-      <li>
-        <Link
-          to="/recieve-sku"
-          className="navlink"
-          activeClassName="navlink--selected"
-        >
-          Recieve SKU
-        </Link>
-      </li>
-      <li>
-        <Link
-          to="/search"
-          className="navlink"
-          activeClassName="navlink--selected"
-        >
-          Search
-        </Link>
-      </li>
-    </ul>
+    <Link to="/" className="navlink">
+      Home
+    </Link>
+    <NavbarDropdown className="navbar dropdown-container" title="New">
+      <Link to="/new/sku" className="navlink">
+        New SKUs
+      </Link>
+      <Link to="/new/uniq" className="navlink">
+        New UNIQ
+      </Link>
+      <Link to="/new/bin" className="navlink">
+        New Bin
+      </Link>
+    </NavbarDropdown>
+    <Link to="/move" className="navlink">
+      Move
+    </Link>
+    <Link to="/recieve-sku" className="navlink">
+      Recieve SKU
+    </Link>
+    <Link to="/search" className="navlink">
+      Search
+    </Link>
   </nav>
 );
 
