@@ -1,5 +1,5 @@
 import React from "react";
-import { useRoutes } from "hookrouter";
+import { Router } from "@reach/router";
 
 import "../styles/App.scss";
 
@@ -22,27 +22,26 @@ const FourOhFour = () => {
   setTimeout(() => B("Four-Oh-Four"), 10000);
   return <h1>{A}</h1>;
 };
-
-const routes = {
-  "/new/sku": () => <NewSkuForm />,
-  "/new/uniq": () => <NewUniqForm />,
-  "/new/bin": () => <NewBinForm />,
-  "/move-units": () => <MoveUnitsForm />,
-  "/receive": () => <ReceiveSkuForm />,
-  "/search": () => <SearchForm />,
-  "/bin/:id": () => <Bin />,
-  "/bin/:id/edit": () => <Bin editable />,
-  "/uniq": () => <Uniq />,
-  "/sku": () => <Sku />,
-};
-
 const App = () => {
-  const routeResult = useRoutes(routes);
   return (
     <div className="app-wrapper">
       <HamburgerBar />
       <div className="main-container">
-        <div className="main-content">{routeResult || <FourOhFour />}</div>
+        <div className="main-content">
+          <Router>
+            <NewSkuForm path="/new/sku" />
+            <NewUniqForm path="/new/uniq" />
+            <NewBinForm path="/new/bin" />
+            <MoveUnitsForm path="/move-units" />
+            <ReceiveSkuForm path="/receive" />
+            <SearchForm path="/search" />
+            <Bin path="/bin/:id" />
+            <Bin path="/bin/:id/edit" editable />
+            <Uniq path="/uniq" />
+            <Sku path="/sku" />
+            <FourOhFour path="/" />
+          </Router>
+        </div>
       </div>
     </div>
   );

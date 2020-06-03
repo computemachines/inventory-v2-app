@@ -1,5 +1,5 @@
 import React from "react";
-import { A } from "hookrouter";
+import { Link } from "@reach/router";
 
 // import PropTypes from "prop-types";
 
@@ -8,31 +8,31 @@ export default function NavbarDropdownNew() {
     <React.Fragment>
       <ul className="dropdown-container dropdown-show">
         <li>
-          <A
-            href="/new/sku"
+          <Link
+            to="/new/sku"
             className="navlink"
             activeClassName="navlink--selected"
           >
             New SKU
-          </A>
+          </Link>
         </li>
         <li>
-          <A
-            href="/new/uniq"
+          <Link
+            to="/new/uniq"
             className="navlink"
             activeClassName="navlink--selected"
           >
             New UNIQ
-          </A>
+          </Link>
         </li>
         <li>
-          <A
-            href="/new/bin"
+          <Link
+            to="/new/bin"
             className="navlink"
             activeClassName="navlink--selected"
           >
             New Bin
-          </A>
+          </Link>
         </li>
       </ul>
     </React.Fragment>

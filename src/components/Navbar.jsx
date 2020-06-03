@@ -1,5 +1,5 @@
 import React from "react";
-import { A } from "hookrouter";
+import { Link } from "@reach/router";
 
 import "../styles/Navbar.scss";
 
@@ -9,40 +9,44 @@ const Navbar = ({ show }) => (
   <nav className={`navbar ${show ? "navbar-collapse" : ""}`}>
     <ul>
       <li>
-        <A
-          href="/"
+        <Link
+          to="/"
           className="navlink"
           activeClassName="navlink--selected"
           exact="true"
         >
           Home
-        </A>
+        </Link>
       </li>
       <li>
         <NavbarDropdownNew />
       </li>
       <li>
-        <A href="/move" className="navlink" activeClassName="navlink--selected">
+        <Link
+          to="/move"
+          className="navlink"
+          activeClassName="navlink--selected"
+        >
           Move
-        </A>
+        </Link>
       </li>
       <li>
-        <A
-          href="/recieve-sku"
+        <Link
+          to="/recieve-sku"
           className="navlink"
           activeClassName="navlink--selected"
         >
           Recieve SKU
-        </A>
+        </Link>
       </li>
       <li>
-        <A
-          href="/search"
+        <Link
+          to="/search"
           className="navlink"
           activeClassName="navlink--selected"
         >
           Search
-        </A>
+        </Link>
       </li>
     </ul>
   </nav>
