@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 
 import ErrorBoundary from "./ErrorBoundary";
 import { setBinData } from "../actions";
-import "../styles/Bin.less";
+import "../styles/Bin.scss";
 
 class Bin extends React.Component {
   constructor(props) {

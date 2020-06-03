@@ -1,3 +1,5 @@
+@use "colors.scss";
+
 $hamburger-layer-color: #ecebe4ff;
 @import "hamburgers/_sass/hamburgers/hamburgers.scss";
 
@@ -6,12 +8,12 @@ $hamburger-layer-color: #ecebe4ff;
 }
 
 .app-wrapper {
-  background-color: #cdd2d6ff;
+  background-color: colors.$abyss;
   font-family: Roboto, Helvetica, sans-serif;
 }
 
 .branding {
-  background-color: #04151f;
+  background-color: colors.$dark1;
   color: #ecebe4ff;
 
   display: flex;
@@ -24,7 +26,7 @@ $hamburger-layer-color: #ecebe4ff;
   height: 3rem;
   width: 3rem;
   border-radius: 50%;
-  background-color: #c0771fff;
+  background-color: colors.$accent;
 }
 
 .branding h2 {
@@ -44,7 +46,7 @@ $hamburger-layer-color: #ecebe4ff;
   box-sizing: border-box;
   position: fixed;
   margin-left: 15%;
-  background-color: #cdd2d6;
+  background-color: colors.$abyss;
   height: 100vh;
   width: 85%;
 }
@@ -53,7 +55,7 @@ $hamburger-layer-color: #ecebe4ff;
   width: 50%;
   border-radius: 8px;
   padding: 12px;
-  background-color: #ecebe4;
+  background-color: colors.$foreground;
   min-height: 10em;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
 }

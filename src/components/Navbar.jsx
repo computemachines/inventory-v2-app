@@ -1,7 +1,7 @@
 import React from "react";
 import { A } from "hookrouter";
 
-import "../styles/Navbar.less";
+import "../styles/Navbar.scss";
 
 import NavbarDropdownNew from "./NavbarDropdownNew";
 

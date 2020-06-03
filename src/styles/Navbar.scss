@@ -1,5 +1,5 @@
-@import "accessibility";
-@import "colors";
+@use "accessibility";
+@use "colors";
 
 .navbar {
   display: flex;
@@ -14,7 +14,7 @@
 .navbar ul {
   margin: 0;
   padding: 0;
-  background-color: @1;
+  background-color: colors.$dark2;
 }
 
 .navbar li {
@@ -29,7 +29,6 @@
   padding: 8px;
   margin: 4px;
   height: 18px;
-  background-color: @1;
   border-radius: 4px;
   color: white;
   text-decoration: none;
@@ -39,26 +38,27 @@
   cursor: pointer;
 }
 
-.navlink--selected.navlink--selected.navlink--selected {
-  background-color: @8;
+.navlink--selected,
+.navlink:active,
+.dropdown-container .navlink:active {
+  background-color: colors.$darkAccent;
   color: white;
 }
 
 .navbar .dropdown-container {
-  background-color: @2;
+  background-color: colors.$foreground;
   padding-top: 8px;
   border-radius: 4px;
 }
 
 .dropdown-container.dropdown-hide {
-  .screen-reader();
+  @include accessibility.screen-reader;
 }
 
 .dropdown-container.dropdown-show {
-  .screen-reader-show();
+  @include accessibility.screen-reader-show;
 }
 
 .dropdown-container .navlink {
-  background-color: @2;
-  color: @5;
+  color: black; //check in production
 }

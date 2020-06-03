@@ -1,6 +1,6 @@
 import React from "react";
 
-import "../styles/PropertyEditorForm.less";
+import "../styles/PropertyEditorForm.scss";
 
 export class PropertyEditorForm extends React.Component {
   constructor(props) {
