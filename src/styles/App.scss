@@ -1,6 +1,18 @@
 @use "colors.scss";
 
 $hamburger-layer-color: #ecebe4ff;
+.hamburger-label {
+  font-weight: 600;
+  display: inline-block;
+  margin-right: 8px;
+  // height: 24px;
+  vertical-align: middle;
+  text-transform: uppercase;
+}
+// this aligns the .hamburger-box with the .hamburger-label
+.hamburger .hamburger-box {
+  vertical-align: middle;
+}
 @import "hamburgers/_sass/hamburgers/hamburgers.scss";
 
 * {
@@ -42,23 +54,23 @@ $hamburger-layer-color: #ecebe4ff;
   text-transform: uppercase;
 } */
 
-.main-container {
-  box-sizing: border-box;
-  position: fixed;
-  margin-left: 15%;
-  background-color: colors.$abyss;
-  height: 100vh;
-  width: 85%;
-}
-.main-content {
-  margin: 3em auto;
-  width: 50%;
-  border-radius: 8px;
-  padding: 12px;
-  background-color: colors.$foreground;
-  min-height: 10em;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-}
+// .main-container {
+//   box-sizing: border-box;
+//   position: fixed;
+//   margin-left: 15%;
+//   background-color: colors.$abyss;
+//   height: 100vh;
+//   width: 85%;
+// }
+// .main-content {
+//   margin: 3em auto;
+//   width: 50%;
+//   border-radius: 8px;
+//   padding: 12px;
+//   background-color: colors.$foreground;
+//   min-height: 10em;
+//   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+// }
 
 // @media only screen and (min-width: 800px) {
 //   .fixed-bar {

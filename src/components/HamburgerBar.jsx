@@ -7,7 +7,10 @@ const HamburgerButton = ({ onClick, show }) => (
     className={`hamburger hamburger--squeeze ${show ? "is-active" : ""}`}
     type="button"
     onClick={onClick}
+    ariaLabel="Menu"
+    ariaControls="navigation"
   >
+    <span className="hamburger-label">Menu</span>
     <span className="hamburger-box">
       <span className="hamburger-inner"></span>
     </span>
