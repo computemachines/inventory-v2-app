@@ -4,7 +4,7 @@ import Navbar from "./Navbar";
 
 const HamburgerButton = ({ onClick, show }) => (
   <button
-    className={`hamburger hamburger--collapse test ${show ? "is-active" : ""}`}
+    className={`hamburger hamburger--squeeze ${show ? "is-active" : ""}`}
     type="button"
     onClick={onClick}
   >
