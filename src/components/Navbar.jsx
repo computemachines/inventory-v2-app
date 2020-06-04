@@ -6,7 +6,7 @@ import "../styles/Navbar.scss";
 import NavbarDropdown from "./NavbarDropdown";
 
 const Navbar = ({ show }) => (
-  <nav className={`navbar ${show ? "navbar-collapse" : ""}`}>
+  <nav className={`navbar ${show ? "navbar--collapse" : ""}`}>
     <Link to="/" className="navlink">
       Home
     </Link>
