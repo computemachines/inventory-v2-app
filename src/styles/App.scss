@@ -1,5 +1,14 @@
 @use "colors.scss";
 
+.app-wrapper {
+  background-color: colors.$abyss;
+  font-family: Roboto, Helvetica, sans-serif;
+
+  display: flex;
+  flex-flow: column nowrap;
+  height: 100vh;
+}
+
 $hamburger-layer-color: #ecebe4ff;
 .hamburger-label {
   font-weight: 600;
@@ -9,19 +18,20 @@ $hamburger-layer-color: #ecebe4ff;
   vertical-align: middle;
   text-transform: uppercase;
 }
+
+@import "hamburgers/_sass/hamburgers/hamburgers.scss";
+
+.hamburger:focus {
+  background-color: colors.$darkAccent;
+  border-radius: 6px;
+}
 // this aligns the .hamburger-box with the .hamburger-label
 .hamburger .hamburger-box {
   vertical-align: middle;
 }
-@import "hamburgers/_sass/hamburgers/hamburgers.scss";
 
 * {
   box-sizing: border-box;
-}
-
-.app-wrapper {
-  background-color: colors.$abyss;
-  font-family: Roboto, Helvetica, sans-serif;
 }
 
 .branding {
@@ -53,6 +63,16 @@ $hamburger-layer-color: #ecebe4ff;
   font-size: 1em;
   text-transform: uppercase;
 } */
+
+.main-container {
+  background-color: colors.$abyss;
+  height: 100vh;
+}
+
+.main-content {
+  background-color: colors.$foreground;
+  // height: 100vh;
+}
 
 // .main-container {
 //   box-sizing: border-box;

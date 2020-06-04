@@ -3,7 +3,7 @@ import React, { useState, useRef } from "react";
 // import PropTypes from "prop-types";
 
 export default function NavbarDropdown({ title, className, children }) {
-  const [collapsed, setCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = useState(true);
   const titleEl = useRef(null);
   return (
     <React.Fragment>
