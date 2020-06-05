@@ -1,4 +1,5 @@
 @use "colors.scss";
+@use "accessibility.scss";
 
 .app-wrapper {
   background-color: colors.$abyss;
@@ -17,6 +18,8 @@ $hamburger-layer-color: #ecebe4ff;
   // height: 24px;
   vertical-align: middle;
   text-transform: uppercase;
+
+  @include accessibility.screen-reader();
 }
 
 @import "hamburgers/_sass/hamburgers/hamburgers.scss";
@@ -44,9 +47,9 @@ $hamburger-layer-color: #ecebe4ff;
 }
 
 .logo {
+  flex: 0 0 3rem;
   display: inline-block;
   height: 3rem;
-  width: 3rem;
   border-radius: 50%;
   background-color: colors.$accent;
 }
