@@ -1,23 +1,15 @@
-import React, { useState, useRef } from "react";
-
-// import PropTypes from "prop-types";
+import React, { useState } from "react";
 
 export default function NavbarDropdown({ title, className, children }) {
   const [collapsed, setCollapsed] = useState(true);
-  const titleEl = useRef(null);
   return (
     <React.Fragment>
       <button
-        ref={titleEl}
         role="tree"
         className="navlink dropdown-title"
-        onFocus={() => setCollapsed(false)}
         onClick={() => {
-          titleEl.current.focus();
           setCollapsed(!collapsed);
         }}
-        // eslint-disable-next-line no-unused-vars
-        // onKeyUp={(e) => setCollapsed(!collapsed)}
       >
         {title}
       </button>
@@ -34,7 +26,3 @@ export default function NavbarDropdown({ title, className, children }) {
     </React.Fragment>
   );
 }
-
-// NavbarDropdownNew.propTypes = {
-//   location: PropTypes.shape().isRequired
-// };
