@@ -1,0 +1,41 @@
+@use "colors";
+
+// .form {
+//   display: grid;
+// }
+.form::after {
+  // fallback if grid not understood
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.form-label {
+  font-weight: 600;
+  //   grid-column: 1/2;
+}
+
+.form-input {
+  display: block;
+  width: 100%;
+  margin: 0.5em 0;
+
+  box-sizing: border-box;
+  //   grid-column: 2/3;
+}
+
+.form-submit {
+  background-color: colors.$darkGood;
+  color: white;
+  font-weight: 400;
+  float: right;
+  width: 10em;
+  border: unset;
+  border-radius: 0.3em;
+
+  padding: 0.4em;
+}
+.form-submit:active,
+.form-submit:focus {
+  background-color: colors.$dark2;
+}
