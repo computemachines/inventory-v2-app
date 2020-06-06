@@ -10,29 +10,6 @@
   height: 100vh;
 }
 
-$hamburger-layer-color: #ecebe4ff;
-.hamburger-label {
-  font-weight: 600;
-  display: inline-block;
-  margin-right: 8px;
-  // height: 24px;
-  vertical-align: middle;
-  text-transform: uppercase;
-
-  @include accessibility.screen-reader();
-}
-
-@import "hamburgers/_sass/hamburgers/hamburgers.scss";
-
-.hamburger:focus {
-  background-color: colors.$darkAccent;
-  border-radius: 6px;
-}
-// this aligns the .hamburger-box with the .hamburger-label
-.hamburger .hamburger-box {
-  vertical-align: middle;
-}
-
 * {
   box-sizing: border-box;
 }

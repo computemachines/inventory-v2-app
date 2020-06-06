@@ -13,6 +13,7 @@ const { createStore } = require("redux");
 const http = require("http");
 const QueryString = require("querystring");
 const request = require("request");
+const { ServerLocation } = require("@reach/router");
 
 const {
   AppRoot,
@@ -95,11 +96,15 @@ express_app.get("/bin/:id", (req, res, next) => {
 express_app.get("/*", (req, res) => {
   const location = req.url;
   const context = {};
-  const app_root = React.createElement(AppRoot, {
-    store: req.locals.store,
-    location,
-    context,
-  });
+  const app_root = React.createElement(
+    ServerLocation,
+    { url: req.url },
+    React.createElement(AppRoot, {
+      store: req.locals.store,
+      location,
+      context,
+    })
+  );
   const html_app = renderToString(app_root);
   const preloaded_state = req.locals.store.getState();
 
