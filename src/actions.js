@@ -1,8 +1,4 @@
-import {
-  SET_SEARCH_QUERY,
-  SET_SEARCH_RESULTS,
-  SET_BIN_DATA,
-} from "./constants";
+import { SET_SEARCH_QUERY, SET_SEARCH_RESULTS } from "./constants";
 
 export const setSearchQuery = (query) => ({
   type: SET_SEARCH_QUERY,
@@ -12,9 +8,4 @@ export const setSearchQuery = (query) => ({
 export const setSearchResults = (searchResults) => ({
   type: SET_SEARCH_RESULTS,
   payload: searchResults,
-});
-
-export const setBinData = (binData) => ({
-  type: SET_BIN_DATA,
-  payload: binData,
 });

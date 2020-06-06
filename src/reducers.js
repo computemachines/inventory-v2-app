@@ -1,8 +1,4 @@
-import {
-  SET_SEARCH_QUERY,
-  SET_SEARCH_RESULTS,
-  SET_BIN_DATA,
-} from "./constants";
+import { SET_SEARCH_QUERY, SET_SEARCH_RESULTS } from "./constants";
 import * as initialState from "./defaultState";
 
 import { combineReducers } from "redux";
@@ -22,17 +18,17 @@ const search = (state = initialState.search, action) => {
   }
 };
 
-const units = (state = initialState.units, action) => {
-  switch (action.type) {
-    case SET_BIN_DATA:
-      return Object.assign({}, state, {
-        payload: action.binData,
-      });
+// const units = (state = initialState.units, action) => {
+//   switch (action.type) {
+//     case SET_BIN_DATA:
+//       return Object.assign({}, state, {
+//         payload: action.binData,
+//       });
 
-    default:
-      return state;
-  }
-};
+//     default:
+//       return state;
+//   }
+// };
 
-const rootReducer = combineReducers({ search, units });
+const rootReducer = combineReducers({ search /*, units */ });
 export default rootReducer;
