@@ -1,7 +1,7 @@
 /* eslint no-underscore-dangle: "off" */
 
 import React from "react";
-import { hydrate } from "react-dom";
+import { render, hydrate } from "react-dom";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
 
@@ -24,7 +24,7 @@ const store = createStore(
 );
 
 // ReactDom.hydrate(App, document.getElementById('react-root'))
-hydrate(
+(module.hot ? render : hydrate)(
   <Provider store={store}>
     {
       // // // TODO: fem says that provider should be inside router to make ssr //
