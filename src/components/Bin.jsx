@@ -1,8 +1,8 @@
 import React from "react";
-import { connect } from "react-redux";
+// import { connect } from "react-redux";
 
 import ErrorBoundary from "./ErrorBoundary";
-import { setBinData } from "../actions";
+// import { setBinData } from "../actions";
 import "../styles/Bin.scss";
 
 class Bin extends React.Component {
@@ -30,7 +30,6 @@ class Bin extends React.Component {
   }
 
   render() {
-    console.log("this should not print until breakpoint passed");
     return (
       <ErrorBoundary>
         <div className="item-description__label">
@@ -98,11 +97,13 @@ function BinContentListItem({ unit_type, label, quantity }) {
 //   editable: false,
 // };
 
-const mapStateToProps = (state) => ({ binData: state.binData });
-const mapDispatchToProps = (dispatch) => ({
-  dispatchBinData(bin_data) {
-    dispatch(setBinData(bin_data));
-  },
-});
+// const mapStateToProps = (state) => ({ binData: state.binData });
+// const mapDispatchToProps = (dispatch) => ({
+//   dispatchBinData(bin_data) {
+//     dispatch(setBinData(bin_data));
+//   },
+// });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Bin);
+// export default connect(mapStateToProps, mapDispatchToProps)(Bin);
+
+export default Bin;
