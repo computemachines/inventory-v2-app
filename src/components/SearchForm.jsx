@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { parse, stringify } from "query-string";
+import { navigate } from "@reach/router";
 
 import SearchResults from "./SearchResults";
 
@@ -86,10 +87,10 @@ class SearchForm extends React.Component {
   }
 
   handleSubmit(event) {
-    const { query, history } = this.props;
+    const { query } = this.props;
     const queryString = stringify({ query });
 
-    history.push(`/search?${queryString}`);
+    navigate(`/search?${queryString}`);
     this.retrieveSearchResults(query);
 
     event.preventDefault();
@@ -102,7 +103,7 @@ class SearchForm extends React.Component {
         <form
           action="/api/search"
           method="GET"
-          className="inv-form"
+          className="form"
           autoComplete="off"
           onSubmit={this.handleSubmit}
         >
@@ -110,11 +111,11 @@ class SearchForm extends React.Component {
             id="search-input"
             type="text"
             name="query"
-            className="inv-form__input"
+            className="form-input search-input"
             value={query}
             onChange={(event) => setQuery(event.target.value)}
           />
-          <input type="submit" value="Search" />
+          <input className="form-submit" type="submit" value="Search" />
         </form>
         <SearchResults results={searchResults !== null ? searchResults : []} />
       </React.Fragment>
