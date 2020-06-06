@@ -1,7 +1,5 @@
 import React from "react";
 
-import PropTypes from "prop-types";
-
 import Bin from "./Bin";
 import Sku from "./Sku";
 import Batch from "./Batch";
@@ -23,8 +21,8 @@ const Unit = ({ json }) => {
   return <p>BAD</p>;
 };
 
-Unit.propTypes = {
-  json: PropTypes.shape().isRequired,
-};
+// Unit.propTypes = {
+//   json: PropTypes.shape().isRequired,
+// };
 
 export default Unit;

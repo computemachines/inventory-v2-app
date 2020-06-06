@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
 import ErrorBoundary from "./ErrorBoundary";
@@ -80,24 +79,24 @@ function BinContentListItem({ unit_type, label, quantity }) {
 //   <div className="bin-contents__list"></div>
 // </div>
 
-Bin.propTypes = {
-  match: PropTypes.shape().isRequired,
-  editable: PropTypes.bool,
-  binData: PropTypes.shape({
-    contents: PropTypes.arrayOf(
-      PropTypes.shape({
-        unit_type: PropTypes.string,
-        label: PropTypes.string,
-        quantity: PropTypes.integer,
-      })
-    ),
-  }),
-  dispatchBinData: PropTypes.func,
-};
+// Bin.propTypes = {
+//   match: PropTypes.shape().isRequired,
+//   editable: PropTypes.bool,
+//   binData: PropTypes.shape({
+//     contents: PropTypes.arrayOf(
+//       PropTypes.shape({
+//         unit_type: PropTypes.string,
+//         label: PropTypes.string,
+//         quantity: PropTypes.integer,
+//       })
+//     ),
+//   }),
+//   dispatchBinData: PropTypes.func,
+// };
 
-Bin.defaultProps = {
-  editable: false,
-};
+// Bin.defaultProps = {
+//   editable: false,
+// };
 
 const mapStateToProps = (state) => ({ binData: state.binData });
 const mapDispatchToProps = (dispatch) => ({

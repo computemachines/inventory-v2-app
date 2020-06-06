@@ -10,7 +10,6 @@ module.exports = merge(parentCommon, {
     filename: "client.bundle.js",
     path: `${__dirname}/dist/assets`,
   },
-  devtool: "inline-source-map",
   module: {
     rules: [
       {

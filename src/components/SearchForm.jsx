@@ -1,7 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import PropTypes from "prop-types";
-import QueryString from "query-string";
+import { parse, stringify } from "query-string";
 
 import SearchResults from "./SearchResults";
 
@@ -46,7 +45,7 @@ class SearchForm extends React.Component {
    */
   componentDidMount() {
     const { location, query, setQuery, searchResults } = this.props;
-    const { query: urlQuery } = QueryString.parse(location.search);
+    const { query: urlQuery } = parse(location.search);
 
     // if urlQuery is set and this is running on the server side (store.query will still be default)
     if (query === defaultState.query && typeof urlQuery !== "undefined") {
@@ -62,9 +61,7 @@ class SearchForm extends React.Component {
     }
 
     window.onpopstate = (e) => {
-      const { query: newurlQuery } = QueryString.parse(
-        e.target.location.search
-      );
+      const { query: newurlQuery } = parse(e.target.location.search);
       console.log(newurlQuery);
       setQuery(newurlQuery);
       this.retrieveSearchResults(newurlQuery);
@@ -73,7 +70,7 @@ class SearchForm extends React.Component {
 
   retrieveSearchResults(query) {
     const { setSearchResults } = this.props;
-    const url = `/api/search?${QueryString.stringify({ query })}`;
+    const url = `/api/search?${stringify({ query })}`;
 
     const xhr = new XMLHttpRequest();
     xhr.open("GET", url, true);
@@ -90,7 +87,7 @@ class SearchForm extends React.Component {
 
   handleSubmit(event) {
     const { query, history } = this.props;
-    const queryString = QueryString.stringify({ query });
+    const queryString = stringify({ query });
 
     history.push(`/search?${queryString}`);
     this.retrieveSearchResults(query);
@@ -125,14 +122,14 @@ class SearchForm extends React.Component {
   }
 }
 
-SearchForm.propTypes = {
-  location: PropTypes.shape().isRequired,
-  history: PropTypes.shape().isRequired,
-  query: PropTypes.string.isRequired,
-  searchResults: PropTypes.arrayOf().isRequired,
-  setQuery: PropTypes.func.isRequired,
-  setSearchResults: PropTypes.func.isRequired,
-};
+// SearchForm.propTypes = {
+//   location: PropTypes.shape().isRequired,
+//   history: PropTypes.shape().isRequired,
+//   query: PropTypes.string.isRequired,
+//   searchResults: PropTypes.arrayOf().isRequired,
+//   setQuery: PropTypes.func.isRequired,
+//   setSearchResults: PropTypes.func.isRequired,
+// };
 
 const mapStateToProps = (storeState) => ({
   query: storeState.search.query,

@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 
 const UniqCard = ({ json }) => (
   <div className="inv-card">
@@ -21,19 +20,19 @@ const UniqCard = ({ json }) => (
   </div>
 );
 
-UniqCard.propTypes = {
-  json: PropTypes.shape({
-    id: PropTypes.shape().isRequired,
-    bin_id: PropTypes.shape().isRequired,
-    owned_codes: PropTypes.shape(),
-    sku_parent: PropTypes.shape(),
-    name: PropTypes.shape().isRequired,
-    original_cost: PropTypes.shape(),
-    asset_value: PropTypes.shape(),
-    assembly: PropTypes.shape(),
-    props: PropTypes.shape(),
-    inherited_props: PropTypes.shape(),
-  }).isRequired,
-};
+// UniqCard.propTypes = {
+//   json: PropTypes.shape({
+//     id: PropTypes.shape().isRequired,
+//     bin_id: PropTypes.shape().isRequired,
+//     owned_codes: PropTypes.shape(),
+//     sku_parent: PropTypes.shape(),
+//     name: PropTypes.shape().isRequired,
+//     original_cost: PropTypes.shape(),
+//     asset_value: PropTypes.shape(),
+//     assembly: PropTypes.shape(),
+//     props: PropTypes.shape(),
+//     inherited_props: PropTypes.shape(),
+//   }).isRequired,
+// };
 
 export default UniqCard;

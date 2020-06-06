@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 
 import Unit from "./Unit";
 
@@ -13,11 +12,11 @@ function SearchResults({ results }) {
   );
 }
 
-SearchResults.propTypes = {
-  results: PropTypes.arrayOf(PropTypes.shape).isRequired,
-};
-SearchResults.defaultProps = {
-  results: [],
-};
+// SearchResults.propTypes = {
+//   results: PropTypes.arrayOf(PropTypes.shape).isRequired,
+// };
+// SearchResults.defaultProps = {
+//   results: [],
+// };
 
 export default SearchResults;
