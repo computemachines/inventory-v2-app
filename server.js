@@ -1,17 +1,15 @@
-doc = `
+const doc = `
 Usage:
   server.js [-p <port>] [--noclient]
 `;
 const { docopt } = require("docopt");
-const args = docopt(doc, { version: "ssr0.1.0" });
+const args = docopt(doc, { version: "ssr0.2.0" });
 
 const express = require("express");
 const path = require("path");
 const React = require("react");
 const { renderToString } = require("react-dom/server");
 const { createStore } = require("redux");
-const http = require("http");
-const QueryString = require("querystring");
 const request = require("request");
 const { ServerLocation } = require("@reach/router");
 

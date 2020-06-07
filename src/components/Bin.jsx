@@ -1,54 +1,46 @@
 import React from "react";
-// import { connect } from "react-redux";
+import { connect } from "react-redux";
 
-import ErrorBoundary from "./ErrorBoundary";
-// import { setBinData } from "../actions";
+import { setBinData } from "../actions";
 import "../styles/Bin.scss";
 
 class Bin extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.render = this.render.bind(this);
-    this.state = {
-      bin_data: {},
-    };
-  }
+  // constructor(props) {
+  //   super(props);
+  // }
 
   componentDidMount() {
-    const xhr = new XMLHttpRequest();
-    xhr.open("GET", `/api/bin/${this.props.match.params.id}`, true);
-    xhr.onreadystatechange = () => {
-      if (xhr.readyState === 4 && xhr.status === 200) {
-        this.props.dispatchBinData(JSON.parse(xhr.responseText));
-      }
-      if (xhr.status !== 200) {
-        console.log(xhr);
-      }
-    };
-    xhr.send();
+    const { binData, setBinData, bin_id } = this.props;
+
+    if (binData === null) {
+      fetch(`/api/bin/${bin_id}`).then((response) =>
+        setBinData(response.json())
+      );
+    }
   }
 
   render() {
+    const { binData, bin_id, editable } = this.props;
     return (
-      <ErrorBoundary>
+      <React.Fragment>
         <div className="item-description__label">
           BIN
-          <span className="item-description__label--code">{this.bin_id}</span>
+          <span className="item-description__label--code">{bin_id}</span>
         </div>
-        {this.editable ? <div>Editable</div> : null}
+        {editable && <div>Editable</div>}
         <ul className="bin-contents">
-          {this.props.binData !== undefined ||
-            this.props.binData.contents.map((contents) => (
+          {JSON.stringify(binData, null, 4)}
+          {/* {!binData &&
+            binData.contents.map((contents) => (
               <BinContentListItem key={contents.label} {...contents} />
-            ))}
+            ))} */}
         </ul>
-        <div>{"" + this.state.bin_id}</div>
-      </ErrorBoundary>
+      </React.Fragment>
     );
   }
 }
 
+// eslint-disable-next-line no-unused-vars
 function BinContentListItem({ unit_type, label, quantity }) {
   let labelClassName = "bin-contents bin-contents__label";
   switch (unit_type) {
@@ -72,38 +64,15 @@ function BinContentListItem({ unit_type, label, quantity }) {
   );
 }
 
-// const BinContent
-
 // const BinContents = (props) => <div className="bin-contents">
 //   <div className="bin-contents__list"></div>
 // </div>
 
-// Bin.propTypes = {
-//   match: PropTypes.shape().isRequired,
-//   editable: PropTypes.bool,
-//   binData: PropTypes.shape({
-//     contents: PropTypes.arrayOf(
-//       PropTypes.shape({
-//         unit_type: PropTypes.string,
-//         label: PropTypes.string,
-//         quantity: PropTypes.integer,
-//       })
-//     ),
-//   }),
-//   dispatchBinData: PropTypes.func,
-// };
+const mapStateToProps = (state) => ({ binData: state.binData });
+const mapDispatchToProps = (dispatch) => ({
+  setBinData(bin_data) {
+    dispatch(setBinData(bin_data));
+  },
+});
 
-// Bin.defaultProps = {
-//   editable: false,
-// };
-
-// const mapStateToProps = (state) => ({ binData: state.binData });
-// const mapDispatchToProps = (dispatch) => ({
-//   dispatchBinData(bin_data) {
-//     dispatch(setBinData(bin_data));
-//   },
-// });
-
-// export default connect(mapStateToProps, mapDispatchToProps)(Bin);
-
-export default Bin;
+export default connect(mapStateToProps, mapDispatchToProps)(Bin);

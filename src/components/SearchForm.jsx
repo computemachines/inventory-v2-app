@@ -6,7 +6,7 @@ import { navigate } from "@reach/router";
 import SearchResults from "./SearchResults";
 
 import * as actions from "../actions";
-import { search as defaultState } from "../defaultState";
+import defaultState from "../defaultState";
 
 class SearchForm extends React.Component {
   constructor(props) {
@@ -45,12 +45,12 @@ class SearchForm extends React.Component {
    *      on render() searchResults should be loaded syncronously
    */
   componentDidMount() {
-    const { location, query, setQuery, searchResults } = this.props;
+    const { location, query, setSearchQuery, searchResults } = this.props;
     const { query: urlQuery } = parse(location.search);
 
     // if urlQuery is set and this is running on the server side (store.query will still be default)
-    if (query === defaultState.query && typeof urlQuery !== "undefined") {
-      setQuery(urlQuery); // used to set the input element's actual value
+    if (query === defaultState.searchQuery && typeof urlQuery !== "undefined") {
+      setSearchQuery(urlQuery); // used to set the input element's actual value
     }
 
     // if searchResults havent loaded yet and urlQuery is set
@@ -60,30 +60,26 @@ class SearchForm extends React.Component {
     ) {
       this.retrieveSearchResults(urlQuery);
     }
-
-    window.onpopstate = (e) => {
-      const { query: newurlQuery } = parse(e.target.location.search);
-      console.log(newurlQuery);
-      setQuery(newurlQuery);
-      this.retrieveSearchResults(newurlQuery);
-    };
   }
 
   retrieveSearchResults(query) {
     const { setSearchResults } = this.props;
-    const url = `/api/search?${stringify({ query })}`;
 
-    const xhr = new XMLHttpRequest();
-    xhr.open("GET", url, true);
-    xhr.onreadystatechange = () => {
-      if (xhr.readyState === 4 && xhr.status === 200) {
-        setSearchResults(JSON.parse(xhr.responseText));
-      }
-      if (xhr.status !== 200) {
-        console.log(xhr);
-      }
-    };
-    xhr.send();
+    fetch(`/api/search?${stringify({ query })}`).then((response) =>
+      setSearchResults(response.json())
+    );
+
+    // const xhr = new XMLHttpRequest();
+    // xhr.open("GET", url, true);
+    // xhr.onreadystatechange = () => {
+    //   if (xhr.readyState === 4 && xhr.status === 200) {
+    //     setSearchResults(JSON.parse(xhr.responseText));
+    //   }
+    //   if (xhr.status !== 200) {
+    //     console.error(xhr);
+    //   }
+    // };
+    // xhr.send();
   }
 
   handleSubmit(event) {
@@ -97,7 +93,7 @@ class SearchForm extends React.Component {
   }
 
   render() {
-    const { query, setQuery, searchResults } = this.props;
+    const { query, setSearchQuery, searchResults } = this.props;
     return (
       <React.Fragment>
         <form
@@ -112,8 +108,8 @@ class SearchForm extends React.Component {
             type="text"
             name="query"
             className="form-input search-input"
-            value={query}
-            onChange={(event) => setQuery(event.target.value)}
+            value={query === null ? "" : query}
+            onChange={(event) => setSearchQuery(event.target.value)}
           />
           <input className="form-submit" type="submit" value="Search" />
         </form>
@@ -133,12 +129,12 @@ class SearchForm extends React.Component {
 // };
 
 const mapStateToProps = (storeState) => ({
-  query: storeState.search.query,
-  searchResults: storeState.search.searchResults,
+  query: storeState.searchQuery,
+  searchResults: storeState.searchResults,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  setQuery(query) {
+  setSearchQuery(query) {
     dispatch(actions.setSearchQuery(query));
   },
   setSearchResults(searchResults) {
