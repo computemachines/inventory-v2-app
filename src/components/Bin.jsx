@@ -1,44 +1,35 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 
 import { setBinData } from "../actions";
 import "../styles/Bin.scss";
 
-class Bin extends React.Component {
-  // constructor(props) {
-  //   super(props);
-  // }
-
-  componentDidMount() {
-    const { binData, setBinData, bin_id } = this.props;
-
+const Bin = ({ binData, setBinData, bin_id, editable }) => {
+  useEffect(() => {
     if (binData === null) {
       fetch(`/api/bin/${bin_id}`).then((response) =>
         setBinData(response.json())
       );
     }
-  }
+  });
 
-  render() {
-    const { binData, bin_id, editable } = this.props;
-    return (
-      <React.Fragment>
-        <div className="item-description__label">
-          BIN
-          <span className="item-description__label--code">{bin_id}</span>
-        </div>
-        {editable && <div>Editable</div>}
-        <ul className="bin-contents">
-          {JSON.stringify(binData, null, 4)}
-          {/* {!binData &&
+  return (
+    <React.Fragment>
+      <div className="item-description__label">
+        BIN
+        <span className="item-description__label--code">{bin_id}</span>
+      </div>
+      {editable && <div>Editable</div>}
+      <ul className="bin-contents">
+        {JSON.stringify(binData, null, 4)}
+        {/* {!binData &&
             binData.contents.map((contents) => (
               <BinContentListItem key={contents.label} {...contents} />
             ))} */}
-        </ul>
-      </React.Fragment>
-    );
-  }
-}
+      </ul>
+    </React.Fragment>
+  );
+};
 
 // eslint-disable-next-line no-unused-vars
 function BinContentListItem({ unit_type, label, quantity }) {
