@@ -1,4 +1,4 @@
-export const search = {
+export default {
   searchQuery: null,
   searchResults: null,
 };

@@ -1,34 +1,19 @@
 import { SET_SEARCH_QUERY, SET_SEARCH_RESULTS } from "./constants";
-import * as initialState from "./defaultState";
+import initialState from "./defaultState";
 
-import { combineReducers } from "redux";
-
-const search = (state = initialState.search, action) => {
+const rootReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_SEARCH_QUERY:
       return Object.assign({}, state, {
-        payload: action.query,
+        searchQuery: action.payload,
       });
     case SET_SEARCH_RESULTS:
       return Object.assign({}, state, {
-        payload: action.searchResults,
+        searchResults: action.payload,
       });
     default:
       return state;
   }
 };
 
-// const units = (state = initialState.units, action) => {
-//   switch (action.type) {
-//     case SET_BIN_DATA:
-//       return Object.assign({}, state, {
-//         payload: action.binData,
-//       });
-
-//     default:
-//       return state;
-//   }
-// };
-
-const rootReducer = combineReducers({ search /*, units */ });
 export default rootReducer;
