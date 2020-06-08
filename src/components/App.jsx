@@ -32,6 +32,7 @@ const App = () => {
         <div className="main-content">
           <ErrorBoundary>
             <AlertContext.Provider value={[alert, setAlert]}>
+              <div className="main-alert">{alert}</div>
               <Router>
                 <NewSkuForm path="/new/sku" />
                 <NewUniqForm path="/new/uniq" />
@@ -45,7 +46,6 @@ const App = () => {
                 <Sku path="/sku" />
                 <FourOhFour default />
               </Router>
-              <div className="main-alert">{alert}</div>
             </AlertContext.Provider>
           </ErrorBoundary>
         </div>
