@@ -9,5 +9,5 @@ export const AppRoot = ({ store /*, location, context*/ }) => (
 );
 
 export { default as reducers } from "../reducers";
-export { setQuery, setSearchResults } from "../actions";
+export { setSearchQuery, setSearchResults } from "../actions";
 export { default as initialState } from "../defaultState";

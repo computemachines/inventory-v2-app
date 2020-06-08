@@ -16,7 +16,7 @@ const { ServerLocation } = require("@reach/router");
 const {
   AppRoot,
   reducers,
-  setQuery,
+  setSearchQuery,
   setSearchResults,
   initialState,
 } = require("./dist/server.bundle");
@@ -68,8 +68,8 @@ express_app.get("/*", (req, res, next) => {
 });
 
 express_app.get("/search", (req, res, next) => {
-  const searchQuery = req.query["query"] || initialState.query;
-  req.locals.store.dispatch(setQuery(searchQuery));
+  const searchQuery = req.query["query"] || initialState.searchQuery;
+  req.locals.store.dispatch(setSearchQuery(searchQuery));
 
   request(
     {
