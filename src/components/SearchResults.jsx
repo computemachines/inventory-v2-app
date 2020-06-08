@@ -1,16 +1,17 @@
 import React from "react";
 
-import Unit from "./Unit";
+import UnitPreview from "./UnitPreview";
 
-function SearchResults({ results }) {
+const SearchResults = ({ results }) => {
+  console.log(results);
   return (
     <ul className="search-results">
       {results.map((result) => (
-        <Unit key={result.id} json={result} />
+        <UnitPreview key={result.id} json={result} />
       ))}
     </ul>
   );
-}
+};
 
 // SearchResults.propTypes = {
 //   results: PropTypes.arrayOf(PropTypes.shape).isRequired,

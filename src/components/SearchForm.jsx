@@ -49,7 +49,7 @@ class SearchForm extends React.Component {
     const { query: urlQuery } = parse(location.search);
 
     // if urlQuery is set and this is running on the server side (store.query will still be default)
-    if (query === defaultState.searchQuery && typeof urlQuery !== "undefined") {
+    if (query === null && typeof urlQuery !== "undefined") {
       setSearchQuery(urlQuery); // used to set the input element's actual value
     }
 
@@ -63,11 +63,12 @@ class SearchForm extends React.Component {
   }
 
   retrieveSearchResults(query) {
+    console.log("Query", query);
     const { setSearchResults } = this.props;
 
-    fetch(`/api/search?${stringify({ query })}`).then((response) =>
-      setSearchResults(response.json())
-    );
+    fetch(`/api/search?${stringify({ query })}`)
+      .then((response) => response.json())
+      .then((data) => setSearchResults(data));
 
     // const xhr = new XMLHttpRequest();
     // xhr.open("GET", url, true);
@@ -113,7 +114,8 @@ class SearchForm extends React.Component {
           />
           <input className="form-submit" type="submit" value="Search" />
         </form>
-        <SearchResults results={searchResults !== null ? searchResults : []} />
+
+        <SearchResults results={searchResults || []} />
       </React.Fragment>
     );
   }
