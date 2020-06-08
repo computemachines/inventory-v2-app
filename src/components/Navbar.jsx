@@ -25,7 +25,7 @@ const Navbar = ({ show }) => (
       Move
     </Link>
     <Link to="/receive" className="navlink">
-      Receive SKU
+      Receive
     </Link>
     <Link to="/search" className="navlink">
       Search

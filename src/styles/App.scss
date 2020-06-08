@@ -56,6 +56,11 @@
   padding: 12px;
   margin: 0 auto;
 }
+.main-content::after {
+  content: "";
+  clear: both;
+  display: table;
+}
 
 // .main-container {
 //   box-sizing: border-box;

@@ -9,7 +9,7 @@ import NewSkuForm from "./NewSkuForm";
 import NewUniqForm from "./NewUniqForm";
 import NewBinForm from "./NewBinForm";
 // import MoveUnitsForm from "./MoveUnitsForm";
-// import ReceiveSkuForm from "./ReceiveSkuForm";
+import ReceiveSkuForm from "./ReceiveSkuForm";
 import SearchForm from "./SearchForm";
 import Bin from "./Bin";
 import Uniq from "./Uniq";
@@ -37,8 +37,8 @@ const App = () => {
                 <NewSkuForm path="/new/sku" />
                 <NewUniqForm path="/new/uniq" />
                 <NewBinForm path="/new/bin" />
-                {/* <MoveUnitsForm path="/move-units" /> */}
-                {/* <ReceiveSkuForm path="/receive" /> */}
+                {/* <MoveUnitsForm path="/move" /> */}
+                <ReceiveSkuForm path="/receive" />
                 <SearchForm path="/search" />
                 <Bin path="/bin/:bin_id" />
                 <Bin path="/bin/:bin_id/edit" editable />
