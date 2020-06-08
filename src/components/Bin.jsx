@@ -1,17 +1,20 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 
 import { setBinData } from "../actions";
 import "../styles/Bin.scss";
 
 const Bin = ({ binData, setBinData, bin_id, editable }) => {
+  const [loaded, setLoaded] = useState(false);
   useEffect(() => {
     if (binData === null) {
-      fetch(`/api/bin/${bin_id}`).then((response) =>
-        setBinData(response.json())
-      );
+      fetch(`/api/bin/${bin_id}`)
+        .then((response) => {
+          setBinData(response.json());
+        })
+        .finally(() => setLoaded(true));
     }
-  });
+  }, []);
 
   return (
     <React.Fragment>
@@ -20,13 +23,17 @@ const Bin = ({ binData, setBinData, bin_id, editable }) => {
         <span className="item-description__label--code">{bin_id}</span>
       </div>
       {editable && <div>Editable</div>}
-      <ul className="bin-contents">
-        {JSON.stringify(binData, null, 4)}
-        {/* {!binData &&
+      {!loaded ? (
+        <div>Loading ...</div>
+      ) : (
+        <ul className="bin-contents">
+          {binData &&
+            binData.contents &&
             binData.contents.map((contents) => (
               <BinContentListItem key={contents.label} {...contents} />
-            ))} */}
-      </ul>
+            ))}
+        </ul>
+      )}
     </React.Fragment>
   );
 };
