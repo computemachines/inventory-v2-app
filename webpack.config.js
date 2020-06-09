@@ -3,7 +3,7 @@ const webpack = require("webpack");
 
 module.exports = {
   entry: {
-    client: ["babel-polyfill", "react-hot-loader/patch", "./src/client/entry"],
+    client: ["@babel/polyfill", "react-hot-loader/patch", "./src/client/entry"],
   },
   resolve: {
     extensions: [".js", ".jsx"],
@@ -18,25 +18,7 @@ module.exports = {
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        use: [
-          {
-            loader: "babel-loader",
-            options: {
-              presets: [
-                [
-                  "latest",
-                  {
-                    es2015: {
-                      modules: false,
-                    },
-                  },
-                ],
-                "react",
-              ],
-              plugins: ["react-hot-loader/babel"],
-            },
-          },
-        ],
+        use: ["babel-loader"],
       },
     ],
   },
