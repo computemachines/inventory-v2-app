@@ -25,12 +25,6 @@ const store = createStore(
 
 // ReactDom.hydrate(App, document.getElementById('react-root'))
 (module.hot ? render : hydrate)(
-  <Provider store={store}>
-    {
-      // // // TODO: fem says that provider should be inside router to make ssr //
-      // easier
-    }
-    <App />
-  </Provider>,
+  <App store={store} />,
   document.getElementById("react-root")
 );

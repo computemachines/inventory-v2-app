@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Router } from "@reach/router";
 
+import { Provider as ReduxProvider } from "react-redux";
+
 import "../styles/App.scss";
 
 import "normalize.css";
@@ -54,4 +56,10 @@ const App = () => {
   );
 };
 
-export default App;
+const Root = ({ store }) => (
+  <ReduxProvider store={store}>
+    <App />
+  </ReduxProvider>
+);
+
+export default Root;

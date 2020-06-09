@@ -41,7 +41,7 @@ const NewSkuForm = () => {
 
                   setAlert(
                     <div className="alert alert-success">
-                      Success: <Link to={`/sku/${data.id}`}>SKU{data.id}</Link>{" "}
+                      Success: <Link to={`/sku/${data.id}`}>{data.id}</Link>{" "}
                       added.
                     </div>
                   );
@@ -115,7 +115,6 @@ const NewSkuForm = () => {
             name="cost"
             value={cost}
             onChange={(e) => setCost(e.target.value)}
-            required
           />
         </label>
         <input className="form-submit" type="submit" value="Submit" />

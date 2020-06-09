@@ -14,7 +14,7 @@ module.exports = merge(common, {
     }),
   ],
   entry: path.resolve(__dirname, "src/server/entry.jsx"),
-  mode: "development",
+  mode: "production",
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "server.bundle.js",
