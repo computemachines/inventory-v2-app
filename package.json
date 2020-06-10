@@ -2,7 +2,7 @@
   "name": "inventory-v2",
   "version": "2.0.0",
   "scripts": {
-    "format": "prettier \"src/**/*.{js,jsx,html}\" webpack*.js --write",
+    "format": "prettier \"src/**/*.{js,jsx,json,html}\" webpack*.js --write",
     "lint": "eslint \"src/**/*.{js,jsx}\" --quiet",
     "build:client:dev": "webpack",
     "build:client": "cross-env NODE_ENV='production' npx webpack-cli",
