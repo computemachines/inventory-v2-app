@@ -4,8 +4,10 @@
   "scripts": {
     "format": "prettier \"src/**/*.{js,jsx,html}\" webpack*.js --write",
     "lint": "eslint \"src/**/*.{js,jsx}\" --quiet",
-    "build:dev": "webpack",
-    "build": "cross-env NODE_ENV='production' webpack",
+    "build:client:dev": "webpack",
+    "build:client": "cross-env NODE_ENV='production' npx webpack-cli",
+    "build:server:dev": "webpack --config webpack.server.config.js",
+    "build:server": "cross-env NODE_ENV='production' npx webpack-cli --config webpack.server.config.js",
     "dev": "webpack-dev-server --hot --history-api-fallback --open",
     "ssr": "node server.js",
     "ssr:dev": "node server.js -p 8080",
