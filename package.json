@@ -8,7 +8,7 @@
     "build:client": "cross-env NODE_ENV='production' npx webpack-cli",
     "build:server:dev": "webpack --config webpack.server.config.js",
     "build:server": "cross-env NODE_ENV='production' npx webpack-cli --config webpack.server.config.js",
-    "dev": "webpack-dev-server --hot --history-api-fallback --open",
+    "dev": "webpack-dev-server --hot-only --history-api-fallback --open",
     "ssr": "node server.js",
     "ssr:dev": "node server.js -p 8080",
     "ssr:only": "node server.js -p 8080 --noclient"

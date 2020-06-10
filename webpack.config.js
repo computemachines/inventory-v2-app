@@ -1,4 +1,5 @@
 const webpack = require("webpack");
+const path = require("path");
 // const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 const dev = process.env.NODE_ENV !== "production";
@@ -17,7 +18,8 @@ module.exports = {
   },
   output: {
     filename: "[name].bundle.js",
-    path: `${__dirname}/dist/assets`,
+    path: path.join(__dirname, "/dist/assets"),
+    publicPath: "/",
   },
   module: {
     rules: [
