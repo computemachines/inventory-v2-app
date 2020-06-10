@@ -4,7 +4,7 @@ const Root = () => {
   const [val, setVal] = useState("");
   return (
     <div>
-      Hello React <span style={{ fontWeight: 600 }}>Hot Loader!</span>
+      Hello Rdeact <span style={{ fontWeight: 400 }}>Hot Loader!</span>
       <form>
         <input
           type="text"

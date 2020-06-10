@@ -19,7 +19,7 @@ const {
   setSearchQuery,
   setSearchResults,
   initialState,
-} = require("./dist/server.bundle");
+} = require("./dist/assets/server.bundle");
 
 let port = 80;
 let noclient = false;

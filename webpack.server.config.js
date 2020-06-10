@@ -3,21 +3,25 @@ const webpack = require("webpack");
 
 const dev = process.env.NODE_ENV !== "production";
 
+const nodeExternals = require("webpack-node-externals"); // used to externalize node_modules/ from the server bundle
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const AutoPrefixer = require("autoprefixer");
+
 module.exports = {
   mode: dev ? "development" : "production",
+  target: "node",
   entry: {
-    client: [
-      dev && "@babel/polyfill",
-      dev && "react-hot-loader/patch",
-      "./src/client/entry",
-    ].filter(Boolean),
+    server: "./src/server/entry",
   },
+  externals: nodeExternals({ whitelist: ["normalize.css"] }),
   resolve: {
     extensions: [".js", ".jsx"],
   },
   output: {
     filename: "[name].bundle.js",
     path: `${__dirname}/dist/assets`,
+    library: "app",
+    libraryTarget: "commonjs2",
   },
   module: {
     rules: [
@@ -26,11 +30,11 @@ module.exports = {
         exclude: /node_modules/,
         use: ["babel-loader"],
       },
-      { test: /\.css$/, use: ["style-loader", "css-loader"] },
+      { test: /\.css$/, use: [MiniCssExtractPlugin.loader, "css-loader"] },
       {
         test: /\.(sass|scss)$/,
         use: [
-          "style-loader",
+          MiniCssExtractPlugin.loader,
           { loader: "css-loader", options: { importLoaders: 1 } },
           "sass-loader",
         ],
@@ -38,11 +42,8 @@ module.exports = {
     ],
   },
   plugins: [
-    // new CopyWebpackPlugin([
-    //   {
-    //     from: "src/client/index.html",
-    //     to: "index.html",
-    //   },
-    // ]),
+    new MiniCssExtractPlugin({
+      filename: "main.css",
+    }),
   ],
 };

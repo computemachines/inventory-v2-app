@@ -14,7 +14,6 @@ const NewSkuForm = () => {
   const [alert, setAlert] = useState(null);
   return (
     <div>
-      1
       <form
         className="form"
         method="POST"
