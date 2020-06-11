@@ -21,6 +21,11 @@ module.exports = {
     path: path.join(__dirname, "/dist/assets"),
     publicPath: "/",
   },
+  devServer: {
+    proxy: {
+      "/api": "http://localhost:8081",
+    },
+  },
   module: {
     rules: [
       {

@@ -54,6 +54,7 @@ class SearchForm extends React.Component {
     }
 
     // if searchResults havent loaded yet and urlQuery is set
+    // TODO: debug this ui state
     if (
       searchResults === defaultState.searchResults &&
       typeof urlQuery !== "undefined"
@@ -63,7 +64,7 @@ class SearchForm extends React.Component {
   }
 
   retrieveSearchResults(query) {
-    console.log("Query", query);
+    // console.log("Query", query);
     const { setSearchResults } = this.props;
 
     fetch(`/api/search?${stringify({ query })}`)

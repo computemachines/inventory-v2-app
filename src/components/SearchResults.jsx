@@ -3,7 +3,6 @@ import React from "react";
 import UnitPreview from "./UnitPreview";
 
 const SearchResults = ({ results }) => {
-  console.log(results);
   return (
     <ul className="search-results">
       {results.map((result) => (

@@ -6,7 +6,10 @@ const BinPreview = ({ json: jsonData }) => {
     <div className="search-preview">
       <h3>{jsonData.id}</h3>
       <h4>
-        Contents: {jsonData.contents.length === 0 ? "Empty" : jsonData.contents}
+        Contents:{" "}
+        {jsonData.contents.length === 0
+          ? "Empty"
+          : JSON.stringify(jsonData.contents, null, 4)}
       </h4>
     </div>
   );
