@@ -14,7 +14,7 @@ const Bin = ({ binData, setBinData, bin_id, editable }) => {
         })
         .finally(() => setLoaded(true));
     }
-  }, []);
+  }, [binData, bin_id, setBinData]);
 
   return (
     <React.Fragment>
