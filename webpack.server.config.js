@@ -54,7 +54,6 @@ module.exports = {
         use: [
           MiniCssExtractPlugin.loader,
           { loader: "css-loader", options: { importLoaders: 2 } },
-          "sass-loader",
           {
             loader: "postcss-loader",
             options: {
@@ -62,6 +61,7 @@ module.exports = {
               plugins: [require("autoprefixer")()],
             },
           },
+          "sass-loader",
         ],
       },
     ],
