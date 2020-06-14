@@ -35,13 +35,33 @@ module.exports = {
           },
         ],
       },
-      { test: /\.css$/, use: [MiniCssExtractPlugin.loader, "css-loader"] },
+      {
+        test: /\.css$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          { loader: "css-loader", options: { importLoaders: 1 } },
+          {
+            loader: "postcss-loader",
+            options: {
+              ident: "postcss",
+              plugins: [require("autoprefixer")()],
+            },
+          },
+        ],
+      },
       {
         test: /\.(sass|scss)$/,
         use: [
           MiniCssExtractPlugin.loader,
-          { loader: "css-loader", options: { importLoaders: 1 } },
+          { loader: "css-loader", options: { importLoaders: 2 } },
           "sass-loader",
+          {
+            loader: "postcss-loader",
+            options: {
+              ident: "postcss",
+              plugins: [require("autoprefixer")()],
+            },
+          },
         ],
       },
     ],

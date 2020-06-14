@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import Navbar from "./Navbar";
 
@@ -19,12 +19,6 @@ const HamburgerButton = ({ onClick, show }) => (
 
 const HamburgerBar = () => {
   const [show, setShow] = useState(false);
-  useEffect(() => {
-    fetch("http://localhost:8899/print/helloworlds").then(
-      console.log,
-      console.err
-    );
-  });
   return (
     <div className="fixed-bar">
       <div className="branding">

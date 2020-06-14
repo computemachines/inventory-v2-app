@@ -29,6 +29,12 @@ module.exports = {
   module: {
     rules: [
       {
+        enforce: "pre",
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        loader: "eslint-loader",
+      },
+      {
         test: /\.jsx?$/,
         exclude: /node_modules/,
         use: [
@@ -41,12 +47,32 @@ module.exports = {
           },
         ],
       },
-      { test: /\.css$/, use: ["style-loader", "css-loader"] },
+      {
+        test: /\.css$/,
+        use: [
+          "style-loader",
+          { loader: "css-loader", options: { importLoaders: 1 } },
+          {
+            loader: "postcss-loader",
+            options: {
+              ident: "postcss",
+              plugins: [require("autoprefixer")()],
+            },
+          },
+        ],
+      },
       {
         test: /\.(sass|scss)$/,
         use: [
           "style-loader",
-          { loader: "css-loader", options: { importLoaders: 1 } },
+          { loader: "css-loader", options: { importLoaders: 2 } },
+          {
+            loader: "postcss-loader",
+            options: {
+              ident: "postcss",
+              plugins: [require("autoprefixer")()],
+            },
+          },
           "sass-loader",
         ],
       },
