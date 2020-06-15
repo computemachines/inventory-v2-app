@@ -31,7 +31,7 @@ const NewSkuForm = ({ nextSku, setNextSku }) => {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
-              id: skuId,
+              id: skuId || nextSku,
               ownedCodes: ownedCodes.split(/\W/),
               assocCodes: assocCodes.split(/\W/),
               name,
@@ -77,7 +77,6 @@ const NewSkuForm = ({ nextSku, setNextSku }) => {
               value={skuId}
               placeholder={nextSku}
               onChange={(e) => setSkuId(e.target.value)}
-              required
             />
             <button
               type="button"
