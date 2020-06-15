@@ -6,8 +6,16 @@ import { createStore } from "redux";
 import Root from "../components/App";
 import reducers from "../reducers";
 
+console.log(module.hot);
+
 const preloadedState = window.__PRELOADED_STATE__; // injected ssr
-const store = createStore(reducers, preloadedState); // TODO: add redux dev tools back to this
+const store = createStore(
+  reducers,
+  preloadedState,
+  // module.hot &&
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
+// delete window.__PRELOADED_STATE__
 
 const render = (Component) => {
   (module.hot ? ReactDOM.render : ReactDOM.hydrate)(

@@ -5,6 +5,10 @@ import {
   SET_UNIQ_DATA,
   SET_SKU_DATA,
   SET_BATCH_DATA,
+  SET_NEXT_BIN,
+  SET_NEXT_UNIQ,
+  SET_NEXT_SKU,
+  SET_NEXT_BATCH,
 } from "./constants";
 import initialState from "./defaultState";
 
@@ -22,6 +26,14 @@ const rootReducer = (state = initialState, action) => {
       return Object.assign({}, state, { skuData: action.payload });
     case SET_BATCH_DATA:
       return Object.assign({}, state, { batchData: action.payload });
+    case SET_NEXT_BIN:
+      return Object.assign({}, state, { nextBin: action.payload });
+    case SET_NEXT_UNIQ:
+      return Object.assign({}, state, { nextUniq: action.payload });
+    case SET_NEXT_SKU:
+      return Object.assign({}, state, { nextSku: action.payload });
+    case SET_NEXT_BATCH:
+      return Object.assign({}, state, { nextBatch: action.payload });
     default:
       return state;
   }

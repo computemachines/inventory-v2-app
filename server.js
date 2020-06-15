@@ -10,8 +10,8 @@ const path = require("path");
 const React = require("react");
 const { renderToString } = require("react-dom/server");
 const { createStore } = require("redux");
-const request = require("request");
-const { ServerLocation } = require("@reach/router");
+const { ServerLocation, isRedirect } = require("@reach/router");
+const axios = require("axios");
 
 const {
   AppRoot,
@@ -19,6 +19,10 @@ const {
   setSearchQuery,
   setSearchResults,
   initialState,
+  setNextBatch,
+  setNextBin,
+  setNextSku,
+  setNextUniq,
 } = require("./dist/assets/server.bundle");
 
 let port = 80;
@@ -57,33 +61,38 @@ const express_app = express();
 express_app.use(express.static(path.join(__dirname, "dist")));
 
 const api_hostname = "http://localhost:8081";
-
-const { Provider } = require("react-redux");
+const api_fetch = axios.create({ baseURL: api_hostname + "/api/" });
 
 express_app.get("/*", (req, res, next) => {
-  console.log("set store");
   const store = createStore(reducers);
   req.locals = { store };
-  next();
+
+  Promise.all([
+    api_fetch("/next/bin"),
+    api_fetch("/next/uniq"),
+    api_fetch("/next/sku"),
+    api_fetch("/next/batch"),
+  ]).then((res) => {
+    req.locals.store.dispatch(setNextBin(res[0].data));
+    req.locals.store.dispatch(setNextUniq(res[1].data));
+    req.locals.store.dispatch(setNextSku(res[2].data));
+    req.locals.store.dispatch(setNextBatch(res[3].data));
+    next();
+  });
 });
 
 express_app.get("/search", (req, res, next) => {
   const searchQuery = req.query["query"] || initialState.searchQuery;
   req.locals.store.dispatch(setSearchQuery(searchQuery));
 
-  request(
-    {
-      url: api_hostname + "/api/search",
-      qs: { query: searchQuery },
-      json: true,
-    },
-    (error, resp, data) => {
-      console.log("response: " + resp);
-      console.log("error: " + error);
+  api_fetch("/search", {
+    params: { query: searchQuery },
+  })
+    .then(({ data }) => {
       req.locals.store.dispatch(setSearchResults(data));
       next();
-    }
-  );
+    })
+    .catch(console.error);
 });
 
 express_app.get("/bin/:id", (req, res, next) => {
@@ -92,15 +101,11 @@ express_app.get("/bin/:id", (req, res, next) => {
 });
 
 express_app.get("/*", (req, res) => {
-  const location = req.url;
-  const context = {};
   const app_root = React.createElement(
     ServerLocation,
     { url: req.url },
     React.createElement(AppRoot, {
       store: req.locals.store,
-      location,
-      context,
     })
   );
   const html_app = renderToString(app_root);

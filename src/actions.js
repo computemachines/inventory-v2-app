@@ -5,6 +5,10 @@ import {
   SET_UNIQ_DATA,
   SET_SKU_DATA,
   SET_BATCH_DATA,
+  SET_NEXT_BIN,
+  SET_NEXT_UNIQ,
+  SET_NEXT_SKU,
+  SET_NEXT_BATCH,
 } from "./constants";
 
 export const setSearchQuery = (query) => ({
@@ -30,4 +34,20 @@ export const setSkuData = (skuData) => ({
 export const setBatchData = (batchData) => ({
   type: SET_BATCH_DATA,
   payload: batchData,
+});
+export const setNextBin = (nextBin) => ({
+  type: SET_NEXT_BIN,
+  payload: nextBin,
+});
+export const setNextUniq = (nextUniq) => ({
+  type: SET_NEXT_UNIQ,
+  payload: nextUniq,
+});
+export const setNextSku = (nextSku) => ({
+  type: SET_NEXT_SKU,
+  payload: nextSku,
+});
+export const setNextBatch = (nextBatch) => ({
+  type: SET_NEXT_BATCH,
+  payload: nextBatch,
 });
