@@ -1,10 +1,13 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "@reach/router";
+import { connect } from "react-redux";
+import { setNextSku } from "../actions";
 
 import "../styles/forms.scss";
+import { printLabel } from "../local_utils";
 
-const NewSkuForm = () => {
+const NewSkuForm = ({ nextSku, setNextSku }) => {
   const [skuId, setSkuId] = useState("");
   const [ownedCodes, setOwnedCodes] = useState("");
   const [assocCodes, setAssocCodes] = useState("");
@@ -12,6 +15,11 @@ const NewSkuForm = () => {
   const [cost, setCost] = useState("");
   // const [skuProps, setSkuProps] = useState({});
   const [alert, setAlert] = useState(null);
+  useEffect(() => {
+    fetch("/api/next/sku")
+      .then((resp) => resp.text())
+      .then(setNextSku);
+  });
   return (
     <div>
       <form
@@ -59,16 +67,26 @@ const NewSkuForm = () => {
         }}
       >
         <label className="form-label" htmlFor="cost">
-          SKU Id
-          <input
-            className="form-input"
-            type="text"
-            id="cost"
-            name="cost"
-            value={skuId}
-            onChange={(e) => setSkuId(e.target.value)}
-            required
-          />
+          SKU
+          <div className="form-input-container">
+            <input
+              className="form-input"
+              type="text"
+              id="cost"
+              name="cost"
+              value={skuId}
+              placeholder={nextSku}
+              onChange={(e) => setSkuId(e.target.value)}
+              required
+            />
+            <button
+              type="button"
+              className="form-input-print-button"
+              onClick={() => printLabel(skuId || nextSku)}
+            >
+              Print
+            </button>
+          </div>
         </label>
         <label htmlFor="owned_codes" className="form-label">
           Owned Codes
@@ -124,4 +142,7 @@ const NewSkuForm = () => {
   );
 };
 
-export default NewSkuForm;
+const mapStateToProps = (state) => ({ nextSku: state.nextSku });
+const mapDispatchToProps = { setNextSku };
+
+export default connect(mapStateToProps, mapDispatchToProps)(NewSkuForm);

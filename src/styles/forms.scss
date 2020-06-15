@@ -11,17 +11,37 @@
 }
 
 .form-label {
+  display: block;
   font-weight: 600;
+  margin-bottom: 0.5em;
   //   grid-column: 1/2;
 }
 
 .form-input {
   display: block;
   width: 100%;
-  margin: 0.5em 0;
 
   box-sizing: border-box;
+  padding: 0.4em;
   //   grid-column: 2/3;
+}
+
+.form-input-container {
+  display: flex;
+  margin-top: 0.2em;
+}
+
+.form-input-print-button {
+  flex: 0 0 auto;
+
+  background-color: colors.$darkAccent;
+  color: white;
+  font-weight: 400;
+  width: 10em;
+  border: unset;
+  border-radius: 0.3em;
+
+  padding: 0.4em;
 }
 
 .form-submit {
