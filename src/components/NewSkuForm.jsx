@@ -35,7 +35,7 @@ const NewSkuForm = ({ nextSku, setNextSku }) => {
               ownedCodes: ownedCodes.split(/\W/),
               assocCodes: assocCodes.split(/\W/),
               name,
-              "average unit original cost": cost,
+              average_unit_original_cost: cost,
             }),
           })
             .then((response) => {
@@ -123,13 +123,13 @@ const NewSkuForm = ({ nextSku, setNextSku }) => {
             required
           />
         </label>
-        <label className="form-label" htmlFor="cost">
+        <label className="form-label" htmlFor="average_unit_original_cost">
           Default average cost per unit
           <input
             className="form-input"
             type="text"
             id="cost"
-            name="cost"
+            name="average_unit_original_cost"
             value={cost}
             onChange={(e) => setCost(e.target.value)}
           />
