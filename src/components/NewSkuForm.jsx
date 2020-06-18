@@ -19,7 +19,7 @@ const NewSkuForm = ({ nextSku, setNextSku }) => {
     fetch("/api/next/sku")
       .then((resp) => resp.text())
       .then(setNextSku);
-  });
+  }, [setNextSku]);
   return (
     <div>
       <form
