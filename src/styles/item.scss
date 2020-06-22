@@ -1,0 +1,15 @@
+.item-description__label {
+  font-weight: 600;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 1.2rem;
+}
+
+.item-description__label--zeroes {
+  font-weight: normal;
+  font-size: 1rem;
+  opacity: 90%;
+}
+
+.item-description__label--code {
+  font-weight: 600;
+}
