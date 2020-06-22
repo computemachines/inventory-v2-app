@@ -1,6 +1,7 @@
 import React from "react";
 
-const UniqCard = ({ json }) => (
+// eslint-disable-next-line no-unused-vars
+const UniqCard = ({ json, preview }) => (
   <div className="inv-card">
     <h3 className="inv-card--title">{json.name}</h3>
     <div className="inv-card--data-fields">

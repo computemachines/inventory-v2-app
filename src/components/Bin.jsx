@@ -3,24 +3,31 @@ import { connect } from "react-redux";
 
 import { setBinData } from "../actions";
 import "../styles/Bin.scss";
+import "../styles/item.scss";
 
-const Bin = ({ binData, setBinData, bin_id, editable }) => {
+// eslint-disable-next-line no-unused-vars
+const Bin = ({ binData, setBinData, bin_id, editable, preview }) => {
+  console.log("bin_id", bin_id);
   const [loaded, setLoaded] = useState(false);
   useEffect(() => {
-    if (binData === null) {
+    if (binData === null && !preview) {
       fetch(`/api/bin/${bin_id}`)
         .then((response) => {
           setBinData(response.json());
         })
         .finally(() => setLoaded(true));
     }
-  }, [binData, bin_id, setBinData]);
+  }, [binData, bin_id, setBinData, preview]);
 
+  const [, bin_prefix, bin_zeroes, bin_suffix] = bin_id.match(
+    /^(BIN)(0+)(\d+)$/
+  );
   return (
     <React.Fragment>
       <div className="item-description__label">
-        BIN
-        <span className="item-description__label--code">{bin_id}</span>
+        {bin_prefix}
+        <span className="item-description__label--zeroes">{bin_zeroes}</span>
+        <span className="item-description__label--code">{bin_suffix}</span>
       </div>
       {editable && <div>Editable</div>}
       {!loaded ? (
