@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from "react-redux";
 
 import Bin from "./Bin";
 import Sku from "./Sku";
@@ -23,12 +24,17 @@ const Unit = ({ json, preview }) => {
 };
 
 const SearchResults = ({ results }) => {
+  console.log("search results", results);
   return (
-    <ul className="search-results">
-      {results.map((result) => (
-        <Unit preview key={result.id} json={result} />
-      ))}
-    </ul>
+    <React.Fragment>
+      {results === [] && <h3>Nothing Found</h3>}
+      <ul className="search-results">
+        {results &&
+          results.map((result) => (
+            <Unit preview key={result.id} json={result} />
+          ))}
+      </ul>
+    </React.Fragment>
   );
 };
 
@@ -39,4 +45,6 @@ const SearchResults = ({ results }) => {
 //   results: [],
 // };
 
-export default SearchResults;
+export default connect((state) => ({ results: state.searchResults }))(
+  SearchResults
+);

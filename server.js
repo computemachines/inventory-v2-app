@@ -77,22 +77,27 @@ express_app.get("/*", (req, res, next) => {
     req.locals.store.dispatch(setNextUniq(res[1].data));
     req.locals.store.dispatch(setNextSku(res[2].data));
     req.locals.store.dispatch(setNextBatch(res[3].data));
+    console.log("nexting");
     next();
   });
 });
 
 express_app.get("/search", (req, res, next) => {
-  const searchQuery = req.query["query"] || initialState.searchQuery;
+  const searchQuery = req.query["query"];
   req.locals.store.dispatch(setSearchQuery(searchQuery));
 
-  api_fetch("/search", {
-    params: { query: searchQuery },
-  })
-    .then(({ data }) => {
-      req.locals.store.dispatch(setSearchResults(data));
-      next();
+  if (searchQuery) {
+    api_fetch("/search", {
+      params: { query: searchQuery },
     })
-    .catch(console.error);
+      .then(({ data }) => {
+        req.locals.store.dispatch(setSearchResults(data));
+        next();
+      })
+      .catch(console.error);
+  } else {
+    next();
+  }
 });
 
 express_app.get("/bin/:id", (req, res, next) => {
