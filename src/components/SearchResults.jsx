@@ -24,10 +24,11 @@ const Unit = ({ json, preview }) => {
 };
 
 const SearchResults = ({ results }) => {
-  console.log("search results", results);
   return (
     <React.Fragment>
-      {results === [] && <h3>Nothing Found</h3>}
+      {Array.isArray(results) && !results.length ? (
+        <h3>Nothing Found</h3>
+      ) : null}
       <ul className="search-results">
         {results &&
           results.map((result) => (

@@ -11,13 +11,13 @@ import * as actions from "../actions";
 function SearchForm({ location, query, setSearchQuery, setSearchResults }) {
   useEffect(() => {
     const query = parse(location.search).query;
+    setSearchQuery(query);
+    setSearchResults(null);
 
     query &&
       fetch(`/api/search?${stringify({ query })}`)
         .then((response) => response.json())
         .then((data) => setSearchResults(data));
-
-    setSearchQuery(query);
   }, [location.search, setSearchQuery, setSearchResults]);
 
   return (
