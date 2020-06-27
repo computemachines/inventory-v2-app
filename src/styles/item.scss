@@ -2,14 +2,27 @@
   font-weight: 600;
   font-family: "Courier New", Courier, monospace;
   font-size: 1.2rem;
+  margin-bottom: 0.5em;
+}
+
+.item-description__line {
+  margin-bottom: 0.5em;
+}
+
+.item-description__label--inline {
+  display: inline;
+}
+
+.item-description__name {
+  font-weight: 600;
+  font-size: 1.2rem;
+  margin-bottom: 0.5em;
 }
 
 .item-description__label--zeroes {
-  // font-weight: normal;
-  font-size: 1rem;
+  font-size: 0.8em;
   opacity: 90%;
 }
 
-.item-description__label--code {
-  font-weight: 600;
-}
+// .item-description__label--code {
+// }

@@ -8,6 +8,8 @@ import SearchResults from "./SearchResults";
 import * as actions from "../actions";
 // import defaultState from "../defaultState";
 
+import "../styles/forms.scss";
+
 function SearchForm({ location, query, setSearchQuery, setSearchResults }) {
   useEffect(() => {
     const query = parse(location.search).query;

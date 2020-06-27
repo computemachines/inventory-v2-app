@@ -6,29 +6,22 @@ import "../styles/Bin.scss";
 import "../styles/item.scss";
 
 // eslint-disable-next-line no-unused-vars
-const Bin = ({ binData, setBinData, bin_id, editable, preview }) => {
-  console.log("bin_id", bin_id);
+const Bin = ({ binData, setBinData, bin_id, editable }) => {
   const [loaded, setLoaded] = useState(false);
+
+  console.log("bin_id", bin_id);
   useEffect(() => {
-    if (binData === null && !preview) {
+    if (binData === null) {
       fetch(`/api/bin/${bin_id}`)
         .then((response) => {
           setBinData(response.json());
         })
         .finally(() => setLoaded(true));
     }
-  }, [binData, bin_id, setBinData, preview]);
+  }, [binData, bin_id, setBinData]);
 
-  const [, bin_prefix, bin_zeroes, bin_suffix] = bin_id.match(
-    /^(BIN)(0+)(\d+)$/
-  );
   return (
     <React.Fragment>
-      <div className="item-description__label">
-        {bin_prefix}
-        <span className="item-description__label--zeroes">{bin_zeroes}</span>
-        <span className="item-description__label--code">{bin_suffix}</span>
-      </div>
       {editable && <div>Editable</div>}
       {!loaded ? (
         <div>Loading ...</div>
