@@ -6,6 +6,7 @@ const dev = process.env.NODE_ENV !== "production";
 
 module.exports = {
   mode: dev ? "development" : "production",
+  devtool: dev && "source-map",
   entry: {
     client: [
       dev && "@babel/polyfill",
