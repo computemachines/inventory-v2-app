@@ -20,11 +20,7 @@ import HamburgerBar from "./HamburgerBar";
 import ErrorBoundary from "./ErrorBoundary";
 import AlertContext from "./AlertContext";
 
-const FourOhFour = () => {
-  var [A, B] = React.useState("404");
-  setTimeout(() => B("Four-Oh-Four"), 10000);
-  return <h1>{A}</h1>;
-};
+const FourOhFour = () => <h1>404 - not found</h1>;
 const App = () => {
   const [alert, setAlert] = useState(null);
   return (
