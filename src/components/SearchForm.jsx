@@ -12,9 +12,10 @@ function SearchForm({ location, query, setSearchQuery, setSearchResults }) {
   useEffect(() => {
     const query = parse(location.search).query;
 
-    fetch(`/api/search?${stringify({ query })}`)
-      .then((response) => response.json())
-      .then((data) => setSearchResults(data));
+    query &&
+      fetch(`/api/search?${stringify({ query })}`)
+        .then((response) => response.json())
+        .then((data) => setSearchResults(data));
 
     setSearchQuery(query);
   }, [location.search, setSearchQuery, setSearchResults]);
