@@ -68,42 +68,47 @@ const BatchPreview = ({ json, label }) => {
   );
 };
 
-const SearchResults = ({ results }) => {
+const SearchResults = ({
+  // eslint-disable-next-line no-unused-vars
+  loaded,
+  results,
+  // eslint-disable-next-line no-unused-vars
+  total_num_results,
+  // eslint-disable-next-line no-unused-vars
+  returned_num_results,
+}) => {
   return (
     <React.Fragment>
-      {Array.isArray(results) && !results.length ? (
-        <h3>Nothing Found</h3>
-      ) : null}
+      <h3>
+        {total_num_results
+          ? `${total_num_results} items found`
+          : "Nothing found"}
+      </h3>
       <ul className="search-results">
-        {results &&
-          results.map(function showUnitPreview(resultJson) {
-            const label = resultJson.id;
+        {results.map(function showUnitPreview(resultJson) {
+          const label = resultJson.id;
 
-            if (label.startsWith("BIN")) {
-              return <BinPreview key={label} label={label} json={resultJson} />;
-            }
-            if (label.startsWith("SKU")) {
-              return <SkuPreview key={label} label={label} json={resultJson} />;
-            }
-            if (label.startsWith("BAT")) {
-              return (
-                <BatchPreview key={label} label={label} json={resultJson} />
-              );
-            }
-            if (label.startsWith("UNIQ")) {
-              return (
-                <UniqPreview key={label} label={label} json={resultJson} />
-              );
-            }
-            return (
-              <div className="card" key={resultJson}>
-                <div className="item-description__label">
-                  Error: Could not display.
-                </div>
-                <code>{JSON.stringify(resultJson, null, 4)}</code>
+          if (label.startsWith("BIN")) {
+            return <BinPreview key={label} label={label} json={resultJson} />;
+          }
+          if (label.startsWith("SKU")) {
+            return <SkuPreview key={label} label={label} json={resultJson} />;
+          }
+          if (label.startsWith("BAT")) {
+            return <BatchPreview key={label} label={label} json={resultJson} />;
+          }
+          if (label.startsWith("UNIQ")) {
+            return <UniqPreview key={label} label={label} json={resultJson} />;
+          }
+          return (
+            <div className="card" key={resultJson}>
+              <div className="item-description__label">
+                Error: Could not display.
               </div>
-            );
-          })}
+              <code>{JSON.stringify(resultJson, null, 4)}</code>
+            </div>
+          );
+        })}
       </ul>
     </React.Fragment>
   );
@@ -116,6 +121,9 @@ const SearchResults = ({ results }) => {
 //   results: [],
 // };
 
-export default connect((state) => ({ results: state.searchResults }))(
-  SearchResults
-);
+export default connect((state) => ({
+  loaded: !!state.searchResults,
+  results: (state.searchResults && state.searchResults.results) || [],
+  total_num_results:
+    state.searchResults && state.searchResults.total_num_results,
+}))(SearchResults);
