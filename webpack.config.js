@@ -23,6 +23,7 @@ module.exports = {
     publicPath: "/",
   },
   devServer: {
+    overlay: true,
     proxy: {
       "/api": "http://localhost:8081",
     },

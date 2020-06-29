@@ -18,8 +18,10 @@ function Pager({ page, numPages, linkHref }) {
     (p) => p >= 1 && p <= numPages
   );
 
+  if (numPages == 0) return null;
+
   return (
-    <div className="pager" style={numPages == 0 ? { display: "none" } : {}}>
+    <div className="pager">
       <span className="pager--note">Page:</span>
       {page - 2 > 1 ? (
         <Link to={linkHref + 1} className="pager--page-link">
@@ -68,6 +70,8 @@ function SearchForm({
   let { query: urlQuery, page } = parse(location.search);
   page = parseInt(page) || 1;
 
+  const [inputValue, setInputValue] = useState(urlQuery);
+
   useEffect(() => {
     setSearchQuery(urlQuery);
     setSearchResults(null);
@@ -99,7 +103,7 @@ function SearchForm({
         className="form"
         autoComplete="off"
         onSubmit={(event) => {
-          const queryString = stringify({ query });
+          const queryString = stringify({ query: inputValue });
           navigate(`/search?${queryString}`);
           event.preventDefault();
         }}
@@ -109,8 +113,8 @@ function SearchForm({
           type="text"
           name="query"
           className="form-input search-input"
-          value={query || ""}
-          onChange={(event) => setSearchQuery(event.target.value)}
+          value={inputValue}
+          onChange={(event) => setInputValue(event.target.value)}
         />
         <input className="form-submit" type="submit" value="Search" />
       </form>
