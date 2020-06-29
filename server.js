@@ -18,11 +18,11 @@ const {
   reducers,
   setSearchQuery,
   setSearchResults,
-  initialState,
   setNextBatch,
   setNextBin,
   setNextSku,
   setNextUniq,
+  setBinData,
 } = require("./dist/assets/server.bundle");
 
 let port = 80;
@@ -84,11 +84,12 @@ express_app.get("/*", (req, res, next) => {
 
 express_app.get("/search", (req, res, next) => {
   const searchQuery = req.query["query"];
+  const page = parseInt(req.query.page) || 1;
   req.locals.store.dispatch(setSearchQuery(searchQuery));
 
   if (searchQuery) {
     api_fetch("/search", {
-      params: { query: searchQuery },
+      params: { query: searchQuery, startingFrom: (page - 1) * 20 },
     })
       .then(({ data }) => {
         req.locals.store.dispatch(setSearchResults(data));
@@ -101,8 +102,9 @@ express_app.get("/search", (req, res, next) => {
 });
 
 express_app.get("/bin/:id", (req, res, next) => {
-  console.log(req);
-  next();
+  api_fetch(`/bin/${req.params.id}`)
+    .then(({ data }) => req.locals.store.dispatch(setBinData(data)))
+    .then(next);
 });
 
 express_app.get("/*", (req, res) => {

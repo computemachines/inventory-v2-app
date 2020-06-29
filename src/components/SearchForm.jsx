@@ -58,16 +58,19 @@ function Pager({ page, numPages, linkHref }) {
   );
 }
 
-function SearchForm({ location, query, setSearchQuery, setSearchResults }) {
+function SearchForm({
+  location,
+  query,
+  setSearchQuery,
+  setSearchResults,
+  numPages,
+}) {
   let { query: urlQuery, page } = parse(location.search);
   page = parseInt(page) || 1;
-
-  const [numPages, setNumPages] = useState(0);
 
   useEffect(() => {
     setSearchQuery(urlQuery);
     setSearchResults(null);
-    setNumPages(0);
 
     query &&
       fetch(
@@ -78,10 +81,7 @@ function SearchForm({ location, query, setSearchQuery, setSearchResults }) {
         })}`
       )
         .then((response) => response.json())
-        .then((data) => {
-          setSearchResults(data);
-          setNumPages(Math.ceil(data.total_num_results / PAGE_ITEMS_LIMIT));
-        });
+        .then((data) => setSearchResults(data));
   }, [
     location.search,
     page,
@@ -127,6 +127,9 @@ function SearchForm({ location, query, setSearchQuery, setSearchResults }) {
 
 const mapStateToProps = (storeState) => ({
   query: storeState.searchQuery,
+  numPages:
+    storeState.searchResults &&
+    Math.ceil(storeState.searchResults.total_num_results / PAGE_ITEMS_LIMIT),
 });
 
 const mapDispatchToProps = (dispatch) => ({

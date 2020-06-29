@@ -7,5 +7,6 @@ export {
   setNextBin,
   setNextSku,
   setNextUniq,
+  setBinData,
 } from "../actions";
 export { default as initialState } from "../defaultState";
