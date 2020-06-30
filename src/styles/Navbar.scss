@@ -14,10 +14,26 @@ $hamburger-layer-color: #ecebe4ff;
 }
 
 @import "hamburgers/_sass/hamburgers/hamburgers.scss";
+.hamburger-dropdown-container {
+  position: relative;
+}
+.hamburger {
+  display: block;
+  position: fixed;
+  right: 0;
+  top: 0px;
+}
 
-.hamburger:focus {
+.hamburger-dropdown-container:focus-within > .hamburger {
   background-color: colors.$darkAccent;
   border-radius: 6px;
+}
+
+.hamburger-dropdown-container > .navbar {
+  @include accessibility.screen-reader;
+}
+.hamburger-dropdown-container:focus-within > .navbar {
+  @include accessibility.screen-reader-show;
 }
 // this aligns the .hamburger-box with the .hamburger-label
 .hamburger .hamburger-box {
@@ -69,10 +85,14 @@ $hamburger-layer-color: #ecebe4ff;
   color: white;
 }
 
+// .hide must be more specific than .hamburger-dropdown-container:focus-within > .navbar
+//   as long as HamburgerDropdown.state defaults to false
+.hide.hide.hide,
 .dropdown-container.dropdown-hide {
   @include accessibility.screen-reader;
 }
 
+.show,
 .dropdown-container.dropdown-show,
 .dropdown-container.dropdown-hide:active {
   @include accessibility.screen-reader-show;
