@@ -29,19 +29,21 @@ const Bin = ({ binData, setBinData, bin_id, editable }) => {
       {!loaded ? (
         <div>Loading ...</div>
       ) : (
-        <ul className="bin-contents">
-          {binData &&
-            binData.contents &&
-            binData.contents.map((contents) => (
-              <BinContentListItem key={contents} {...contents} />
-            ))}
-        </ul>
+        <BinContentsTable binData={binData} />
       )}
     </React.Fragment>
   );
 };
 
-function BinContentsTable() {}
+const BinContentsTable = ({ binData }) => (
+  <ul className="bin-contents">
+    {binData &&
+      binData.contents &&
+      binData.contents.map((contents) => (
+        <BinContentListItem key={contents} {...contents} />
+      ))}
+  </ul>
+);
 
 // eslint-disable-next-line no-unused-vars
 function BinContentListItem({ unit_type, label, quantity }) {
