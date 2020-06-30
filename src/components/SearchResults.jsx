@@ -1,48 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Link } from "@reach/router";
 
 import "../styles/item.scss";
 import "../styles/SearchResults.scss";
 import "../styles/card.scss";
+import { Label } from "./Label";
 
-const Label = ({ label, inline }) => {
-  const [, prefix, leadingZeros, nonZeroPart] = label.match(
-    /^(BIN|SKU|BAT|BATCH|UNIQ)(0+)(\d+)$/
-  );
-
-  var unitUrl;
-  switch (prefix) {
-    case "BIN":
-      unitUrl = "/bin/";
-      break;
-    case "SKU":
-      unitUrl = "/sku/";
-      break;
-    case "BAT":
-    case "BATCH":
-      unitUrl = "/batch/";
-      break;
-    case "UNIQ":
-      unitUrl = "/uniq/";
-      break;
-  }
-
-  return (
-    <Link
-      to={unitUrl + label}
-      className={`item-description__label ${
-        inline ? "item-description__label--inline" : ""
-      }`}
-    >
-      {prefix}
-      <span className="item-description__label--zeroes">{leadingZeros}</span>
-      <span className="item-description__label--code">{nonZeroPart}</span>
-    </Link>
-  );
-};
-
-const BinPreview = ({ json, label }) => {
+export const BinPreview = ({ json, label }) => {
   return (
     <div className="card">
       <Label label={label} />
