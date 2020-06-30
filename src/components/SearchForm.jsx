@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { parse, stringify } from "query-string";
-import { navigate, Link } from "@reach/router";
+import { navigate } from "@reach/router";
 
 import SearchResults from "./SearchResults";
 
@@ -10,90 +10,43 @@ import * as actions from "../actions";
 
 import "../styles/forms.scss";
 import "../styles/pager.scss";
+import { Pager } from "./Pager";
 
 const PAGE_ITEMS_LIMIT = 20;
 
-function Pager({ page, numPages, linkHref }) {
-  const shownPageLinks = [page - 2, page - 1, page, page + 1, page + 2].filter(
-    (p) => p >= 1 && p <= numPages
-  );
-
-  if (numPages == 0) return null;
-
-  return (
-    <div className="pager">
-      <span className="pager--note">Page:</span>
-      {page - 2 > 1 ? (
-        <Link to={linkHref + 1} className="pager--page-link">
-          |&lt;
-        </Link>
-      ) : null}
-      {page !== 1 ? (
-        <Link to={linkHref + (page - 1)} className="pager--page-link">
-          &lt;
-        </Link>
-      ) : null}
-      {page - 2 > 1 ? "..." : null}
-      {shownPageLinks.map((p) => (
-        <Link
-          to={linkHref + p}
-          key={p}
-          className={`pager--page-link ${
-            p == page ? "pager--page-link__active" : ""
-          }`}
-        >
-          {p}
-        </Link>
-      ))}
-      {page + 2 < numPages ? "..." : null}
-      {numPages > page ? (
-        <Link to={linkHref + (page + 1)} className="pager--page-link">
-          &gt;
-        </Link>
-      ) : null}
-      {page + 2 < numPages ? (
-        <Link to={linkHref + numPages} className="pager--page-link">
-          &gt;|
-        </Link>
-      ) : null}
-    </div>
-  );
-}
-
 function SearchForm({
   location,
-  query,
+  searchQuery,
   setSearchQuery,
   setSearchResults,
   numPages,
 }) {
-  let { query: urlQuery, page } = parse(location.search);
-  page = parseInt(page) || 1;
+  const [inputValue, setInputValue] = useState("");
 
-  const [inputValue, setInputValue] = useState(urlQuery);
+  // get url parameters
+  let { query: urlQuery, page: urlPage } = parse(location.search);
+  urlPage = parseInt(urlPage) || 1;
 
+  // keep redux state and inputValue in sync with url parameters only when url changes
   useEffect(() => {
     setSearchQuery(urlQuery);
+    setInputValue(urlQuery);
     setSearchResults(null);
+  }, [urlQuery, setSearchQuery, setSearchResults, setInputValue]);
 
-    query &&
+  // whenever page or query changes, fetch new search results
+  useEffect(() => {
+    searchQuery &&
       fetch(
         `/api/search?${stringify({
-          query,
-          startingFrom: (page - 1) * PAGE_ITEMS_LIMIT,
+          query: searchQuery,
+          startingFrom: (urlPage - 1) * PAGE_ITEMS_LIMIT,
           limit: PAGE_ITEMS_LIMIT,
         })}`
       )
         .then((response) => response.json())
-        .then((data) => setSearchResults(data));
-  }, [
-    location.search,
-    page,
-    query,
-    setSearchQuery,
-    setSearchResults,
-    urlQuery,
-  ]);
+        .then(setSearchResults);
+  }, [searchQuery, setSearchQuery, setSearchResults, urlPage]);
 
   return (
     <React.Fragment>
@@ -103,8 +56,7 @@ function SearchForm({
         className="form"
         autoComplete="off"
         onSubmit={(event) => {
-          const queryString = stringify({ query: inputValue });
-          navigate(`/search?${queryString}`);
+          navigate(`/search?${stringify({ query: inputValue })}`);
           event.preventDefault();
         }}
       >
@@ -113,7 +65,7 @@ function SearchForm({
           type="text"
           name="query"
           className="form-input search-input"
-          value={inputValue}
+          value={inputValue || ""}
           onChange={(event) => setInputValue(event.target.value)}
         />
         <input className="form-submit" type="submit" value="Search" />
@@ -121,16 +73,16 @@ function SearchForm({
 
       <SearchResults />
       <Pager
-        page={page}
+        currentPage={urlPage}
         numPages={numPages}
-        linkHref={`/search?${stringify({ query })}&page=`}
+        linkHref={`/search?${stringify({ query: urlQuery })}&page=`}
       />
     </React.Fragment>
   );
 }
 
 const mapStateToProps = (storeState) => ({
-  query: storeState.searchQuery,
+  searchQuery: storeState.searchQuery,
   numPages:
     storeState.searchResults &&
     Math.ceil(storeState.searchResults.total_num_results / PAGE_ITEMS_LIMIT),

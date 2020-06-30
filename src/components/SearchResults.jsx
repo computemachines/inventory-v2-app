@@ -64,11 +64,13 @@ const SearchResults = ({
 }) => {
   return (
     <React.Fragment>
-      <h3>
-        {total_num_results
-          ? `${total_num_results} items found`
-          : "Nothing found"}
-      </h3>
+      {loaded && (
+        <h3>
+          {total_num_results
+            ? `${total_num_results} items found`
+            : "Nothing found"}
+        </h3>
+      )}
       <ul className="search-results">
         {results.map(function showUnitPreview(resultJson) {
           const label = resultJson.id;
