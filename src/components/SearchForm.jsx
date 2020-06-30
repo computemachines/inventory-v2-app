@@ -21,7 +21,7 @@ function SearchForm({
   setSearchResults,
   numPages,
 }) {
-  const [inputValue, setInputValue] = useState("");
+  const [inputValue, setInputValue] = useState(searchQuery);
 
   // get url parameters
   let { query: urlQuery, page: urlPage } = parse(location.search);
