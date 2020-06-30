@@ -38,10 +38,10 @@ const App = () => {
                 {/* <MoveUnitsForm path="/move" /> */}
                 <ReceiveSkuForm path="/receive" />
                 <SearchForm path="/search" />
-                <Bin path="/bin/:bin_id" />
-                <Bin path="/bin/:bin_id/edit" editable />
-                <Uniq path="/uniq" />
-                <Sku path="/sku" />
+                <Bin path="/bin/:binId" />
+                <Bin path="/bin/:binId/edit" editable />
+                <Uniq path="/uniq/:uniqId" />
+                <Sku path="/sku/:skuId" />
                 <FourOhFour default />
               </Router>
             </AlertContext.Provider>

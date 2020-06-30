@@ -7,24 +7,24 @@ import "../styles/item.scss";
 import { Label } from "./Label";
 
 // eslint-disable-next-line no-unused-vars
-const Bin = ({ binData, setBinData, bin_id, editable }) => {
+const Bin = ({ binData, setBinData, binId, editable }) => {
   const [loaded, setLoaded] = useState(false);
 
-  console.log("bin_id", bin_id);
+  console.log("bin_id", binId);
   useEffect(() => {
     if (binData === null) {
-      fetch(`/api/bin/${bin_id}`).then((response) =>
+      fetch(`/api/bin/${binId}`).then((response) =>
         response
           .json()
           .then((data) => setBinData(data))
           .finally(() => setLoaded(true))
       );
     }
-  }, [binData, bin_id, setBinData]);
+  }, [binData, binId, setBinData]);
 
   return (
     <React.Fragment>
-      <Label link={false} label={bin_id} />
+      <Label link={false} label={binId} />
       {editable && <div>Editable</div>}
       {!loaded ? (
         <div>Loading ...</div>
