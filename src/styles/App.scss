@@ -14,6 +14,10 @@
   box-sizing: border-box;
 }
 
+.fixed-bar {
+  position: relative;
+}
+
 .branding {
   background-color: colors.$dark1;
   color: #ecebe4ff;

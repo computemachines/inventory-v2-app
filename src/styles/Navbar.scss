@@ -14,14 +14,13 @@ $hamburger-layer-color: #ecebe4ff;
 }
 
 @import "hamburgers/_sass/hamburgers/hamburgers.scss";
-.hamburger-dropdown-container {
-  position: relative;
-}
+
 .hamburger {
   display: block;
-  position: fixed;
+  position: absolute;
+  margin: calc((5rem - 54px) / 2);
   right: 0;
-  top: 0px;
+  top: 0;
 }
 
 .hamburger-dropdown-container:focus-within > .hamburger {
