@@ -1,3 +1,5 @@
+![CircleCI](https://img.shields.io/circleci/build/github/computemachines/inventory-v2-api?token=4a54eb655f0fffc62c7dca3a3e34f5c81162b59a)
+
 # Inventory-v2 Server Side Rendering
 
 ## Project Structure
