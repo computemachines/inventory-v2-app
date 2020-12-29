@@ -30,7 +30,9 @@ const render = (Component) => {
 render(Root);
 
 if (module.hot) {
+  console.log("HMR listening")
   module.hot.accept("../components/App", () => {
+    console.log("HMR update recieved")
     render(Root);
   });
 }
