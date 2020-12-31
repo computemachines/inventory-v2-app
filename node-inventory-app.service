@@ -4,10 +4,10 @@ After=network.target
 
 [Service]
 Type=simple
-WorkingDirectory=/home/ubuntu/inventory-v2/ssr-webpack/
+WorkingDirectory=/root/inventory-v2/node-deployment
 User=www-data
 Group=www-data
-ExecStart=/home/ubuntu/.nvm/versions/node/v13.11.0/bin/node server.js -p 3001
+ExecStart=/root/.nvm/versions/node/v15.5.0/bin/node server.js -p 3001
 Restart=on-failure
 
 [Install]
