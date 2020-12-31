@@ -57,5 +57,6 @@ jobs:
             rm -r node-deployment/*
             tar -zxvf inventory-app-package.tar.gz -C node-deployment/
             cd node-deployment
-            /root/.nvm/versions/node/v15.5.0/bin/npm ci --production
+            source ~/.nvm/nvm.sh
+            npm ci --production
             systemctl start node-inventory-app
