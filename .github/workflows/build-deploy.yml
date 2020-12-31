@@ -51,5 +51,11 @@ jobs:
           scp -i github_id_rsa -o UserKnownHostsFile=known_hosts inventory-app-package.tar.gz root@computemachines.com:inventory-v2/
       - name: Run deployment commands on production server
         run: |
-          ssh -i github_id_rsa -o UserKnownHostsFile=known_hosts root@computemachines.com \
-            "cd inventory-v2/; systemctl stop node-inventory-app; rm -r node-deployment/*; tar -zxvf inventory-app-package.tar.gz -C node-deployment/; cd node-deployment; /root/.nvm/versions/node/v15.5.0/bin/npm ci --production; systemctl start node-inventory-app"
+          ssh -T -i github_id_rsa -o UserKnownHostsFile=known_hosts root@computemachines.com << EOF
+            cd inventory-v2/ 
+            systemctl stop node-inventory-app
+            rm -r node-deployment/*
+            tar -zxvf inventory-app-package.tar.gz -C node-deployment/
+            cd node-deployment
+            /root/.nvm/versions/node/v15.5.0/bin/npm ci --production
+            systemctl start node-inventory-app
