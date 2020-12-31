@@ -23,7 +23,7 @@ const {
   setNextSku,
   setNextUniq,
   setBinData,
-} = require("./dist/assets/server.bundle");
+} = require("./assets/server.bundle"); // TODO: change to dist/assets/server.bundle in dev env
 
 let port = 80;
 let noclient = false;
