@@ -6,12 +6,13 @@
     "lint": "eslint \"src/**/*.{js,jsx}\" --quiet",
     "build:client:dev": "webpack",
     "build:client": "cross-env NODE_ENV='production' npx webpack-cli",
-    "build:server:dev": "webpack --config webpack.server.config.js",
-    "build:server": "cross-env NODE_ENV='production' npx webpack-cli --config webpack.server.config.js",
+    "build:ssr:dev": "webpack --config webpack.server.config.js",
+    "build:ssr": "cross-env NODE_ENV='production' npx webpack-cli --config webpack.server.config.js",
+    "build:server:dev": "cp server.js dist/",
+    "build:server": "cp server.js dist/",
     "dev": "webpack-dev-server --hot-only --history-api-fallback",
-    "ssr": "node server.js",
-    "ssr:dev": "node server.js -p 8080",
-    "ssr:only": "node server.js -p 8080 --noclient"
+    "ssr:dev": "node dist/server.js -p 8080",
+    "ssr:only": "node dist/server.js -p 8080 --noclient"
   },
   "dependencies": {
     "@babel/polyfill": "^7.12.1",

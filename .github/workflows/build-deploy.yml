@@ -20,7 +20,7 @@ jobs:
         run: npm run build:server
       - name: package for deployment
         run: |
-          cp -v server.js package.json package-lock.json node-inventory-app.service dist/
+          cp -v package.json package-lock.json node-inventory-app.service dist/
           cd dist/
           tar -czvf ../inventory-app-package.tar.gz *
       - name: upload deployment artifact

@@ -23,7 +23,7 @@ const {
   setNextSku,
   setNextUniq,
   setBinData,
-} = require("./assets/server.bundle"); // TODO: change to dist/assets/server.bundle in dev env
+} = require("./assets/server.bundle");
 
 let port = 80;
 let noclient = false;
@@ -58,7 +58,7 @@ const htmlTemplate = (html, preloadedState) =>
 
 const express_app = express();
 
-express_app.use(express.static(path.join(__dirname, "dist")));
+express_app.use('/assets', express.static(path.join(__dirname, "assets")));
 
 const api_hostname = "http://localhost:8081";
 const api_fetch = axios.create({ baseURL: api_hostname + "/api/" });
