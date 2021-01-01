@@ -14,8 +14,10 @@ jobs:
           node-version: "15.x"
       - name: install deps
         run: npm ci
-      - name: build client
+      - name: build client app
         run: npm run build:client
+      - name: build ssr app
+        run: npm run build:ssr
       - name: build server
         run: npm run build:server
       - name: package for deployment
