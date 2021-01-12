@@ -40,6 +40,9 @@ const Navbar = ({ show, setShow }) => {
         <Link to="/new/bin" className="navlink">
           New Bin
         </Link>
+        <Link to="/new/batch" className="navlink">
+          New Batch
+        </Link>
       </NavbarDropdown>
       <Link to="/move" className="navlink">
         Move

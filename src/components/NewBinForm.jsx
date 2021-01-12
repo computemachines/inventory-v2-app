@@ -11,8 +11,8 @@ const NewBinForm = () => {
     <div>
       <form
         className="form"
-        method="POST"
-        action="/api/bins"
+        // method="POST"
+        // action="/api/bins"
         onSubmit={(e) => {
           fetch("/api/bins", {
             method: "POST",

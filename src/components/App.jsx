@@ -17,6 +17,7 @@ import Sku from "./Sku";
 import HamburgerBar from "./HamburgerBar";
 import ErrorBoundary from "./ErrorBoundary";
 import AlertContext from "./AlertContext";
+import NewBatchForm from "./NewBatchForm";
 
 const FourOhFour = () => <h1>404 - not found</h1>;
 const App = () => {
@@ -32,6 +33,7 @@ const App = () => {
               <Router>
                 <NewSkuForm path="/new/sku" />
                 <NewBinForm path="/new/bin" />
+                <NewBatchForm path="/new/batch" />
                 {/* <MoveUnitsForm path="/move" /> */}
                 <ReceiveSkuForm path="/receive" />
                 <SearchForm path="/search" />
