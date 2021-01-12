@@ -1,5 +1,5 @@
 const webpack = require("webpack");
-// const CopyWebpackPlugin = require("copy-webpack-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 const dev = process.env.NODE_ENV !== "production";
 
@@ -70,5 +70,10 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: "main.css",
     }),
+    new CopyWebpackPlugin({
+      patterns: [
+        { from: "server.js", to: "../server.js"}
+      ]
+    })
   ],
 };
