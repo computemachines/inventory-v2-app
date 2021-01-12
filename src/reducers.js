@@ -2,11 +2,9 @@ import {
   SET_SEARCH_QUERY,
   SET_SEARCH_RESULTS,
   SET_BIN_DATA,
-  SET_UNIQ_DATA,
   SET_SKU_DATA,
   SET_BATCH_DATA,
   SET_NEXT_BIN,
-  SET_NEXT_UNIQ,
   SET_NEXT_SKU,
   SET_NEXT_BATCH,
 } from "./constants";
@@ -20,16 +18,12 @@ const rootReducer = (state = initialState, action) => {
       return Object.assign({}, state, { searchResults: action.payload });
     case SET_BIN_DATA:
       return Object.assign({}, state, { binData: action.payload });
-    case SET_UNIQ_DATA:
-      return Object.assign({}, state, { uniqData: action.payload });
     case SET_SKU_DATA:
       return Object.assign({}, state, { skuData: action.payload });
     case SET_BATCH_DATA:
       return Object.assign({}, state, { batchData: action.payload });
     case SET_NEXT_BIN:
       return Object.assign({}, state, { nextBin: action.payload });
-    case SET_NEXT_UNIQ:
-      return Object.assign({}, state, { nextUniq: action.payload });
     case SET_NEXT_SKU:
       return Object.assign({}, state, { nextSku: action.payload });
     case SET_NEXT_BATCH:

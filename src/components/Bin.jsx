@@ -49,9 +49,6 @@ const BinContentsTable = ({ binData }) => (
 function BinContentListItem({ unit_type, label, quantity }) {
   let labelClassName = "bin-contents bin-contents__label";
   switch (unit_type) {
-    case "UNIQ":
-      labelClassName += "--uniq";
-      break;
     case "BATCH":
       labelClassName += "--batch";
       break;

@@ -7,10 +7,6 @@ const MoveThingForm = () => (
     </h3>
     <h2 className="inv-form__title">Move Thing</h2>
     <div className="inv-form__item">
-      <input id="thing-label" type="text" name="thing_label" />
-      <label htmlFor="thing-label">UNIQ</label>
-    </div>
-    <div className="inv-form__item">
       <input id="bin-label" type="text" name="bin_label" />
       <label htmlFor="bin-label">BIN</label>
     </div>

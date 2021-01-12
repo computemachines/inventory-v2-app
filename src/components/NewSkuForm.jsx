@@ -123,17 +123,6 @@ const NewSkuForm = ({ nextSku, setNextSku }) => {
             required
           />
         </label>
-        <label className="form-label" htmlFor="average_unit_original_cost">
-          Default average cost per unit
-          <input
-            className="form-input"
-            type="text"
-            id="cost"
-            name="average_unit_original_cost"
-            value={cost}
-            onChange={(e) => setCost(e.target.value)}
-          />
-        </label>
         <input className="form-submit" type="submit" value="Submit" />
       </form>
       {alert}

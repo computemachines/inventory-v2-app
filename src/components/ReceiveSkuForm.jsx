@@ -74,16 +74,6 @@ const ReceiveSkuForm = () => {
             onChange={(e) => setSkuId(e.target.value)}
           ></input>
         </label>
-        <label htmlFor="batchId" className="form-label">
-          Batch
-          <input
-            type="text"
-            className="form-input"
-            name="batch_id"
-            value={batchId}
-            onChange={(e) => setBatchId(e.target.value)}
-          />
-        </label>
         <label htmlFor="quantity" className="form-label">
           Quantity
           <input

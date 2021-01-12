@@ -8,13 +8,11 @@ import "../styles/App.scss";
 import "normalize.css";
 
 import NewSkuForm from "./NewSkuForm";
-import NewUniqForm from "./NewUniqForm";
 import NewBinForm from "./NewBinForm";
 // import MoveUnitsForm from "./MoveUnitsForm";
 import ReceiveSkuForm from "./ReceiveSkuForm";
 import SearchForm from "./SearchForm";
 import Bin from "./Bin";
-import Uniq from "./Uniq";
 import Sku from "./Sku";
 import HamburgerBar from "./HamburgerBar";
 import ErrorBoundary from "./ErrorBoundary";
@@ -33,14 +31,12 @@ const App = () => {
               <div className="main-alert">{alert}</div>
               <Router>
                 <NewSkuForm path="/new/sku" />
-                <NewUniqForm path="/new/uniq" />
                 <NewBinForm path="/new/bin" />
                 {/* <MoveUnitsForm path="/move" /> */}
                 <ReceiveSkuForm path="/receive" />
                 <SearchForm path="/search" />
                 <Bin path="/bin/:binId" />
                 <Bin path="/bin/:binId/edit" editable />
-                <Uniq path="/uniq/:uniqId" />
                 <Sku path="/sku/:skuId" />
                 <FourOhFour default />
               </Router>

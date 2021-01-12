@@ -3,7 +3,7 @@ import { Link } from "@reach/router";
 
 export const Label = ({ link = true, label, inline }) => {
   const [, prefix, leadingZeros, nonZeroPart] = label.match(
-    /^(BIN|SKU|BAT|BATCH|UNIQ)(0+)(\d+)$/
+    /^(BIN|SKU|BAT)(0+)(\d+)$/
   );
 
   var unitUrl;
@@ -15,11 +15,7 @@ export const Label = ({ link = true, label, inline }) => {
       unitUrl = "/sku/";
       break;
     case "BAT":
-    case "BATCH":
       unitUrl = "/batch/";
-      break;
-    case "UNIQ":
-      unitUrl = "/uniq/";
       break;
   }
 
