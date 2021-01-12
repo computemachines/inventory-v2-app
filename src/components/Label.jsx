@@ -2,9 +2,11 @@ import React from "react";
 import { Link } from "@reach/router";
 
 export const Label = ({ link = true, label, inline }) => {
-  const [, prefix, leadingZeros, nonZeroPart] = label.match(
-    /^(BIN|SKU|BAT)(0+)(\d+)$/
+  const match = label.match(
+    /^(?<prefix>BIN|SKU|BAT)(?<leadingZeroes>0*)(?<number>\d+)$/
   );
+  const { prefix, number } = match.groups;
+  const leadingZeros = match.groups.leadingZeroes || "";
 
   var unitUrl;
   switch (prefix) {
@@ -29,7 +31,7 @@ export const Label = ({ link = true, label, inline }) => {
       >
         {prefix}
         <span className="item-description__label--zeroes">{leadingZeros}</span>
-        <span className="item-description__label--code">{nonZeroPart}</span>
+        <span className="item-description__label--code">{number}</span>
       </Link>
     );
   } else {
@@ -41,7 +43,7 @@ export const Label = ({ link = true, label, inline }) => {
       >
         {prefix}
         <span className="item-description__label--zeroes">{leadingZeros}</span>
-        <span className="item-description__label--code">{nonZeroPart}</span>
+        <span className="item-description__label--code">{number}</span>
       </div>
     );
   }

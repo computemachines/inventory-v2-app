@@ -24,26 +24,6 @@ const SkuPreview = ({ json, label }) => {
   );
 };
 
-const UniqPreview = ({ json, label }) => {
-  return (
-    <div className="card">
-      <div className="item-description__name">{json.name}</div>
-      <div className="item-description__line">
-        Label: <Label inline label={label} />
-      </div>
-      <div className="item-description__line">
-        Location: <Label inline label={json.bin_id} />
-      </div>
-      {json.sku_parent ? (
-        <div className="item-description__line">
-          SKU: <Label inline label={json.bin_id} />
-        </div>
-      ) : null}
-      {/* <code style={{ display: "block" }}>{JSON.stringify(json, null, 4)}</code> */}
-    </div>
-  );
-};
-
 const BatchPreview = ({ json, label }) => {
   return (
     <div className="card">
@@ -83,9 +63,6 @@ const SearchResults = ({
           }
           if (label.startsWith("BAT")) {
             return <BatchPreview key={label} label={label} json={resultJson} />;
-          }
-          if (label.startsWith("UNIQ")) {
-            return <UniqPreview key={label} label={label} json={resultJson} />;
           }
           return (
             <div className="card" key={resultJson}>
