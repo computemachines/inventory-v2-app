@@ -44,8 +44,9 @@ function SearchForm({
           limit: PAGE_ITEMS_LIMIT,
         })}`
       )
-        .then((response) => response.json())
-        .then(setSearchResults);
+      .then((response) => response.json())
+      .then(json => json.state)
+      .then(setSearchResults);
   }, [searchQuery, setSearchQuery, setSearchResults, urlPage]);
 
   return (
