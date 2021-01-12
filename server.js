@@ -1,6 +1,6 @@
 const doc = `
 Usage:
-  server.js [-p <port>] [--noclient]
+  server.js [-p <port>] [--noclient] [--dev]
 `;
 const { docopt } = require("docopt");
 const args = docopt(doc, { version: "ssr0.2.0" });
@@ -13,6 +13,8 @@ const { createStore } = require("redux");
 const { ServerLocation, isRedirect } = require("@reach/router");
 const axios = require("axios");
 
+const rootDir = args["--dev"] ? "./dist" : "."
+
 const {
   AppRoot,
   reducers,
@@ -21,9 +23,8 @@ const {
   setNextBatch,
   setNextBin,
   setNextSku,
-  setNextUniq,
   setBinData,
-} = require("./assets/server.bundle");
+} = require(`${rootDir}/assets/server.bundle`);
 
 let port = 80;
 let noclient = false;
@@ -58,7 +59,8 @@ const htmlTemplate = (html, preloadedState) =>
 
 const express_app = express();
 
-express_app.use('/assets', express.static(path.join(__dirname, "assets")));
+
+express_app.use('/assets', express.static(`${rootDir}/assets`));
 
 const api_hostname = "http://localhost:8081";
 const api_fetch = axios.create({ baseURL: api_hostname + "/api/" });
@@ -72,9 +74,9 @@ express_app.get("/*", (req, res, next) => {
     api_fetch("/next/sku"),
     api_fetch("/next/batch"),
   ]).then((res) => {
-    req.locals.store.dispatch(setNextBin(res[0].data));
-    req.locals.store.dispatch(setNextSku(res[1].data));
-    req.locals.store.dispatch(setNextBatch(res[2].data));
+    req.locals.store.dispatch(setNextBin(res[0].data.state));
+    req.locals.store.dispatch(setNextSku(res[1].data.state));
+    req.locals.store.dispatch(setNextBatch(res[2].data.state));
     console.log("nexting");
     next();
   });
@@ -90,7 +92,7 @@ express_app.get("/search", (req, res, next) => {
       params: { query: searchQuery, startingFrom: (page - 1) * 20 },
     })
       .then(({ data }) => {
-        req.locals.store.dispatch(setSearchResults(data));
+        req.locals.store.dispatch(setSearchResults(data.state));
         next();
       })
       .catch(console.error);
@@ -101,7 +103,7 @@ express_app.get("/search", (req, res, next) => {
 
 express_app.get("/bin/:id", (req, res, next) => {
   api_fetch(`/bin/${req.params.id}`)
-    .then(({ data }) => req.locals.store.dispatch(setBinData(data)))
+    .then(({ data }) => req.locals.store.dispatch(setBinData(data.state)))
     .then(next);
 });
 

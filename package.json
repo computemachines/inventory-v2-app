@@ -9,8 +9,8 @@
     "build:server:dev": "webpack --config webpack.server.config.js",
     "build:server": "cross-env NODE_ENV='production' npx webpack-cli --config webpack.server.config.js",
     "dev": "webpack-dev-server --hot-only --history-api-fallback",
-    "server:dev": "node dist/server.js -p 8080",
-    "server:only": "node dist/server.js -p 8080 --noclient"
+    "server:dev": "node server.js -p 8080 --dev",
+    "server:only": "node server.js -p 8080 --dev --noclient"
   },
   "dependencies": {
     "@babel/polyfill": "^7.12.1",
