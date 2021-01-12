@@ -69,14 +69,12 @@ express_app.get("/*", (req, res, next) => {
 
   Promise.all([
     api_fetch("/next/bin"),
-    api_fetch("/next/uniq"),
     api_fetch("/next/sku"),
     api_fetch("/next/batch"),
   ]).then((res) => {
     req.locals.store.dispatch(setNextBin(res[0].data));
-    req.locals.store.dispatch(setNextUniq(res[1].data));
-    req.locals.store.dispatch(setNextSku(res[2].data));
-    req.locals.store.dispatch(setNextBatch(res[3].data));
+    req.locals.store.dispatch(setNextSku(res[1].data));
+    req.locals.store.dispatch(setNextBatch(res[2].data));
     console.log("nexting");
     next();
   });
