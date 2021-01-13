@@ -34,9 +34,6 @@ const Navbar = ({ show, setShow }) => {
         <Link to="/new/sku" className="navlink">
           New SKUs
         </Link>
-        <Link to="/new/uniq" className="navlink">
-          New UNIQ
-        </Link>
         <Link to="/new/bin" className="navlink">
           New Bin
         </Link>
