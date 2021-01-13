@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 // /* eslint-disable */
 // import actions from "../actions";
 import { printLabel } from "../local_utils";
+import { Label } from "./Label";
 
 const NewBatchForm = ({ nextBatchId, setNextBatchId }) => {
   // const [alert, setAlert] = useState(null);
@@ -12,6 +13,7 @@ const NewBatchForm = ({ nextBatchId, setNextBatchId }) => {
   const [skuId, setSkuId] = useState("");
   const [ownedCodes, setOwnedCodes] = useState("");
   const [assocCodes, setAssocCodes] = useState("");
+  const [alert, setAlert] = useState(null);
 
   useEffect(() => {
     fetch("/api/next/batch")
@@ -34,7 +36,16 @@ const NewBatchForm = ({ nextBatchId, setNextBatchId }) => {
               associated_codes: assocCodes,
             }),
           })
-            .then(console.log)
+            .then((resp) => {
+              if (resp.ok) {
+                setAlert(
+                  <div className="alert alert-success">
+                    Success:{" "}
+                    <Label label={batchId || nextBatchId} inline></Label> added.
+                  </div>
+                );
+              }
+            })
             .then(() => {
               console.log("fetching next batch id");
               fetch("/api/next/batch")
@@ -112,6 +123,7 @@ const NewBatchForm = ({ nextBatchId, setNextBatchId }) => {
         </label>
         <input type="submit" value="Submit" className="form-submit" />
       </form>
+      {alert}
     </div>
   );
 };
