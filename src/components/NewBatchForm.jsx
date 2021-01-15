@@ -44,6 +44,10 @@ const NewBatchForm = ({ nextBatchId, setNextBatchId }) => {
                     <Label label={batchId || nextBatchId} inline></Label> added.
                   </div>
                 );
+                setName("");
+                setSkuId("");
+                setOwnedCodes("");
+                setAssocCodes("");
               } else {
                 setAlert(
                   <div className="alert alert-error">
