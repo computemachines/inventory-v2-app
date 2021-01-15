@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { connect } from "react-redux";
 
 // /* eslint-disable */
@@ -14,6 +14,8 @@ const NewBatchForm = ({ nextBatchId, setNextBatchId }) => {
   const [ownedCodes, setOwnedCodes] = useState("");
   const [assocCodes, setAssocCodes] = useState("");
   const [alert, setAlert] = useState(null);
+
+  const batchIdInputRef = useRef();
 
   useEffect(() => {
     fetch("/api/next/batch")
@@ -51,6 +53,7 @@ const NewBatchForm = ({ nextBatchId, setNextBatchId }) => {
               fetch("/api/next/batch")
                 .then((resp) => resp.json())
                 .then((data) => setNextBatchId(data.state));
+              batchIdInputRef.current.focus();
             } else {
               setAlert(
                 <div className="alert alert-error">Error: {"" + resp.data}</div>
@@ -60,7 +63,7 @@ const NewBatchForm = ({ nextBatchId, setNextBatchId }) => {
           e.preventDefault();
         }}
       >
-        <label htmlFor="batch_id" className="form-label">
+        <label htmlFor="batch_id" className="form-label" ref={batchIdInputRef}>
           Batch Label
           <div className="form-input-container">
             <input
