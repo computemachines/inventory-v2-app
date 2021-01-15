@@ -14,6 +14,7 @@ import ReceiveSkuForm from "./ReceiveSkuForm";
 import SearchForm from "./SearchForm";
 import Bin from "./Bin";
 import Sku from "./Sku";
+import Batch from "./Batch";
 import HamburgerBar from "./HamburgerBar";
 import ErrorBoundary from "./ErrorBoundary";
 import AlertContext from "./AlertContext";
@@ -40,6 +41,7 @@ const App = () => {
                 <Bin path="/bin/:binId" />
                 <Bin path="/bin/:binId/edit" editable />
                 <Sku path="/sku/:skuId" />
+                <Batch path="/batch/:batchId" />
                 <FourOhFour default />
               </Router>
             </AlertContext.Provider>

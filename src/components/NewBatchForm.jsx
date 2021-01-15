@@ -44,6 +44,12 @@ const NewBatchForm = ({ nextBatchId, setNextBatchId }) => {
                     <Label label={batchId || nextBatchId} inline></Label> added.
                   </div>
                 );
+              } else {
+                setAlert(
+                  <div className="alert alert-error">
+                    Error: {"" + resp.data}
+                  </div>
+                );
               }
             })
             .then(() => {
