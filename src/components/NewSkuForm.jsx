@@ -17,8 +17,8 @@ const NewSkuForm = ({ nextSku, setNextSku }) => {
   const [alert, setAlert] = useState(null);
   useEffect(() => {
     fetch("/api/next/sku")
-      .then((resp) => resp.text())
-      .then(setNextSku);
+      .then((resp) => resp.json())
+      .then((data) => setNextSku(data.state));
   }, [setNextSku]);
   return (
     <div>
