@@ -35,33 +35,28 @@ const NewBatchForm = ({ nextBatchId, setNextBatchId }) => {
               owned_codes: ownedCodes,
               associated_codes: assocCodes,
             }),
-          })
-            .then((resp) => {
-              if (resp.ok) {
-                setAlert(
-                  <div className="alert alert-success">
-                    Success:{" "}
-                    <Label label={batchId || nextBatchId} inline></Label> added.
-                  </div>
-                );
-                setName("");
-                setSkuId("");
-                setOwnedCodes("");
-                setAssocCodes("");
-              } else {
-                setAlert(
-                  <div className="alert alert-error">
-                    Error: {"" + resp.data}
-                  </div>
-                );
-              }
-            })
-            .then(() => {
+          }).then((resp) => {
+            if (resp.ok) {
+              setAlert(
+                <div className="alert alert-success">
+                  Success: <Label label={batchId || nextBatchId} inline></Label>{" "}
+                  added.
+                </div>
+              );
+              setName("");
+              setSkuId("");
+              setOwnedCodes("");
+              setAssocCodes("");
               console.log("fetching next batch id");
               fetch("/api/next/batch")
                 .then((resp) => resp.json())
                 .then((data) => setNextBatchId(data.state));
-            });
+            } else {
+              setAlert(
+                <div className="alert alert-error">Error: {"" + resp.data}</div>
+              );
+            }
+          });
           e.preventDefault();
         }}
       >
