@@ -8,7 +8,7 @@ import { Label } from "./Label";
 
 const NewBatchForm = ({ nextBatchId, setNextBatchId }) => {
   // const [alert, setAlert] = useState(null);
-  const [batchId, setBatchId] = useState(nextBatchId);
+  const [batchId, setBatchId] = useState("");
   const [name, setName] = useState("");
   const [skuId, setSkuId] = useState("");
   const [ownedCodes, setOwnedCodes] = useState("");
