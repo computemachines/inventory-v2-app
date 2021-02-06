@@ -34,8 +34,8 @@ const NewBatchForm = ({ nextBatchId, setNextBatchId }) => {
               id: batchId || nextBatchId,
               name,
               sku_id: skuId,
-              owned_codes: ownedCodes,
-              associated_codes: assocCodes,
+              owned_codes: ownedCodes.split("\n"),
+              associated_codes: assocCodes.split("\n"),
             }),
           }).then((resp) => {
             if (resp.ok) {
