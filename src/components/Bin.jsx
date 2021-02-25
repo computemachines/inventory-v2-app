@@ -2,13 +2,14 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 
 import { setBinData } from "../actions";
+import defaultState from "../defaultState";
 import "../styles/Bin.scss";
 import "../styles/item.scss";
 import { Label } from "./Label";
 
 // eslint-disable-next-line no-unused-vars
 const Bin = ({ binData, setBinData, binId, editable }) => {
-  const [loaded, setLoaded] = useState(false);
+  const [loaded, setLoaded] = useState(binData !== defaultState.binData);
 
   console.log("bin_id", binId);
   useEffect(() => {
