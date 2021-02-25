@@ -77,7 +77,6 @@ express_app.get("/*", (req, res, next) => {
     req.locals.store.dispatch(setNextBin(res[0].data.state));
     req.locals.store.dispatch(setNextSku(res[1].data.state));
     req.locals.store.dispatch(setNextBatch(res[2].data.state));
-    console.log("nexting");
     next();
   });
 });
@@ -103,8 +102,10 @@ express_app.get("/search", (req, res, next) => {
 
 express_app.get("/bin/:id", (req, res, next) => {
   api_fetch(`/bin/${req.params.id}`)
-    .then(({ data }) => req.locals.store.dispatch(setBinData(data.state)))
-    .then(next);
+    .then(({ data }) => {
+      req.locals.store.dispatch(setBinData(data.state));
+      next();
+    })
 });
 
 express_app.get("/*", (req, res) => {
