@@ -16,7 +16,9 @@ const Bin = ({ binData, setBinData, binId, editable }) => {
       fetch(`/api/bin/${binId}`).then((response) =>
         response
           .json()
-          .then((data) => setBinData(data))
+          .then((data) => {
+            setBinData(data.state);
+          })
           .finally(() => setLoaded(true))
       );
     }
@@ -39,8 +41,12 @@ const BinContentsTable = ({ binData }) => (
   <ul className="bin-contents">
     {binData &&
       binData.contents &&
-      binData.contents.map((contents) => (
-        <BinContentListItem key={contents} {...contents} />
+      Object.entries(binData.contents).map((content) => (
+        <BinContentListItem
+          key={content}
+          label={content[0]}
+          quantity={content[1]}
+        />
       ))}
   </ul>
 );
