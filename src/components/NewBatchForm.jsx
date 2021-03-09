@@ -34,8 +34,8 @@ const NewBatchForm = ({ nextBatchId, setNextBatchId }) => {
               id: batchId || nextBatchId,
               name,
               sku_id: skuId,
-              owned_codes: ownedCodes.split("\n"),
-              associated_codes: assocCodes.split("\n"),
+              owned_codes: ownedCodes.split("\n").filter((e) => e != ""),
+              associated_codes: assocCodes.split("\n").filter((e) => e != ""),
             }),
           }).then((resp) => {
             if (resp.ok) {
@@ -56,7 +56,9 @@ const NewBatchForm = ({ nextBatchId, setNextBatchId }) => {
               batchIdInputRef.current.focus();
             } else {
               setAlert(
-                <div className="alert alert-error">Error: {"" + resp.data}</div>
+                <div className="alert alert-error">
+                  Error: {"" + resp.json()}
+                </div>
               );
             }
           });
