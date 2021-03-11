@@ -15,7 +15,7 @@ const ReceiveSkuForm = () => {
       <form
         action="/api/receive"
         onSubmit={(event) => {
-          fetch(`/api/${binId || "RECEIVE"}/contents`, {
+          fetch(`/api/bin/${binId || "RECEIVE"}/contents`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
