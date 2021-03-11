@@ -1,11 +1,13 @@
 import React, { useState } from "react";
-import { Link } from "@reach/router";
+import { Link, useLocation } from "@reach/router";
+import { parse } from "query-string";
 
 const ReceiveSkuForm = () => {
-  const [binId, setBinId] = useState("");
-  const [skuId, setSkuId] = useState("");
-  const [batchId, setBatchId] = useState("");
-  const [quantity, setQuantity] = useState(0);
+  const location = useLocation();
+  const defaults = parse(location.search);
+  const [binId, setBinId] = useState(defaults.bin);
+  const [skuId, setSkuId] = useState(defaults.sku);
+  const [quantity, setQuantity] = useState(1);
   const [alert, setAlert] = useState(null);
 
   return (
@@ -13,13 +15,11 @@ const ReceiveSkuForm = () => {
       <form
         action="/api/receive"
         onSubmit={(event) => {
-          fetch("/api/receive", {
+          fetch(`/api/${binId || "RECEIVE"}/contents`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
-              bin_id: binId || "RECEIVE",
-              sku_id: skuId,
-              batch_id: batchId,
+              id: skuId,
               quantity: quantity,
             }),
           })
@@ -28,7 +28,6 @@ const ReceiveSkuForm = () => {
                 response.json().then((data) => {
                   setSkuId("");
                   setBinId("");
-                  setBatchId("");
                   setQuantity("");
                   console.log(data);
                   setAlert(

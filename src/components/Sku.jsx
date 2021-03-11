@@ -1,3 +1,5 @@
+import { Link } from "@reach/router";
+import { stringifyUrl } from "query-string";
 import React, { useState, useEffect } from "react";
 import { Label } from "./Label";
 
@@ -21,6 +23,9 @@ const Sku = ({ skuId }) => {
       <h2>{skuData.name}</h2>
       <Label link={false} label={skuId} />
       <code>{JSON.stringify(skuData, null, 4)}</code>
+      <Link to={stringifyUrl({ url: "/receive", query: { sku: skuId } })}>
+        Receive
+      </Link>
     </div>
   );
 };
